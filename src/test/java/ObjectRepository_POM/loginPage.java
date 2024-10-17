@@ -38,11 +38,11 @@ public class loginPage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public RechomePage login(String usernameData,String passwordData) {
+	public RecruiterhomePage login(String usernameData,String passwordData) {
 		usernametf.sendKeys(usernameData);
 		passwordtf.sendKeys(passwordData);
 		loginButton.click();
-		return new RechomePage(driver);
+		return new RecruiterhomePage(driver);
 		
 	}
 }

@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class RechomePage {
+public class RecruiterhomePage {
 
 	public WebDriver driver;
 	
@@ -94,7 +94,7 @@ public class RechomePage {
 	}
      
 	
-    public RechomePage(WebDriver driver) {
+    public RecruiterhomePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
     
@@ -102,5 +102,10 @@ public class RechomePage {
 	   Shortlisted.click();
 	   return new ShortListed(driver);
    } 
+   
+   public AddCandidate addCan(WebDriver driver) {
+	   AddCandidate.click();
+	   return new AddCandidate(driver);
+   }
 
 }

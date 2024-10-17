@@ -26,5 +26,10 @@ public class ShortListed {
          editAction.click();
    return driver;
   }
+    
+   public WebDriver Form(WebDriver driver) {
+	   
+	return driver; 
+   }
 
 }

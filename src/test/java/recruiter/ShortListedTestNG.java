@@ -13,7 +13,7 @@ import CommonUtil.PropertyFileUtil;
 import CommonUtil.WebDriverUtil;
 import CommonUtil.baseClass;
 import CommonUtil.listenerImplementation;
-import ObjectRepository_POM.RechomePage;
+import ObjectRepository_POM.RecruiterhomePage;
 import ObjectRepository_POM.RecruiterGear;
 import ObjectRepository_POM.ShortListed;
 import ObjectRepository_POM.loginPage;
@@ -51,7 +51,7 @@ public class ShortListedTestNG extends baseClass {
 
 		Thread.sleep(2000);
 
-		RechomePage hp = new RechomePage(driver);
+		RecruiterhomePage hp = new RecruiterhomePage(driver);
 		hp.home(driver);
 		System.out.println("TEST");
 		
