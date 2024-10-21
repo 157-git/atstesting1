@@ -103,6 +103,11 @@ public class AddCandidateTestNG extends baseClass{
 	    
 	    if (STATUS.equals("Interested")) {
 			System.out.println("Interested");
+			
+			//Scroll up to name field
+			WebElement name = driver.findElement(By.name("candidateName"));
+			js.executeScript("arguments[0].scrollIntoView();", name);
+			
 			//enter candidateName and candidateEmail
 		    AddCandidate ac=new AddCandidate(driver);
 		    ac.CandidateInfo(CANDIDATE_NAME,CANDIDATE_EMAIL);
@@ -177,7 +182,7 @@ public class AddCandidateTestNG extends baseClass{
 		   		WebElement totalExpMonth = driver.findElement(By.name("experienceMonth"));
 		   		totalExpMonth.sendKeys(TOTAL_EXP_MONTH);
 		   		
-		   		//relevent experience
+		   		//relevant experience
 		   		WebElement releExp = driver.findElement(By.name("relevantExperience"));
 		   		releExp.sendKeys(RELEVENT_EXP);
 		   		//notice

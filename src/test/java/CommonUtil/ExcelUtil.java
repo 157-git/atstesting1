@@ -16,7 +16,7 @@ public class ExcelUtil {
 
 		    
 		    // Method to get cell value as string from an Excel sheet
-		    public static String getDataFromExcel(String excelFilePath, String sheetName, int rowNum, int colNum) {
+		    public String getDataFromExcel(String excelFilePath, String sheetName, int rowNum, int colNum) {
 		        String cellData = "";
 
 		        try (FileInputStream fis = new FileInputStream(excelFilePath);

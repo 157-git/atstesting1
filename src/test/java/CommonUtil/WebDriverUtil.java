@@ -40,6 +40,7 @@ public class WebDriverUtil {
 	public void handleDropdown(WebElement element,String targetElement){
 		Select s=new Select(element);
 		s.selectByVisibleText(targetElement);
+
 	}
 	
 	
