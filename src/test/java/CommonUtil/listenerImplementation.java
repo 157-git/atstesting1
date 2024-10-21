@@ -31,6 +31,7 @@ public class listenerImplementation implements ITestListener {
 		// TODO Auto-generated method stub
 		String methodname = result.getMethod().getMethodName();
 		test.log(Status.PASS, "TestScript Execution is Passed");
+		
 	}
 
 	@Override
@@ -68,6 +69,7 @@ public class listenerImplementation implements ITestListener {
 	public void onTestFailedWithTimeout(ITestResult result) {
 		// TODO Auto-generated method stub
 		Reporter.log("TestScript execution is started", true);
+		System.out.println("time out");
 	}
 
 	@Override
@@ -81,7 +83,7 @@ public class listenerImplementation implements ITestListener {
 				"./extentreport/report" + ju.getRandomNumber() + ".html");
 		reporter.config().setDocumentTitle("Recruiter's Gear");
 		reporter.config().setTheme(Theme.DARK);
-		reporter.config().setReportName("ShortListed");
+		reporter.config().setReportName("ADD CANDIDATE");
 
 		// use extentReporter class to generate extend report
 		reports = new ExtentReports();
@@ -96,6 +98,7 @@ public class listenerImplementation implements ITestListener {
 	public void onFinish(ITestContext context) {
 		// TODO Auto-generated method stub
 		test.log(Status.PASS, "TestScript execution is success");
+		
 		reports.flush();
 	}
 //.........................................................................................................

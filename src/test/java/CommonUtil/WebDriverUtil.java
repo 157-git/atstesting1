@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.time.Duration;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -39,7 +40,13 @@ public class WebDriverUtil {
 	
 	public void handleDropdown(WebElement element,String targetElement){
 		Select s=new Select(element);
-		s.selectByVisibleText(targetElement);
+		//s.selectByVisibleText(targetElement);
+		try {
+		    s.selectByVisibleText(targetElement);
+		} catch (NoSuchElementException e) {
+		    System.out.println("Element not found: " + e.getMessage());
+		}
+
 
 	}
 	

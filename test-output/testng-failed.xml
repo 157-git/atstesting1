@@ -7,9 +7,9 @@
         <methods>
           <include name="BM"/>
           <include name="AM"/>
+          <include name="addCandidateIVD"/>
           <include name="BS"/>
           <include name="BC"/>
-          <include name="AddCandidate"/>
           <include name="AS"/>
           <include name="AC"/>
         </methods>
