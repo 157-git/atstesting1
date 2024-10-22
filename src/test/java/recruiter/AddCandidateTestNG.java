@@ -2,8 +2,9 @@ package recruiter;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
-
+import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,8 +13,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
-import com.aventstack.extentreports.util.Assert;
 
 import CommonUtil.ExcelUtil;
 import CommonUtil.JavaUtil;
@@ -62,25 +61,13 @@ public class AddCandidateTestNG extends baseClass{
 		String STATUS=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 1, 2);
 
 		
-//		//enter candidateName and candidateEmail
-//	    AddCandidate ac=new AddCandidate(driver);
-//	    ac.CandidateInfo(CANDIDATE_NAME,CANDIDATE_EMAIL);
-		 
-//	    //Source name select DropDown
-//	    Thread.sleep(1000);
-//	    WebElement sourceName = driver.findElement(By.name("sourceName"));
-//	    String SOURCE=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 2,1);
-//	    Thread.sleep(1000);
-//	    wdu.handleDropdown(sourceName, SOURCE);
+
 	    
 	    //scrollDown to bottom to select status type
 	    JavascriptExecutor js = (JavascriptExecutor) driver;
 	    WebElement status = driver.findElement(By.name("selectYesOrNo"));
 	    js.executeScript("arguments[0].scrollIntoView();", status);
 	    
-//	    //enter candidate contact number
-//	   String CONTACT= eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate",4 , 1);
-//	    driver.findElement(By.cssSelector("input[name=\"contactNumber\"]")).sendKeys(CONTACT);
 	    
 	    //select status type from dropDown
 	    Thread.sleep(1000);
@@ -119,7 +106,7 @@ public class AddCandidateTestNG extends baseClass{
 			
 			
 			//Scroll up to name field
-			WebElement name = driver.findElement(By.name("candidateName"));
+			WebElement name = driver.findElement(By.name("recruiterName"));
 			js.executeScript("arguments[0].scrollIntoView();", name);
 			
 			//enter candidateName and candidateEmail
@@ -239,10 +226,19 @@ public class AddCandidateTestNG extends baseClass{
 		   		Thread.sleep(1000);
 		   		driver.findElement(By.xpath("//button[text()=\"Yes\"]")).click();
 		   		
+		   	//error message
+		     	List<WebElement> error = driver.findElements(By.className("error-message"));
+		     	if (error!=null) {
+					for (WebElement webElement : error) {
+						Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
+					}
+				} else {
+					System.out.println("candidate saved successfully");
+				}
+		     
 		   		Thread.sleep(2000);
-		   
+		   		wdu.ScreenShot(driver, "InterestedVD");
 		   		
-		   		wdu.ScreenShot(driver, "Interested");
 		   		
 		} else {
 			
@@ -251,25 +247,24 @@ public class AddCandidateTestNG extends baseClass{
 			 String CONTACT= eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate",1 , 3);
 			 String SOURCE=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 1, 4);
 			 String FEEDBACK=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1,5);
-			String JOB_ID= eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 2, 6);
-			String LOCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 7);
-			String OTHER_LOC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 8);
-			String EDUCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 9);
-			String OTHER_EDUCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 10);
-			String TOTAL_EXP_YEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 11);
-			String TOTAL_EXP_MONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 12);
-			String RELEVENT_EXP=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 13);
-			String NOTICE_PERIOD=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 14);
-			String COMMUNICATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 15);
-			String CURRENT_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 16);
-			String EXPECTED_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 17);
-			String OFFER_LETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 18);
-			String STATUS_TYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 19);
+			String JOB_ID= eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 1, 6);
+			String LOCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 7);
+			String OTHER_LOC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 8);
+			String EDUCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 9);
+			String OTHER_EDUCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 10);
+			String TOTAL_EXP_YEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 11);
+			String TOTAL_EXP_MONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 12);
+			String RELEVENT_EXP=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 13);
+			String NOTICE_PERIOD=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 14);
+			String COMMUNICATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 15);
+			String CURRENT_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 16);
+			String EXPECTED_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 17);
+			String OFFER_LETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 18);
+			String STATUS_TYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 19);
 			
-			System.out.println(".6......priority 1...........");
 			
 			//Scroll up to name field
-			WebElement name = driver.findElement(By.name("candidateName"));
+			WebElement name = driver.findElement(By.name("recruiterName"));
 			js.executeScript("arguments[0].scrollIntoView();", name);
 			Thread.sleep(1000);
 			
@@ -304,8 +299,21 @@ public class AddCandidateTestNG extends baseClass{
 	   		//click on yes
 	   		Thread.sleep(1000);
 	   		driver.findElement(By.xpath("//button[text()=\"Yes\"]")).click();
-		   
-		   
+	   		
+	   	//error message
+	     	List<WebElement> error = driver.findElements(By.className("error-message"));
+	     	if (error!=null) {
+				for (WebElement webElement : error) {
+					Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
+					Thread.sleep(1000);
+					js.executeScript("arguments[0].scrollIntoView();", error);
+				}
+			} else {
+				System.out.println("candidate saved successfully");
+			}
+		  
+	     	
+	   		wdu.ScreenShot(driver, "not-InterestedVD");
 			System.out.println("yet to confirm");
 		}
 	}
@@ -377,7 +385,7 @@ public class AddCandidateTestNG extends baseClass{
 						
 						
 						//Scroll up to name field
-						WebElement name = driver.findElement(By.name("candidateName"));
+						WebElement name = driver.findElement(By.name("recruiterName"));
 						js.executeScript("arguments[0].scrollIntoView();", name);
 						
 						//enter candidateName and candidateEmail
@@ -496,34 +504,44 @@ public class AddCandidateTestNG extends baseClass{
 					   		driver.findElement(By.xpath("//button[text()=\"Yes\"]")).click();
 					   		
 					   		Thread.sleep(2000);
-					   
 					   		
-					   		wdu.ScreenShot(driver, "Interested");
-					   		
+					   	//error message
+					     	List<WebElement> error = driver.findElements(By.className("error-message"));
+					     	if (error!=null) {
+								for (WebElement webElement : error) {
+									Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
+								}
+							} else {
+								System.out.println("candidate saved successfully");
+							}
+				
+					     	Thread.sleep(1000);
+					   		wdu.ScreenShot(driver, "InterestedIVD");
+					   		System.out.println("candidate saved successfully");
 					} else {
 						
-						String CANDIDATE_NAME =eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 4, 0);
-						String CANDIDATE_EMAIL =eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 4, 1);
-						 String CONTACT= eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate",4 , 3);
-						 String SOURCE=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 4, 4);
-						 String FEEDBACK=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 4,5);
-						String JOB_ID= eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 4, 6);
-						String LOCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 7);
-						String OTHER_LOC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 8);
-						String EDUCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 9);
-						String OTHER_EDUCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 10);
-						String TOTAL_EXP_YEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 11);
-						String TOTAL_EXP_MONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 12);
-						String RELEVENT_EXP=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 13);
-						String NOTICE_PERIOD=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 14);
-						String COMMUNICATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 15);
-						String CURRENT_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 16);
-						String EXPECTED_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 17);
-						String OFFER_LETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 18);
-						String STATUS_TYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 19);
+						String CANDIDATE_NAME =eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 3, 0);
+						String CANDIDATE_EMAIL =eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 3, 1);
+						 String CONTACT= eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate",3 , 3);
+						 String SOURCE=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 3, 4);
+						 String FEEDBACK=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3,5);
+						String JOB_ID= eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 3, 6);
+						String LOCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 7);
+						String OTHER_LOC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 8);
+						String EDUCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 9);
+						String OTHER_EDUCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 10);
+						String TOTAL_EXP_YEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 11);
+						String TOTAL_EXP_MONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 12);
+						String RELEVENT_EXP=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 13);
+						String NOTICE_PERIOD=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 14);
+						String COMMUNICATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 15);
+						String CURRENT_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 16);
+						String EXPECTED_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 17);
+						String OFFER_LETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 18);
+						String STATUS_TYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 19);
 						
 						//Scroll up to name field
-						WebElement name = driver.findElement(By.name("candidateName"));
+						WebElement name = driver.findElement(By.name("recruiterName"));
 						js.executeScript("arguments[0].scrollIntoView();", name);
 						Thread.sleep(1000);
 						
@@ -547,6 +565,10 @@ public class AddCandidateTestNG extends baseClass{
 					   Thread.sleep(1000);
 					   wdu.handleDropdown(feedback, FEEDBACK);
 					   
+					   
+					   
+					   
+					   
 					   //scroll
 				   	   js.executeScript("arguments[0].scrollIntoView();", status);
 					   
@@ -557,8 +579,19 @@ public class AddCandidateTestNG extends baseClass{
 				   		//click on yes
 				   		Thread.sleep(1000);
 				   		driver.findElement(By.xpath("//button[text()=\"Yes\"]")).click();
+				   		
+				   	//error message
+				     	List<WebElement> error = driver.findElements(By.className("error-message"));
+				     	if (error!=null) {
+							for (WebElement webElement : error) {
+								Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
+							}
+						} else {
+							System.out.println("candidate saved successfully");
+						}
 					   
-					   
+				   		Thread.sleep(1000);
+				   		wdu.ScreenShot(driver, "not-InterestedIVD");
 						System.out.println("yet to confirm");
 					}
 				 

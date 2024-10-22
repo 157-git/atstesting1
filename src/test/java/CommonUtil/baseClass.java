@@ -26,6 +26,7 @@ public class baseClass extends listenerImplementation{
 	@BeforeSuite
 	public void BS() {
 		System.out.println("connected to the DataBase");
+		dataBaseUtil.connect();
 	}
 	
 	@BeforeClass
@@ -56,7 +57,11 @@ public class baseClass extends listenerImplementation{
 	
 	@AfterMethod			//logout from the application
 	public void AM() {
-		System.out.println("after method");
+		System.out.println("dis-connected from database");
+		
+		dataBaseUtil.disconnect();
+		
+		
 
 //		WebElement img = driver.findElement(By.cssSelector("img[src='themes/softed/images/user.PNG']"));
 //		wdu.mouseHover(driver, img);

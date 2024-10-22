@@ -41,9 +41,12 @@ public class listenerImplementation implements ITestListener {
 		String methodname = result.getMethod().getMethodName();
 		Reporter.log(methodname + "TestScript Execution is Failure :" + message, true);
 		test.log(Status.FAIL, "TestScript Execution is Failed");
+		
+        System.err.println("Test failed: " + result.getName());
+        System.err.println("Error: " + result.getThrowable().getMessage());
 
 		try {
-			String path=wdu.ScreenShot(baseClass.sdriver, "Candidate");
+			String path=wdu.ScreenShot(baseClass.sdriver, "failReport");
 			test.addScreenCaptureFromPath(path);
 		} catch (Exception e) {
 			

@@ -2,7 +2,9 @@ package recruiter;
 
 import java.io.IOException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -58,6 +60,23 @@ public class ShortListedTestNG extends baseClass {
 		ShortListed sl = new ShortListed(driver);
 		sl.Action(driver);
 
+		String candidateName = driver.findElement(By.name("candidateName")).getAttribute("value");
+		eu.writeDataInExcel(1, 0, candidateName);
+		
+		String candidateEmail=driver.findElement(By.name("candidateEmail")).getAttribute("value");
+		eu.writeDataInExcel(1, 1, candidateEmail);
+		
+		String contactNumber=driver.findElement(By.name("contactNumber")).getAttribute("value");
+		eu.writeDataInExcel(1, 2, contactNumber);
+		
+		String whatsupNumber = driver.findElement(By.name("alternateNumber")).getAttribute("value");
+		eu.writeDataInExcel(1, 3, whatsupNumber);
+		
+		String source = driver.findElement(By.name("sourceName")).getAttribute("value");
+		System.out.println("hiiii :"+eu.writeDataInExcel(1, 4, source));
+		
+		String jobId = driver.findElement(By.name("requirementId")).getAttribute("value");
+		eu.writeDataInExcel(1, 5, jobId);
 	}
 
 	
