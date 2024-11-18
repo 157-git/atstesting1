@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -43,7 +46,16 @@ public class ExcelUtil {
 		                        cellData = cell.getStringCellValue();
 		                        break;
 		                    case NUMERIC:
-		                        cellData = String.valueOf(cell.getNumericCellValue());
+		                    	if (DateUtil.isCellDateFormatted(cell)) {
+		                            // Format the date if the cell contains a date
+		                            Date date = cell.getDateCellValue();
+		                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+		                            cellData = dateFormat.format(date);
+		                        } else {
+		                            // Handle as a regular numeric value
+		                            cellData = String.valueOf(cell.getNumericCellValue());
+		                        }
+		                  
 		                        break;
 		                    case BOOLEAN:
 		                        cellData = String.valueOf(cell.getBooleanCellValue());
@@ -51,6 +63,7 @@ public class ExcelUtil {
 		                    case FORMULA:
 		                        cellData = cell.getCellFormula();
 		                        break;
+		                    
 		                    default:
 		                        cellData = "";
 		                        break;
@@ -66,7 +79,7 @@ public class ExcelUtil {
 		        return cellData;
 		    }
 		////////////////////////////////////////////////////////////////////////////////
-		    public String writeDataInExcel(int rowNumber,int cellNum,String data) throws IOException {
+		    public String writeDataInExcel(String SheetName,int rowNumber,int cellNum,String data) throws IOException {
 		    	
 //		    	File file=new File("src\\test\\resources\\Excel.xlsx");
 //		    	FileInputStream fis=new FileInputStream(file);
@@ -88,9 +101,9 @@ public class ExcelUtil {
 		             workbook = new XSSFWorkbook(fis);
 		         }
 
-		         Sheet sheet = workbook.getSheet("shortlisted");
+		         Sheet sheet = workbook.getSheet(SheetName);
 		         if (sheet == null) {
-		             sheet = workbook.createSheet("shortlisted"); // Create sheet if it doesn't exist
+		             sheet = workbook.createSheet(SheetName); // Create sheet if it doesn't exist
 		         }
 
 		         Row row = sheet.getRow(rowNumber);

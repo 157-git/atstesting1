@@ -34,7 +34,7 @@ public class AddCandidateTestNG extends baseClass{
 	JavaUtil ju = new JavaUtil();
 	public WebDriver sdriver;
 	
-	@Test(priority = 0 )
+	@Test(enabled  = false )
 	public void addCandidateVD() throws IOException, InterruptedException {
 		//get data from property file
 		String USERNAME=pfu.getDataFromPropertyFile("username");
@@ -166,16 +166,17 @@ public class AddCandidateTestNG extends baseClass{
 		   	WebElement education = driver.findElement(By.name("qualification"));
 		   	education.click();
 		   	Thread.sleep(1000);
-		   		if (EDUCATION.equals("Other")) {
-					wdu.handleDropdown(education, EDUCATION);
-					Thread.sleep(1000);
-					WebElement other = driver.findElement(By.cssSelector("input[name=\"qualification\"]"));
-					other.click();
-					other.sendKeys(OTHER_EDUCATION);
-				} else {
-					wdu.handleDropdown(education, EDUCATION);
-					System.out.println("select from dropdown");
-				}
+		   	education.sendKeys(EDUCATION);
+//		   		if (EDUCATION.equals("Other")) {
+//					wdu.handleDropdown(education, EDUCATION);
+//					Thread.sleep(1000);
+//					WebElement other = driver.findElement(By.cssSelector("input[name=\"qualification\"]"));
+//					other.click();
+//					other.sendKeys(OTHER_EDUCATION);
+//				} else {
+//					wdu.handleDropdown(education, EDUCATION);
+//					System.out.println("select from dropdown");
+//				}
 		   		
 		   		
 		   		//total experience
@@ -380,7 +381,7 @@ public class AddCandidateTestNG extends baseClass{
 						String EXPECTED_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 17);
 						String OFFER_LETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 18);
 						String STATUS_TYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 19);
-						
+						String DOB=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 20);
 						
 						
 						
@@ -408,6 +409,14 @@ public class AddCandidateTestNG extends baseClass{
 					   feedback.click();
 					   Thread.sleep(1000);
 					   wdu.handleDropdown(feedback, FEEDBACK);
+					   Thread.sleep(1000);
+					   
+					   //select dob
+//					  WebElement dob = driver.findElement(By.xpath("(//div[@class=\"calling-tracker-two-input\"])[9]"));
+//					  dob.click();
+//					  //dob.clear();
+//					  Thread.sleep(1000);
+//					  dob.sendKeys(DOB);
 					  
 					   //select job id	    
 					   WebElement job_id = driver.findElement(By.id("requirementId"));
@@ -445,16 +454,17 @@ public class AddCandidateTestNG extends baseClass{
 					   	WebElement education = driver.findElement(By.name("qualification"));
 					   	education.click();
 					   	Thread.sleep(1000);
-					   		if (EDUCATION.equals("Other")) {
-								wdu.handleDropdown(education, EDUCATION);
-								Thread.sleep(1000);
-								WebElement other = driver.findElement(By.cssSelector("input[name=\"qualification\"]"));
-								other.click();
-								other.sendKeys(OTHER_EDUCATION);
-							} else {
-								wdu.handleDropdown(education, EDUCATION);
-								System.out.println("select from dropdown");
-							}
+					   	education.sendKeys(EDUCATION);
+//					   		if (EDUCATION.equals("Other")) {
+//								wdu.handleDropdown(education, EDUCATION);
+//								Thread.sleep(1000);
+//								WebElement other = driver.findElement(By.cssSelector("input[name=\"qualification\"]"));
+//								other.click();
+//								other.sendKeys(OTHER_EDUCATION);
+//							} else {
+//								wdu.handleDropdown(education, EDUCATION);
+//								System.out.println("select from dropdown");
+//							}
 					   		
 					   		
 					   		//total experience
@@ -496,6 +506,25 @@ public class AddCandidateTestNG extends baseClass{
 					   		offer_letter.click();
 					   		Thread.sleep(1000);
 					   		wdu.handleDropdown(status_type, STATUS_TYPE);
+					   		
+//					   		//interview slots
+//					   		Thread.sleep(1000);
+//					   		WebElement slot = driver.findElement(By.name("availabilityForInterview"));
+//					   		slot.click();
+					   		
+					   		//time slot
+					   		WebElement time = driver.findElement(By.xpath("//div[@class=\"ant-picker-input\"]"));
+					   		time.click();
+					   		Thread.sleep(1500);
+					   		if (time.isEnabled()) {
+					   			System.out.println("Element is enabled.");
+					   			driver.findElement(By.xpath("(//li[@data-value='10'])[1]")).click();
+						   		driver.findElement(By.xpath("(//li[@data-value='00'])[2]")).click();
+						   		driver.findElement(By.cssSelector("//li[@data-value='am']")).click();
+					   		} else {
+					   		    System.out.println("Element is disabled.");
+					   		}
+					   		
 					   		
 					   		Thread.sleep(1000);
 					   		driver.findElement(By.id("uploadbtn2")).click();

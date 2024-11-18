@@ -108,4 +108,8 @@ public class RecruiterhomePage {
 	   return new AddCandidate(driver);
    }
 
+   public FindCandidate FinCan(WebDriver driver) {
+	   FindCandidate.click();
+	   return new FindCandidate(driver);
+   }
 }
