@@ -112,4 +112,6 @@ public class RecruiterhomePage {
 	   FindCandidate.click();
 	   return new FindCandidate(driver);
    }
+   
+  
 }

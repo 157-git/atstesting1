@@ -3,10 +3,9 @@ package recruiter;
 import java.io.IOException;
 import java.util.List;
 
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -25,17 +24,17 @@ import ObjectRepository_POM.RecruiterhomePage;
 import ObjectRepository_POM.loginPage;
 
 @Listeners(listenerImplementation.class)
-public class FC_CallingTrackerTestNG extends baseClass{
-	
+public class FC_LineUpTrackerTestNG extends baseClass{
+
 	PropertyFileUtil pfu = new PropertyFileUtil();
 	WebDriverUtil wdu = new WebDriverUtil();
 	ExcelUtil eu = new ExcelUtil();
 	JavaUtil ju = new JavaUtil();
 	public WebDriver sdriver;
-
+	
+	
 	@Test
-	public void findCandidate ()throws IOException, InterruptedException {
-		
+	public void lineUpTracker() throws IOException, InterruptedException {
 		
 		String USERNAME = pfu.getDataFromPropertyFile("username");
 		String PASSWORD = pfu.getDataFromPropertyFile("password");	
@@ -55,149 +54,153 @@ public class FC_CallingTrackerTestNG extends baseClass{
 		System.out.println("TEST");
 		
 		FindCandidate fc=new FindCandidate(driver);
-		fc.callTrac(driver);
+		fc.lineUp(driver);
 		fc.actionBtn(driver);
 		
 		
 		
 		//fetch the data from the front end form in calling tracker excel sheet
 		String candidateName = driver.findElement(By.name("candidateName")).getAttribute("value");
-		System.out.println(eu.writeDataInExcel("callingTracker",1, 0, candidateName));;
+		System.out.println(eu.writeDataInExcel("lineUpTracker",1, 0, candidateName));;
 		
 		String candidateEmail=driver.findElement(By.name("candidateEmail")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 1, candidateEmail);
+		eu.writeDataInExcel("lineUpTracker",1, 1, candidateEmail);
 		
 		String contactNumber=driver.findElement(By.name("contactNumber")).getAttribute("value");
-		System.out.println(eu.writeDataInExcel("callingTracker",1, 2, contactNumber));;
+		System.out.println(eu.writeDataInExcel("lineUpTracker",1, 2, contactNumber));;
 		
 		String whatsupNumber = driver.findElement(By.name("alternateNumber")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 3, whatsupNumber);
+		eu.writeDataInExcel("lineUpTracker",1, 3, whatsupNumber);
 		
 		String source = driver.findElement(By.name("sourceName")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 4, source);
+		eu.writeDataInExcel("lineUpTracker",1, 4, source);
 		
 		String jobId = driver.findElement(By.name("requirementId")).getAttribute("value");
-		System.out.println(eu.writeDataInExcel("callingTracker",1, 5, jobId));;
+		System.out.println(eu.writeDataInExcel("lineUpTracker",1, 5, jobId));;
 		
 		String company=driver.findElement(By.id("requirementCompany")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 6, company);
+		eu.writeDataInExcel("lineUpTracker",1, 6, company);
 		
 		String callingFeedback = driver.findElement(By.name("callingFeedback")).getAttribute("value");
-		System.out.println(eu.writeDataInExcel("callingTracker",1, 7, callingFeedback));;
+		System.out.println(eu.writeDataInExcel("lineUpTracker",1, 7, callingFeedback));;
 		
 		String dob = driver.findElement(By.name("lineUp.dateOfBirth")).getAttribute("value");
-		System.out.println(eu.writeDataInExcel("callingTracker",1, 8, dob));
+		System.out.println(eu.writeDataInExcel("lineUpTracker",1, 8, dob));
 		
 		WebElement gender = driver.findElement(By.name("lineUp.gender"));
 		if(gender.isSelected()) {
 			String g=gender.getAttribute("value");
-			System.out.println(eu.writeDataInExcel("callingTracker",1, 9, g));
+			System.out.println(eu.writeDataInExcel("lineUpTracker",1, 9, g));
 		}else {
-			eu.writeDataInExcel("callingTracker",1, 9, "");
+			eu.writeDataInExcel("lineUpTracker",1, 9, "");
 		}
 		
 		
 		String callSummary=driver.findElement(By.name("lineUp.feedBack")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 10, callSummary);
+		eu.writeDataInExcel("lineUpTracker",1, 10, callSummary);
 		
 		String education=driver.findElement(By.name("qualification")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 11, education);
+		eu.writeDataInExcel("lineUpTracker",1, 11, education);
 		
 		String passout=driver.findElement(By.name("lineUp.yearOfPassing")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 12, passout);
+		eu.writeDataInExcel("lineUpTracker",1, 12, passout);
 		
 		String certification=driver.findElement(By.name("lineUp.extraCertification")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 13, certification);
+		eu.writeDataInExcel("lineUpTracker",1, 13, certification);
 		
 		String Currentcompany=driver.findElement(By.name("lineUp.companyName")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 14, Currentcompany);
+		eu.writeDataInExcel("lineUpTracker",1, 14, Currentcompany);
 		
 		String TotalExpYear=driver.findElement(By.name("lineUp.experienceYear")).getAttribute("value");
 		String TotalExpMonth=driver.findElement(By.name("lineUp.experienceMonth")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 15, TotalExpYear+" year"+","+TotalExpMonth+" month");
+		eu.writeDataInExcel("lineUpTracker",1, 15, TotalExpYear+" year"+","+TotalExpMonth+" month");
 		//System.out.println(eu.writeDataInExcel(1, 15, TotalExpMonth));;
 		
 		String releventExp=driver.findElement(By.name("lineUp.relevantExperience")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 16, releventExp);
+		eu.writeDataInExcel("lineUpTracker",1, 16, releventExp);
 		
 		String noticePeriod=driver.findElement(By.name("lineUp.noticePeriod")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 17, noticePeriod);
+		eu.writeDataInExcel("lineUpTracker",1, 17, noticePeriod);
 		
 		String commRating=driver.findElement(By.name("communicationRating")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 18, commRating);
+		eu.writeDataInExcel("lineUpTracker",1, 18, commRating);
 		
 		String CurrentCTCYear=driver.findElement(By.name("lineUp.currentCTCLakh")).getAttribute("value");
 		String CurrentCTCMonth=driver.findElement(By.name("lineUp.currentCTCThousand")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 19, CurrentCTCYear+" Lakh"+","+CurrentCTCMonth+" Thousand");
+		eu.writeDataInExcel("lineUpTracker",1, 19, CurrentCTCYear+" Lakh"+","+CurrentCTCMonth+" Thousand");
 		
 		String expectedCTCYear=driver.findElement(By.name("lineUp.expectedCTCLakh")).getAttribute("value");
 		String expectedCTCMonth=driver.findElement(By.name("lineUp.expectedCTCThousand")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 20, expectedCTCYear+" Lakh"+","+expectedCTCMonth+" Thousand");
+		eu.writeDataInExcel("lineUpTracker",1, 20, expectedCTCYear+" Lakh"+","+expectedCTCMonth+" Thousand");
 		
 		String offerLetter=driver.findElement(By.name("lineUp.holdingAnyOffer")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 21, offerLetter);
+		eu.writeDataInExcel("lineUpTracker",1, 21, offerLetter);
 		
 		String OfferLetterMsg=driver.findElement(By.name("lineUp.offerLetterMsg")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 22, OfferLetterMsg);
+		eu.writeDataInExcel("lineUpTracker",1, 22, OfferLetterMsg);
 		
 		String messageForTL=driver.findElement(By.name("lineUp.msgForTeamLeader")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 23, messageForTL);
+		eu.writeDataInExcel("lineUpTracker",1, 23, messageForTL);
 		
 		String statusType=driver.findElement(By.name("selectYesOrNo")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 24, statusType);
+		eu.writeDataInExcel("lineUpTracker",1, 24, statusType);
 		
 		String finalStatus=driver.findElement(By.name("lineUp.finalStatus")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 25, finalStatus);
+		eu.writeDataInExcel("lineUpTracker",1, 25, finalStatus);
 		
 		String Interviewdate=driver.findElement(By.name("lineUp.availabilityForInterview")).getAttribute("value");
-		eu.writeDataInExcel("callingTracker",1, 26, Interviewdate);
+		eu.writeDataInExcel("lineUpTracker",1, 26, Interviewdate);
 		
 		String InterviewTime=driver.findElement(By.cssSelector("div[class=\"ant-picker-input\"]")).getAttribute("value");    //updated
-		eu.writeDataInExcel("callingTracker",1, 27, InterviewTime);
+		eu.writeDataInExcel("lineUpTracker",1, 27, InterviewTime);
 		
 		Thread.sleep(1000);
 		
 		
-		String CANDIDATENAME = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 0);
-		String CANDIDATEEMAIL = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 1);
-		String CONTACTNUMBER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 2);
-		String WHATSUPNUMBER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 3);
-		String SOURCE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 4);
-		String JOBID = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 5);
-		String COMPANY = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 6);
-		String CALLINGFEEDBACK = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 7);
-		String DOB = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 8);
-		String GENDER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 9);
-		String CALLSUMMARY = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 10);
-		String EDUCATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 11);
-		String PASSOUT = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 12);
-		String CERTIFICATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 13);
-		String CURRENTCOMPANY = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 14);
-		String TOTALEXPYEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 15);
-		String TOTALEXPMONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 15);
-		String RELEVENTEXP = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 16);
-		String NOTICEPERIOD = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 17);
-		String COMMRATING = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 18);
-		String CURRENTCTCYEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 19);
-		String CURRENTCTCMONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 19);
-		String EXPECTEDCTCYEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 20);
-		String EXPECTEDCTCMONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 20);
-		String OFFERLETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 21);
-		String OFFERLETTERMSG = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 22);
-		String MESSAGEFORTL = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 23);
-		String STATUSTYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 24);
-		String FINALSTATUS = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 25);
-		String INTERVIEWDATE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 26);
-		String INTERVIEWTIME = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 27);
+		String CANDIDATENAME = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 0);
+		String CANDIDATEEMAIL = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 1);
+		String CONTACTNUMBER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 2);
+		String WHATSUPNUMBER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 3);
+		String SOURCE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 4);
+		String JOBID = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 5);
+		String COMPANY = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 6);
+		String CALLINGFEEDBACK = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 7);
+		String DOB = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 8);
+		String GENDER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 9);
+		String CALLSUMMARY = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 10);
+		String EDUCATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 11);
+		String PASSOUT = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 12);
+		String CERTIFICATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 13);
+		String CURRENTCOMPANY = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 14);
+		String TOTALEXPYEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 15);
+		String TOTALEXPMONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 15);
+		String RELEVENTEXP = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 16);
+		String NOTICEPERIOD = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 17);
+		String COMMRATING = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 18);
+		String CURRENTCTCYEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 19);
+		String CURRENTCTCMONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 19);
+		String EXPECTEDCTCYEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 20);
+		String EXPECTEDCTCMONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 20);
+		String OFFERLETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 21);
+		String OFFERLETTERMSG = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 22);
+		String MESSAGEFORTL = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 23);
+		String STATUSTYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 24);
+		String FINALSTATUS = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 25);
+		String INTERVIEWDATE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 26);
+		String INTERVIEWTIME = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "lineUpTracker", 2, 27);
 		
 		//............UPDATE DATA IN THE FIELD FROM EXCEL SHEET...............
 		
 				WebElement candidate_Name = driver.findElement(By.name("candidateName"));
+				//candidate_Name.sendKeys(Keys.CONTROL+"a");
 				candidate_Name.clear();
 				candidate_Name.sendKeys(CANDIDATENAME);
 				
 				WebElement candidate_Email=driver.findElement(By.name("candidateEmail"));
-				candidate_Email.clear();
+				//candidate_Email.clear();
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				js.executeScript("arguments[0].value = '';", candidate_Email);
+
 				candidate_Email.sendKeys(CANDIDATEEMAIL);
 
 				WebElement contact_Number=driver.findElement(By.name("contactNumber"));
@@ -228,6 +231,7 @@ public class FC_CallingTrackerTestNG extends baseClass{
 				
 				WebElement d_o_b = driver.findElement(By.name("lineUp.dateOfBirth"));
 				d_o_b.clear();
+				d_o_b.click();
 				d_o_b.sendKeys(DOB);
 				System.out.println("//...........3............");
 				
@@ -342,16 +346,18 @@ public class FC_CallingTrackerTestNG extends baseClass{
 				Thread.sleep(1000);
 				wdu.handleDropdown(status_Type, STATUSTYPE);
 				
+				//update Data button
+				WebElement update_data = driver.findElement(By.xpath("//button[text()=\"Update Data\"]"));
 				
-				if (STATUSTYPE.equals("Intrested")) {
+				if (STATUSTYPE.equals("Interested")) {
 					WebElement final_Status=driver.findElement(By.name("lineUp.finalStatus"));
 					final_Status.click();
 					wdu.handleDropdown(final_Status, FINALSTATUS);
-				}else {
-					WebElement update_data = driver.findElement(By.xpath("//button[text()=\"Update Data\"]"));
 					update_data.click();
-					Thread.sleep(500);
-					wdu.ScreenShot(driver, "calling tracker");
+				}else {
+					
+					update_data.click();
+					wdu.ScreenShot(driver, "line up tracker");
 				}
 				
 				List<WebElement> error = driver.findElements(By.className("error-message"));
@@ -363,17 +369,16 @@ public class FC_CallingTrackerTestNG extends baseClass{
 						break;
 					}
 				}
-				JavascriptExecutor js = (JavascriptExecutor) driver;
+				JavascriptExecutor js1 = (JavascriptExecutor) driver;
 				
 				if (anyDisplayed) {
 					WebElement help = driver.findElement(By.className("update-tracker-popup-open-btn"));
-					js.executeScript("arguments[0].scrollIntoView();",help );
-					wdu.ScreenShot(driver, "calling tracker");
+					js1.executeScript("arguments[0].scrollIntoView();",help );
+					wdu.ScreenShot(driver, "line up tracker");
 					Assert.assertFalse(anyDisplayed, "All Required Field Value with Valid Data are required");
 				} else {
 					//wdu.ScreenShot(driver, "calling tracker");
 				}
 				
-
 	}
 }

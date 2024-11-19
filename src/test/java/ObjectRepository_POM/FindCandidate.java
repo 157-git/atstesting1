@@ -77,5 +77,12 @@ public class FindCandidate {
 		action.click();
 		return driver;
 	}
-	
+	public WebDriver lineUp(WebDriver driver) {
+		lineupTracker.click();
+		return driver;
+	}
+	public WebDriver selectedCand(WebDriver driver) {
+		selectedCandidate.click();
+		return driver;
+	}
 }
