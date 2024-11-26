@@ -12,6 +12,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 
 public class baseClass extends listenerImplementation{
@@ -30,7 +32,8 @@ public class baseClass extends listenerImplementation{
 	}
 	
 	@BeforeClass
-	public void BC() throws IOException {
+	// @Parameters("browser")
+	public void BC() throws IOException {   //public void BC(@Optional("true") String browser) throws
 		String URL = pfu.getDataFromPropertyFile("url");
 		String BROWSER = pfu.getDataFromPropertyFile("browser");
 		
@@ -58,7 +61,6 @@ public class baseClass extends listenerImplementation{
 	@AfterMethod			//logout from the application
 	public void AM() {
 		System.out.println("dis-connected from database");
-		
 		dataBaseUtil.disconnect();
 		
 		

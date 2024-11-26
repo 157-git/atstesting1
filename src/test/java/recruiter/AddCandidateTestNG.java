@@ -34,7 +34,7 @@ public class AddCandidateTestNG extends baseClass{
 	JavaUtil ju = new JavaUtil();
 	public WebDriver sdriver;
 	
-	@Test(enabled  = false )
+	@Test(enabled  = true)
 	public void addCandidateVD() throws IOException, InterruptedException {
 		//get data from property file
 		String USERNAME=pfu.getDataFromPropertyFile("username");
@@ -320,7 +320,7 @@ public class AddCandidateTestNG extends baseClass{
 	}
 //........................................................................................................
 	
-	@Test(priority = 1)
+	@Test(enabled = false)
 	public void addCandidateIVD() throws IOException, InterruptedException {
 		//get data from property file
 				String USERNAME=pfu.getDataFromPropertyFile("username");
@@ -513,17 +513,17 @@ public class AddCandidateTestNG extends baseClass{
 //					   		slot.click();
 					   		
 					   		//time slot
-					   		WebElement time = driver.findElement(By.xpath("//div[@class=\"ant-picker-input\"]"));
-					   		time.click();
-					   		Thread.sleep(1500);
-					   		if (time.isEnabled()) {
-					   			System.out.println("Element is enabled.");
-					   			driver.findElement(By.xpath("(//li[@data-value='10'])[1]")).click();
-						   		driver.findElement(By.xpath("(//li[@data-value='00'])[2]")).click();
-						   		driver.findElement(By.cssSelector("//li[@data-value='am']")).click();
-					   		} else {
-					   		    System.out.println("Element is disabled.");
-					   		}
+//					   		WebElement time = driver.findElement(By.xpath("//div[@class=\"ant-picker-input\"]"));
+//					   		time.click();
+//					   		Thread.sleep(1500);
+//					   		if (time.isEnabled()) {
+//					   			System.out.println("Element is enabled.");
+//					   			driver.findElement(By.xpath("(//li[@data-value='10'])[1]")).click();
+//						   		driver.findElement(By.xpath("(//li[@data-value='00'])[2]")).click();
+//						   		driver.findElement(By.cssSelector("//li[@data-value='am']")).click();
+//					   		} else {
+//					   		    System.out.println("Element is disabled.");
+//					   		}
 					   		
 					   		
 					   		Thread.sleep(1000);

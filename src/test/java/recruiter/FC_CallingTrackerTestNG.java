@@ -1,6 +1,7 @@
 package recruiter;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 
@@ -9,8 +10,13 @@ import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import CommonUtil.ExcelUtil;
@@ -22,7 +28,9 @@ import CommonUtil.listenerImplementation;
 import ObjectRepository_POM.FindCandidate;
 import ObjectRepository_POM.RecruiterGear;
 import ObjectRepository_POM.RecruiterhomePage;
+import ObjectRepository_POM.TeamLeader;
 import ObjectRepository_POM.loginPage;
+
 
 @Listeners(listenerImplementation.class)
 public class FC_CallingTrackerTestNG extends baseClass{
@@ -32,19 +40,21 @@ public class FC_CallingTrackerTestNG extends baseClass{
 	ExcelUtil eu = new ExcelUtil();
 	JavaUtil ju = new JavaUtil();
 	public WebDriver sdriver;
+	
 
 	@Test
-	public void findCandidate ()throws IOException, InterruptedException {
+	public void findCandidate()throws IOException, InterruptedException {
 		
 		
 		String USERNAME = pfu.getDataFromPropertyFile("username");
 		String PASSWORD = pfu.getDataFromPropertyFile("password");	
 		
+		System.out.println("........10........");
 		RecruiterGear r = new RecruiterGear(driver);
 		r.RecruiterPage(driver);
-
 		Thread.sleep(2000);
-
+		
+		System.out.println(".........20.........");
 		loginPage lp = new loginPage(driver);
 		lp.login(USERNAME, PASSWORD);
 
@@ -376,4 +386,23 @@ public class FC_CallingTrackerTestNG extends baseClass{
 				
 
 	}
+	
+//	@Test
+//	public void FindCandidate1() throws IOException, InterruptedException {
+//		
+//		
+//		String USERNAME = pfu.getDataFromPropertyFile("username1");
+//		String PASSWORD = pfu.getDataFromPropertyFile("password1");	
+//
+//		System.out.println(".........1............");
+//		TeamLeader r = new TeamLeader(driver);
+//		r.teamLeaderPage(driver);
+//		Thread.sleep(2000);
+//		
+//		System.out.println(".........2............");
+//		loginPage lp = new loginPage(driver);
+//		lp.login(USERNAME, PASSWORD);
+//
+//		
+//	}
 }

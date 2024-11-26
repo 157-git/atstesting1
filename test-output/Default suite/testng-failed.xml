@@ -3,17 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="recruiter.FC_LineUpTrackerTestNG">
+      <class name="recruiter.FC_SelectedCandidateTestNG">
         <methods>
           <include name="BM"/>
+          <include name="selectedCandidate"/>
           <include name="AM"/>
-          <include name="lineUpTracker"/>
           <include name="BS"/>
           <include name="BC"/>
           <include name="AS"/>
           <include name="AC"/>
         </methods>
-      </class> <!-- recruiter.FC_LineUpTrackerTestNG -->
+      </class> <!-- recruiter.FC_SelectedCandidateTestNG -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

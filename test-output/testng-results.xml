@@ -1,50 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
     <line>
       <![CDATA[ execution is started]]>
     </line>
     <line>
-      <![CDATA[lineUpTrackerTestScript Execution is Started :]]>
+      <![CDATA[selectedCandidateTestScript Execution is Started :]]>
+    </line>
+    <line>
+      <![CDATA[selectedCandidateTestScript Execution is Failure :org.openqa.selenium.ElementNotInteractableException: element not interactable
+  (Session info: chrome=131.0.6778.86)
+Build info: version: '4.16.1', revision: '9b4c83354e'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [5fb7b5b39093258fc17e988ce49c5854, clickElement {id=f.906CA9CF351A2399B459232B0D558972.d.59D339EE6369FFB404F83D8C5B5BA183.e.126}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 131.0.6778.86, chrome: {chromedriverVersion: 131.0.6778.85 (3d81e41b6f3a..., userDataDir: C:\Users\hp\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63678}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63678/devtoo..., se:cdpVersion: 131.0.6778.86, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (5fb7b5b39093258fc17e988ce49c5854)] -> xpath: //button[text()="Add Documents"]]
+Session ID: 5fb7b5b39093258fc17e988ce49c5854]]>
     </line>
   </reporter-output>
-  <suite started-at="2024-11-19T18:09:36 IST" name="Default suite" finished-at="2024-11-19T18:11:03 IST" duration-ms="86718">
+  <suite started-at="2024-11-26T16:06:10 IST" name="Default suite" finished-at="2024-11-26T16:07:09 IST" duration-ms="58950">
     <groups>
     </groups>
-    <test started-at="2024-11-19T18:09:36 IST" name="Default test" finished-at="2024-11-19T18:11:03 IST" duration-ms="86718">
-      <class name="recruiter.FC_LineUpTrackerTestNG">
-        <test-method is-config="true" signature="BS()[pri:0, instance:recruiter.FC_LineUpTrackerTestNG@66ea810]" started-at="2024-11-19T18:09:34 IST" name="BS" finished-at="2024-11-19T18:09:36 IST" duration-ms="2171" status="PASS">
+    <test started-at="2024-11-26T16:06:10 IST" name="Default test" finished-at="2024-11-26T16:07:09 IST" duration-ms="58950">
+      <class name="recruiter.FC_SelectedCandidateTestNG">
+        <test-method is-config="true" signature="BS()[pri:0, instance:recruiter.FC_SelectedCandidateTestNG@66ea810]" started-at="2024-11-26T16:06:08 IST" name="BS" finished-at="2024-11-26T16:06:10 IST" duration-ms="2015" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BS -->
-        <test-method is-config="true" signature="BC()[pri:0, instance:recruiter.FC_LineUpTrackerTestNG@66ea810]" started-at="2024-11-19T18:09:37 IST" name="BC" finished-at="2024-11-19T18:09:52 IST" duration-ms="14999" status="PASS">
+        <test-method is-config="true" signature="BC()[pri:0, instance:recruiter.FC_SelectedCandidateTestNG@66ea810]" started-at="2024-11-26T16:06:10 IST" name="BC" finished-at="2024-11-26T16:06:31 IST" duration-ms="20507" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BC -->
-        <test-method is-config="true" signature="BM()[pri:0, instance:recruiter.FC_LineUpTrackerTestNG@66ea810]" started-at="2024-11-19T18:09:52 IST" name="BM" finished-at="2024-11-19T18:09:52 IST" duration-ms="3" status="PASS">
+        <test-method is-config="true" signature="BM()[pri:0, instance:recruiter.FC_SelectedCandidateTestNG@66ea810]" started-at="2024-11-26T16:06:31 IST" name="BM" finished-at="2024-11-26T16:06:31 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BM -->
-        <test-method signature="lineUpTracker()[pri:0, instance:recruiter.FC_LineUpTrackerTestNG@66ea810]" started-at="2024-11-19T18:09:52 IST" name="lineUpTracker" finished-at="2024-11-19T18:11:03 IST" duration-ms="70707" status="PASS">
+        <test-method signature="selectedCandidate()[pri:0, instance:recruiter.FC_SelectedCandidateTestNG@66ea810]" started-at="2024-11-26T16:06:31 IST" name="selectedCandidate" finished-at="2024-11-26T16:07:08 IST" duration-ms="36893" status="FAIL">
+          <exception class="org.openqa.selenium.ElementNotInteractableException">
+            <message>
+              <![CDATA[element not interactable
+  (Session info: chrome=131.0.6778.86)
+Build info: version: '4.16.1', revision: '9b4c83354e'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [5fb7b5b39093258fc17e988ce49c5854, clickElement {id=f.906CA9CF351A2399B459232B0D558972.d.59D339EE6369FFB404F83D8C5B5BA183.e.126}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 131.0.6778.86, chrome: {chromedriverVersion: 131.0.6778.85 (3d81e41b6f3a..., userDataDir: C:\Users\hp\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63678}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63678/devtoo..., se:cdpVersion: 131.0.6778.86, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (5fb7b5b39093258fc17e988ce49c5854)] -> xpath: //button[text()="Add Documents"]]
+Session ID: 5fb7b5b39093258fc17e988ce49c5854]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.ElementNotInteractableException: element not interactable
+  (Session info: chrome=131.0.6778.86)
+Build info: version: '4.16.1', revision: '9b4c83354e'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [5fb7b5b39093258fc17e988ce49c5854, clickElement {id=f.906CA9CF351A2399B459232B0D558972.d.59D339EE6369FFB404F83D8C5B5BA183.e.126}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 131.0.6778.86, chrome: {chromedriverVersion: 131.0.6778.85 (3d81e41b6f3a..., userDataDir: C:\Users\hp\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63678}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63678/devtoo..., se:cdpVersion: 131.0.6778.86, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (5fb7b5b39093258fc17e988ce49c5854)] -> xpath: //button[text()="Add Documents"]]
+Session ID: 5fb7b5b39093258fc17e988ce49c5854
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:200)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:175)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:523)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
+at recruiter.FC_SelectedCandidateTestNG.selectedCandidate(FC_SelectedCandidateTestNG.java:126)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.ElementNotInteractableException -->
           <reporter-output>
             <line>
-              <![CDATA[lineUpTrackerTestScript Execution is Started :]]>
+              <![CDATA[selectedCandidateTestScript Execution is Started :]]>
+            </line>
+            <line>
+              <![CDATA[selectedCandidateTestScript Execution is Failure :org.openqa.selenium.ElementNotInteractableException: element not interactable
+  (Session info: chrome=131.0.6778.86)
+Build info: version: '4.16.1', revision: '9b4c83354e'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [5fb7b5b39093258fc17e988ce49c5854, clickElement {id=f.906CA9CF351A2399B459232B0D558972.d.59D339EE6369FFB404F83D8C5B5BA183.e.126}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 131.0.6778.86, chrome: {chromedriverVersion: 131.0.6778.85 (3d81e41b6f3a..., userDataDir: C:\Users\hp\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63678}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63678/devtoo..., se:cdpVersion: 131.0.6778.86, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (5fb7b5b39093258fc17e988ce49c5854)] -> xpath: //button[text()="Add Documents"]]
+Session ID: 5fb7b5b39093258fc17e988ce49c5854]]>
             </line>
           </reporter-output>
-        </test-method> <!-- lineUpTracker -->
-        <test-method is-config="true" signature="AM()[pri:0, instance:recruiter.FC_LineUpTrackerTestNG@66ea810]" started-at="2024-11-19T18:11:03 IST" name="AM" finished-at="2024-11-19T18:11:03 IST" duration-ms="15" status="PASS">
+        </test-method> <!-- selectedCandidate -->
+        <test-method is-config="true" signature="AM()[pri:0, instance:recruiter.FC_SelectedCandidateTestNG@66ea810]" started-at="2024-11-26T16:07:09 IST" name="AM" finished-at="2024-11-26T16:07:09 IST" duration-ms="120" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AM -->
-        <test-method is-config="true" signature="AC()[pri:0, instance:recruiter.FC_LineUpTrackerTestNG@66ea810]" started-at="2024-11-19T18:11:03 IST" name="AC" finished-at="2024-11-19T18:11:03 IST" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="AC()[pri:0, instance:recruiter.FC_SelectedCandidateTestNG@66ea810]" started-at="2024-11-26T16:07:09 IST" name="AC" finished-at="2024-11-26T16:07:09 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AC -->
-        <test-method is-config="true" signature="AS()[pri:0, instance:recruiter.FC_LineUpTrackerTestNG@66ea810]" started-at="2024-11-19T18:11:08 IST" name="AS" finished-at="2024-11-19T18:11:08 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="AS()[pri:0, instance:recruiter.FC_SelectedCandidateTestNG@66ea810]" started-at="2024-11-26T16:07:12 IST" name="AS" finished-at="2024-11-26T16:07:12 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AS -->
-      </class> <!-- recruiter.FC_LineUpTrackerTestNG -->
+      </class> <!-- recruiter.FC_SelectedCandidateTestNG -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

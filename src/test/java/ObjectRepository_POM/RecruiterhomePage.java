@@ -2,6 +2,7 @@ package ObjectRepository_POM;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v118.database.Database;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -113,5 +114,8 @@ public class RecruiterhomePage {
 	   return new FindCandidate(driver);
    }
    
-  
+  public DataBase dataBase(WebDriver driver) {
+	  DataBase.click();
+	  return new DataBase(driver);
+	  }
 }
