@@ -320,7 +320,7 @@ public class AddCandidateTestNG extends baseClass{
 	}
 //........................................................................................................
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void addCandidateIVD() throws IOException, InterruptedException {
 		//get data from property file
 				String USERNAME=pfu.getDataFromPropertyFile("username");

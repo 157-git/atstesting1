@@ -73,7 +73,7 @@ public class baseClass extends listenerImplementation{
 	@AfterClass			//close the browser
 	public void AC() {
 		System.out.println("after class");
-	
+	   // driver.quit();
 		
 	} 
 	

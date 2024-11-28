@@ -118,4 +118,9 @@ public class RecruiterhomePage {
 	  DataBase.click();
 	  return new DataBase(driver);
 	  }
+  
+  public JobDescription jobDescription(WebDriver driver) {
+	  JobDescription.click();
+	  return new JobDescription(driver);
+  }
 }

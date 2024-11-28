@@ -59,16 +59,16 @@ public class databaseUpdateNoListTestNG extends baseClass{
 		
 		DataBase db=new DataBase(driver);
 		//click on upload files
-		db.dbDropdown(driver);
+		db.dbDropdown2(driver);
 		System.out.println(".....database......");
 		
-		Thread.sleep(1000);
-		
-		//click on view excel
-		db.ExcelView(driver);
-		
-		System.out.println("..........1.........");
-		
+//		Thread.sleep(1000);
+//		
+//		//click on view excel
+//		db.ExcelView(driver);
+//		
+//		System.out.println("..........1.........");
+//		
 		WebElement table = driver.findElement(By.cssSelector("table[class=\"selfcalling-table attendance-table\"]"));
 		w.until(ExpectedConditions.visibilityOf(table));
 		
@@ -79,18 +79,21 @@ public class databaseUpdateNoListTestNG extends baseClass{
 		
         Thread.sleep(1000);
         //click on choose file
+        db.dbDropdown(driver);
+        Thread.sleep(1000);
 		db.ExcelUpload(driver);
 		System.out.println("......choose file......");
 
-		
         //click on view 
 		Thread.sleep(1000);
-		db.ExcelView(driver);
+		db.dbDropdown2(driver);
         
-		System.out.println(".......excel viewed.........");
+		System.out.println(".......uploaded excel viewed.........");
 		
-		Thread.sleep(1000);
         // Count rows again after adding data
+		WebElement table1 = driver.findElement(By.cssSelector("table[class=\"selfcalling-table attendance-table\"]"));
+		w.until(ExpectedConditions.visibilityOf(table1));
+		
         List<WebElement> finalRows = driver.findElements(By.xpath("//table[@class='selfcalling-table attendance-table']/tbody/tr"));
         int finalRowCount = finalRows.size();
         System.out.println("Final row count: " + finalRowCount);

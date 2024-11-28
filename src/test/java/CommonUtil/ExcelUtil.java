@@ -49,7 +49,7 @@ public class ExcelUtil {
 		                    	if (DateUtil.isCellDateFormatted(cell)) {
 		                            // Format the date if the cell contains a date
 		                            Date date = cell.getDateCellValue();
-		                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+		                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		                            cellData = dateFormat.format(date);
 		                        } else {
 		                            // Handle as a regular numeric value
