@@ -85,4 +85,12 @@ public class FindCandidate {
 		selectedCandidate.click();
 		return driver;
 	}
+	public WebDriver holdCandidate(WebDriver driver) {
+		holdCandidate.click();
+		return driver;
+	}
+	public WebDriver rejectedCandidate(WebDriver driver) {
+		rejectedCandidate.click();
+		return driver;
+	}
 }

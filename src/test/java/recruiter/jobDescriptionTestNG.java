@@ -399,12 +399,10 @@ public class jobDescriptionTestNG extends baseClass{
 					Thread.sleep(500);
 					WebElement play = driver.findElement(By.cssSelector(".fas.fa-play"));
 					play.click();
-					
-					System.out.println(",,,,,,,,1,,,,,,,,,,");
+	
 					//click on pause button
 					WebElement pause = driver.findElement(By.cssSelector(".fas.fa-pause"));
 					wdu.mouseHover(driver, shareJobDescription);
-					System.out.println(",,,,,,,,,2,,,,,,,,,");
 					//w.until(ExpectedConditions.invisibilityOf(pause));
 					
 				

@@ -45,17 +45,7 @@ public class TeamLeader {
 	}
 	
 	public TeamLeader teamLeaderPage(WebDriver driver) throws InterruptedException {
-		
-//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//		wait.until(ExpectedConditions.elementToBeClickable(letBegin)).click();;
-		
-//		letBegin.click();
-//		Thread.sleep(2000);
-//		empLoginButton.click();
-//		Thread.sleep(2000);
-//		teamLeaderbtn.click();
-		
-		//...........................................
+	
 		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
 	        try {
@@ -81,7 +71,25 @@ public class TeamLeader {
 	        } catch (Exception e) {
 	            System.out.println("Failed to click 'Team Leader' button: " + e.getMessage());
 	        }
-		//.................................
+	
 		return new TeamLeader(driver);
 	}
+	
+	public TeamLeader teamLeaderlogin(WebDriver driver) {
+		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	        try {
+	            // Wait and click "Team Leader" button
+	            wait.until(ExpectedConditions.visibilityOf(teamLeaderbtn));
+	            teamLeaderbtn.click();
+	            System.out.println("Clicked on 'Team Leader' button successfully.");
+	        } catch (Exception e) {
+	            System.out.println("Failed to click 'Team Leader' button: " + e.getMessage());
+	        }
+		return new TeamLeader(driver);
+		
+	}
+	
+	
+	
+	
 }
