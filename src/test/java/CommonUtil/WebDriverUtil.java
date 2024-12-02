@@ -3,6 +3,7 @@ package CommonUtil;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.NoSuchElementException;
@@ -46,8 +47,19 @@ public class WebDriverUtil {
 		} catch (NoSuchElementException e) {
 		    System.out.println("Element not found: " + e.getMessage());
 		}
-
-
+	}
+	
+	public void switchWindow(WebDriver driver,String expextedUrl) {
+		Set<String> ids = driver.getWindowHandles();
+		
+		for (String string : ids) {
+			String actualUrl = driver.switchTo().window(string).getCurrentUrl();
+			System.out.println(actualUrl);
+			
+			if (actualUrl.contains(expextedUrl)) {
+				break;
+			}
+		}	
 	}
 	
 	

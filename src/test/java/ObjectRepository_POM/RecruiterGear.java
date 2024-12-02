@@ -56,4 +56,10 @@ public class RecruiterGear {
 		return new RecruiterGear(driver);
 	}
 	
+	public RecruiterGear RecruiterLogin(WebDriver driver) {
+		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
+		w.until(ExpectedConditions.visibilityOf(recLoginBtn));
+		recLoginBtn.click();
+		return new RecruiterGear(driver);
+	}
 }

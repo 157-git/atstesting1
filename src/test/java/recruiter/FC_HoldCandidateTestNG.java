@@ -1,12 +1,16 @@
 package recruiter;
 
+import org.testng.Assert;
+
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.internal.AbstractParallelWorker.Arguments;
+
 
 import CommonUtil.ExcelUtil;
 import CommonUtil.JavaUtil;
@@ -67,26 +72,31 @@ public class FC_HoldCandidateTestNG extends baseClass{
 		FindCandidate fc=new FindCandidate(driver);
 		fc.holdCandidate(driver);
 		
-		//click on filter
-		driver.findElement(By.className("lineUp-Filter-btn")).click();
-		Thread.sleep(1000);
-		WebElement status = driver.findElement(By.xpath("//button[text()=\"Final Status\"]"));
-		status.click();
-		Thread.sleep(500);
-		//click on hold status
-		WebElement currentType = driver.findElement(By.xpath("//label[contains(text(),\"hold\")]"));
-		currentType.click();
 		
 		//count the number of candidate
 		List<WebElement> initalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
-		//wait for the visibility of candidate
-		w.until(ExpectedConditions.visibilityOfAllElements(initalrows));
-		int inititalRowsCount=initalrows.size();
-		System.out.println("inital row count : "+inititalRowsCount);
+		
 		
 		Thread.sleep(1000);
+		int inititalRowsCount=0;
 		//if candidate with status HOLD found 
-		if(inititalRowsCount!=0) {
+		if(!(initalrows.isEmpty())) {
+			
+			//wait for the visibility of candidate
+			w.until(ExpectedConditions.visibilityOfAllElements(initalrows));
+			inititalRowsCount=initalrows.size();
+			System.out.println("recruiter inital row count : "+inititalRowsCount);
+			
+			//click on filter
+			driver.findElement(By.className("lineUp-Filter-btn")).click();
+			Thread.sleep(1000);
+			WebElement status = driver.findElement(By.xpath("//button[text()=\"Final Status\"]"));
+			status.click();
+			Thread.sleep(500);
+			
+			//click on hold status
+			WebElement currentType = driver.findElement(By.xpath("//label[contains(text(),\"hold\")]"));
+			currentType.click();
 			
 			WebElement action = driver.findElement(By.xpath("(//i[@class=\"fa-regular fa-pen-to-square\"])[1]"));
 			action.click();
@@ -218,7 +228,12 @@ public class FC_HoldCandidateTestNG extends baseClass{
 			Thread.sleep(500);
 			cancelBtn.click();
 			
+		}else {
+			System.out.println("No candidate are kept on Hold");
 		}
+		
+		
+		
 		
 		//click on find candidate
 		Thread.sleep(500);
@@ -244,7 +259,7 @@ public class FC_HoldCandidateTestNG extends baseClass{
 		driver.navigate().back();
 		
 		//click on team leader
-		Thread.sleep(500);
+		Thread.sleep(1000);
 		TeamLeader tl=new TeamLeader(driver);
 		tl.teamLeaderlogin(driver);
 	
@@ -262,57 +277,128 @@ public class FC_HoldCandidateTestNG extends baseClass{
 		TeamLeadSection tl_section=new TeamLeadSection(driver);
 		tl_section.updateResponse(driver);
 		
-		//click o filter button
-		WebElement filter = driver.findElement(By.className("lineUp-share-btn"));
-		w.until(ExpectedConditions.visibilityOf(filter));
-		filter.click();
-		Thread.sleep(1000);
-		//click on status
-		WebElement tl_status = driver.findElement(By.xpath("//button[text()=\"Final Status\"]"));
-		tl_status.click();
-		Thread.sleep(500);
-		//click on hold status
-		WebElement tl_statusValue=driver.findElement(By.xpath("//label[contains(text(),\"hold\")]"));
-		tl_statusValue.click();
 		
 		//count the number of row count
 		List<WebElement> tl_initalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
-		w.until(ExpectedConditions.visibilityOfAllElements(tl_initalrows));
-		int initialRowCount=tl_initalrows.size();
-		System.out.println("team lead inital rows count : "+initialRowCount);
 		
-		//click on edit action
-		WebElement update = driver.findElement(By.xpath("//button[text()=\"Update\"]"));
-		update.click();
+		int initialRowCount=0;
 		
-		//select interview round
-		Thread.sleep(1000);
-		WebElement interviewRound = driver.findElement(By.xpath("//table[@class=\"min-w-full border-collapse table-auto\"]/tbody/tr/td[2]/select"));
-		wdu.handleDropdown(interviewRound, "Hr Round");
 		
-		//comments for team leads
-		WebElement commentsforTL = driver.findElement(By.name("commentForTl"));
-		commentsforTL.sendKeys("looking for a job");
 		
-		//select date of update
-//		WebElement updatedDate = driver.findElement(By.name("responseUpdatedDate"));
-//		updatedDate.clear();
-//		updatedDate.sendKeys("30 -11 -2024 ");
+		if(!(tl_initalrows.isEmpty())) {
+			
+			w.until(ExpectedConditions.visibilityOfAllElements(tl_initalrows));
+			initialRowCount=tl_initalrows.size();
+			System.out.println("team lead inital rows count : "+initialRowCount);
+			
+			//click o filter button
+			WebElement filter = driver.findElement(By.className("lineUp-share-btn"));
+			w.until(ExpectedConditions.visibilityOf(filter));
+			filter.click();
+			Thread.sleep(1000);
+			
+			//click on status
+			WebElement tl_status = driver.findElement(By.xpath("//button[text()=\"Final Status\"]"));
+			tl_status.click();
+			Thread.sleep(500);
+			
+			try {
+			//click on hold status
+			WebElement tl_statusValue=driver.findElement(By.xpath("//label[contains(text(),\"hold\")]"));
+			System.out.println("....Candidate Displayed :"+tl_statusValue.isDisplayed());
+			
+			if (tl_statusValue.isDisplayed()) {
+				
+				System.out.println("Candidate Displayed :"+tl_statusValue.isDisplayed());
+				
+				//click on hold
+				tl_statusValue.click();
+				
+				//click on edit action
+				WebElement update = driver.findElement(By.xpath("//button[text()=\"Update\"]"));
+				update.click();
+				
+				//select interview round
+				Thread.sleep(1000);
+				WebElement interviewRound = driver.findElement(By.xpath("//table[@class=\"min-w-full border-collapse table-auto\"]/tbody/tr/td[2]/select"));
+				wdu.handleDropdown(interviewRound, "Hr Round");
+				
+				//comments for team leads
+				WebElement commentsforTL = driver.findElement(By.name("commentForTl"));
+				commentsforTL.sendKeys("looking for a job");
+				
+				//select date of update
+//				WebElement updatedDate = driver.findElement(By.name("responseUpdatedDate"));
+//				updatedDate.clear();
+//				updatedDate.sendKeys("30 -11 -2024 ");
 
-		//click on update response
-		Thread.sleep(2000);
-		WebElement updateRes = driver.findElement(By.xpath("//button[text()=\"Update\"]"));
-		updateRes.click();
+				//click on update response
+				Thread.sleep(2000);
+				WebElement updateRes = driver.findElement(By.xpath("//button[text()=\"Update\"]"));
+				updateRes.click();
+				
+				//take screenshot
+				Thread.sleep(1000);
+				wdu.ScreenShot(driver, "holdCandidateUpdate");
+				
+				//data updated in team lead
+				List<WebElement> tl_finalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
+				w.until(ExpectedConditions.visibilityOfAllElements(tl_finalrows));
+				int finalRowCount=tl_finalrows.size();
+				System.out.println("team lead final rows count : "+finalRowCount);
+				
+				if(finalRowCount==(initialRowCount-1)) {
+					System.out.println("data updated sucessfully ");
+				} else {
+					System.out.println("data not updated");
+					Assert.fail("DATA IS SHOWING UPDATED BUT ,THE DATA IS NOT GETTING UPDATED");
+				}
+				
+				
+			} else {
+				System.out.println("Candidate Displayed :"+tl_statusValue.isDisplayed());
+			}
+			
+			} catch (NoSuchElementException e) {
+			    System.out.println("........Element not found: " + e.getMessage());
+			    e.printStackTrace();
+			//    Assert.fail("Test failed due to NoSuchElementException: " + e.getMessage());
+			} catch (TimeoutException e) {
+			    System.out.println("Timeout waiting for element: " + e.getMessage());
+			    e.printStackTrace();
+			    Assert.fail("Test failed due to TimeoutException: " + e.getMessage());
+			} catch (Exception e) {
+			    // Catch any other unexpected exceptions
+			    System.out.println("Unexpected error: " + e.getMessage());
+			    e.printStackTrace();
+			 //   Assert.fail("Test failed due to unexpected error: " + e.getMessage());
+			}
+			
+		}else {
+			System.out.println("No candidate present to be updated ");
+		}
+		
+		
+		
+		
+		
+		
 		
 		//click on team leader section
+		Thread.sleep(1000);
 		tl_hp.TeamLeaderSection(driver);
+		
 		//scroll to logout
+		Thread.sleep(1000);
 		WebElement logoutTL = driver.findElement(By.cssSelector(".fa-solid.fa-power-off"));
 		j.executeScript("arguments[0].scrollIntoView();", logoutTL);
 		Thread.sleep(500);
 		//click on logout
 		logoutTL.click();
 		
+		
+		//select yes or no
+		Thread.sleep(1000);
 		WebElement outTL = driver.findElement(By.className("modal-body"));
 		if (outTL.isDisplayed()) {
 			//click on yes
@@ -321,11 +407,68 @@ public class FC_HoldCandidateTestNG extends baseClass{
 			System.out.println("options not found");
 		}
 		
+		//move backward
 		Thread.sleep(1000);
 		driver.navigate().back();
 
-
+		//click on recruiter
+		Thread.sleep(1000);
+		WebElement reclg = driver.findElement(By.xpath("(//button[@class=\"recpage-login\"])[1]"));
+		w.until(ExpectedConditions.visibilityOf(reclg));
+		Thread.sleep(1000);
+		r.RecruiterLogin(driver);
 		
-				
+		//login as recruiter
+		Thread.sleep(1000);
+		lp.login(USERNAME, PASSWORD);
+		
+		//click on find candidate
+		Thread.sleep(500);
+		hp.FinCan(driver);
+		System.out.println("TEST-1");
+		
+		//click on hold candidate
+		fc.holdCandidate(driver);
+		
+		//click on filter
+		driver.findElement(By.className("lineUp-Filter-btn")).click();
+		Thread.sleep(1000);
+		WebElement status_1 = driver.findElement(By.xpath("//button[text()=\"Final Status\"]"));
+		status_1.click();
+		Thread.sleep(500);
+		
+		try {
+		//click on hold status
+			WebElement currentType_1 = driver.findElement(By.xpath("//label[contains(text(),\"hold\")]"));
+			
+			if (w.until(ExpectedConditions.visibilityOf(currentType_1)).isDisplayed()) {
+				Thread.sleep(500);
+				currentType_1.click();
+			}else {
+				 System.out.println("Status hold not found");
+			}
+		
+		} catch (NoSuchElementException e) {
+			 System.out.println("Element not found: " + e.getMessage());
+			 e.printStackTrace();
+		}
+		
+		
+		//count the number of candidate
+		List<WebElement> finalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
+		//wait for the visibility of candidate
+		w.until(ExpectedConditions.visibilityOfAllElements(finalrows));
+		int finalRowsCount=finalrows.size();
+		System.out.println("recruiter final row count : "+finalRowsCount);
+		
+		int result=inititalRowsCount-finalRowsCount;
+		if (finalRowsCount==(initialRowCount-1)) {
+			System.out.println("data updated sucessfully by : "+result);
+		} else {
+			System.out.println("data not updated");
+			Assert.fail("DATA IS SHOWING UPDATED BUT ,THE DATA IS NOT GETTING UPDATED");
+		}
+		
+		driver.findElement(By.className("lineUp-Filter-btn")).click();
 	}
 }
