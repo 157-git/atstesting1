@@ -1,9 +1,13 @@
 package ObjectRepository_POM;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FindCandidate {
 
@@ -90,6 +94,8 @@ public class FindCandidate {
 		return driver;
 	}
 	public WebDriver rejectedCandidate(WebDriver driver) {
+	//	WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
+		//w.until(ExpectedConditions.visibilityOf(rejectedCandidate));
 		rejectedCandidate.click();
 		return driver;
 	}

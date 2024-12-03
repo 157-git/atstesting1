@@ -7,12 +7,15 @@ import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.util.Assert;
 
 import CommonUtil.ExcelUtil;
 import CommonUtil.JavaUtil;
@@ -23,6 +26,9 @@ import CommonUtil.listenerImplementation;
 import ObjectRepository_POM.FindCandidate;
 import ObjectRepository_POM.RecruiterGear;
 import ObjectRepository_POM.RecruiterhomePage;
+import ObjectRepository_POM.TeamLeadSection;
+import ObjectRepository_POM.TeamLeader;
+import ObjectRepository_POM.TeamLeaderHomePage;
 import ObjectRepository_POM.loginPage;
 
 @Listeners(listenerImplementation.class)
@@ -35,8 +41,9 @@ public class FC_RejectedCandidateTestNG extends baseClass{
 	JavaUtil ju = new JavaUtil();
 	public WebDriver sdriver;
 	
-	@Test
-	public void updateRejectedCandidate() throws IOException, InterruptedException {
+	
+	@Test(enabled = true)
+	public void updateRejectedCandidate() throws IOException, InterruptedException {     //RECRUITER
 		
 		JavascriptExecutor j=(JavascriptExecutor) driver;
 		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -59,7 +66,7 @@ public class FC_RejectedCandidateTestNG extends baseClass{
 		hp.FinCan(driver);
 		System.out.println("TEST");
 		
-		//click on hold candidate
+		//click on rejected candidate
 		FindCandidate fc=new FindCandidate(driver);
 		fc.rejectedCandidate(driver);
 		
@@ -223,13 +230,32 @@ public class FC_RejectedCandidateTestNG extends baseClass{
 					//clear date
 					Thread.sleep(500);
 					WebElement updatedDate = driver.findElement(By.name("lineUp.availabilityForInterview"));
-					updatedDate.clear();
+					j.executeScript("arguments[0].value = '';", updatedDate);
+					
+					j.executeScript("arguments[0].value = '2024-12-27';", updatedDate);
 					
 					//click on update 
 					Thread.sleep(500);
 					WebElement update = driver.findElement(By.xpath("//button[text()=\"Update Data\"]"));
 					update.click();
 					
+					Thread.sleep(6000);
+					
+					//click on short listed
+					hp.home(driver);
+					
+					//enter candidate name
+					driver.findElement(By.className("form-control")).sendKeys(CandidateName);
+					Thread.sleep(1000);
+					
+					List<WebElement> rows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
+					int RowsCount=rows.size();
+				    System.out.println("recruiter inital row count : "+RowsCount);
+				    if (RowsCount!=0) {
+						System.out.println("candidate with data found");
+					} else {
+						System.out.println("candidate not found");
+					}
 					
 			}
 			else 
@@ -240,29 +266,14 @@ public class FC_RejectedCandidateTestNG extends baseClass{
 					//click on short listed
 					hp.home(driver);
 					
-//					//search for candidate
-//					Thread.sleep(1000);
-//					driver.findElement(By.className("form-control")).sendKeys(CandidateName);
-//					
 					//click on calendar
-					WebElement calendar = driver.findElement(By.cssSelector(".fa-regular.fa-calendar"));
-					w.until(ExpectedConditions.visibilityOf(calendar));
-					calendar.click();
+					driver.findElement(By.cssSelector(".fa-regular.fa-calendar")).click();
 					
-					//select date from calendar
-					WebElement date = driver.findElement(By.xpath("(//div[@class=\"highlighted-date\"])[1]"));
-					w.until(ExpectedConditions.visibilityOf(date));
-					date.click();
+					//click on selected date
+					driver.findElement(By.xpath("(//div[@class=\"highlighted-date\"])[1]")).click();
 					
-					//list of candidate interview scheduled
-					List<WebElement> can = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
-					w.until(ExpectedConditions.visibilityOfAllElements(can));
-					System.out.println(can);
-					
-					//click on edit
-					WebElement edit = driver.findElement(By.cssSelector(".fa-regular.fa-pen-to-square"));
-					w.until(ExpectedConditions.visibilityOf(edit));
-					edit.click();
+					//click on edit option
+					driver.findElement(By.xpath("(//i[@class=\"fa-regular fa-pen-to-square\"])[1]")).click();
 					
 					//select interview rounds
 					Thread.sleep(1000);
@@ -277,24 +288,371 @@ public class FC_RejectedCandidateTestNG extends baseClass{
 					//click on update
 					WebElement update = driver.findElement(By.xpath("//button[text()=\"Update\"]"));
 					update.click();
+					
+					Thread.sleep(6000);
+					//click on rejected candidate
+					fc.rejectedCandidate(driver);
+					System.out.println("TEST-1");
+					
+					//count the number of candidate
+					List<WebElement> finalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
+					//wait for the visibility of candidate
+					//w.until(ExpectedConditions.visibilityOfAllElements(initalrows));
+					int finalRowsCount=finalrows.size();
+				    System.out.println("recruiter final row count : "+finalRowsCount);
+				    
+				    if (inititalRowsCount==finalRowsCount) {
+						System.out.println("data not updated");
+					} else {
+						System.out.println("data updated");
+					}
+				    
 			}
-						
+			
+	}
+
+	
+	
+	
+	@Test(enabled = false)
+	public void UpdaterejectedCandidateByTL() throws IOException, InterruptedException {
+		
+		JavascriptExecutor j=(JavascriptExecutor) driver;
+		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
+		
+		String USERNAME = pfu.getDataFromPropertyFile("username");
+		String PASSWORD = pfu.getDataFromPropertyFile("password");	
+		
+
+		RecruiterGear r = new RecruiterGear(driver);
+		r.RecruiterPage(driver);
+		Thread.sleep(2000);
+		
+		loginPage lp = new loginPage(driver);
+		lp.login(USERNAME, PASSWORD);
+
+		Thread.sleep(2000);
+		
+		//click on find candidate
+		RecruiterhomePage hp = new RecruiterhomePage(driver);
+		hp.FinCan(driver);
+		System.out.println("TEST");
+		
+		//click on hold candidate
+		FindCandidate fc=new FindCandidate(driver);
+		fc.rejectedCandidate(driver);
+		
+		//count the number of candidate
+		List<WebElement> initalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
+		//wait for the visibility of candidate
+		//w.until(ExpectedConditions.visibilityOfAllElements(initalrows));
+		int inititalRowsCount=initalrows.size();
+	    System.out.println("recruiter inital row count : "+inititalRowsCount);
+				
+		Thread.sleep(1000);
+		
+		if(inititalRowsCount!=0) {
+			
+			//click on filter
+			driver.findElement(By.className("rejectedcan-Filter-btn")).click();
 			Thread.sleep(1000);
+			WebElement status = driver.findElement(By.xpath("//button[text()=\"Final Status\"]"));
+			status.click();
+			Thread.sleep(500);
+			
+			//click on rejected status
+			WebElement currentType = driver.findElement(By.xpath("//label[contains(text(),\"rejected\")]"));
+			currentType.click();
+					 
+			//click on update
+			WebElement action = driver.findElement(By.xpath("(//i[@class=\"fa-regular fa-pen-to-square\"])[1]"));
+			action.click();
+			
+			//go to the short listed and update the data
+			//get candidate name 
+			Thread.sleep(500);
+			String CandidateName = driver.findElement(By.name("candidateName")).getAttribute("value");
+			
+			//click on cancel
+			Thread.sleep(500);
+			driver.findElement(By.id("uploadbtn2")).click();
+			
+			//click on short listed
+			hp.home(driver);
+			
+			//click on calendar
+			driver.findElement(By.cssSelector(".fa-regular.fa-calendar")).click();
+			
+			//click on selected date
+			driver.findElement(By.xpath("(//div[@class=\"highlighted-date\"])[1]")).click();
+			
+			//click on edit option
+			driver.findElement(By.xpath("(//i[@class=\"fa-regular fa-pen-to-square\"])[1]")).click();
+			
+			//select interview rounds
+			Thread.sleep(1000);
+			WebElement interviewRound = driver.findElement(By.xpath("//table[@class=\"table table-bordered\"]/tbody/tr/td[2]/select"));
+			wdu.handleDropdown(interviewRound, " L1 Round");
+			
+			//select interview response
+			Thread.sleep(1000);
+			WebElement interviewResponse = driver.findElement(By.xpath("//table[@class=\"table table-bordered\"]/tbody/tr/td[3]/select"));
+			wdu.handleDropdown(interviewResponse, "Hold");
+			
+			//click on update
+			WebElement update = driver.findElement(By.xpath("//button[text()=\"Update\"]"));
+			update.click();
 			
 			//click on find candidate
+			Thread.sleep(7000);
 			hp.FinCan(driver);
+			System.out.println("TEST-2");
 			
 			//click on rejected candidate
 			fc.rejectedCandidate(driver);
 			
 			//count the number of candidate
 			List<WebElement> finalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
-			int finalRowCount=finalrows.size();
-			System.out.println("recruiter final row count : "+finalRowCount);
+			//wait for the visibility of candidate
+			//w.until(ExpectedConditions.visibilityOfAllElements(initalrows));
+			int finalRowsCount=finalrows.size();
+		    System.out.println("recruiter final row count : "+finalRowsCount);
 			
-			int result=finalRowCount-inititalRowsCount;
-			System.out.println("updated candidate :"+result);
+		}else {
+			System.out.println("No candidate are rejected");
 			
+			
+			//click on find candidate
+			hp.FinCan(driver);
+			
+			//scroll down to sign out
+			WebElement signout=driver.findElement(By.cssSelector(".fa-solid.fa-power-off"));
+			j.executeScript("arguments[0].scollintoview", signout);
+			Thread.sleep(500);
+			signout.click();
+			
+			//select yes or no
+			WebElement out = driver.findElement(By.className("modal-body"));
+			 WebElement yes = driver.findElement(By.xpath("//button[text()=\"Yes\"]"));
+			 WebElement no = driver.findElement(By.xpath("//button[text()=\"No\"]"));
+			if (out.isDisplayed()) {
+				
+				String currenturl = driver.getCurrentUrl();
+				System.out.println(currenturl);
+				//click on yes
+				yes.click();
+				String teamleadurl =driver.getCurrentUrl();
+				System.out.println(teamleadurl);
+				
+				if (currenturl!=teamleadurl) {
+					
+					System.out.println("RECRUITER LOGOUT");
+					
+					//click on window back button
+					driver.navigate().back();
+					
+					//click on team leader
+					Thread.sleep(1000);
+					TeamLeader tl=new TeamLeader(driver);
+					tl.teamLeaderlogin(driver);
+				
+					//login as team leader
+					String TL_USERNAME=pfu.getDataFromPropertyFile("username1");
+					String TL_PASSWORD=pfu.getDataFromPropertyFile("password1");
+					
+					lp.login(TL_USERNAME, TL_PASSWORD);
+					System.out.println("TL LOGIN");
+					
+					//click on Team leader section
+					TeamLeaderHomePage tl_hp=new TeamLeaderHomePage(driver);
+					tl_hp.TeamLeaderSection(driver);
+					
+					//click on update response
+					TeamLeadSection tl_section=new TeamLeadSection(driver);
+					tl_section.updateResponse(driver);
+					
+					//click on search field
+					WebElement search = driver.findElement(By.className("search-input"));
+					search.sendKeys("rejected");
+					
+					//count the number of row count
+					List<WebElement> tl_initalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
+					int tl_initialRowCount=tl_initalrows.size();
+					System.out.println("team lead inital rows count :"+tl_initialRowCount);
+					
+					if (tl_initialRowCount!=0) {
+						System.out.println("rejected candidate found");
+						
+						//select rejected candidate and update data
+						WebElement update = driver.findElement(By.xpath("(//button[@class=\"TeamLead-main-table-button\"])[1]"));
+						w.until(ExpectedConditions.visibilityOf(update));
+						update.click();
+						
+						//select interview round
+						Thread.sleep(1000);
+						WebElement interviewRound = driver.findElement(By.xpath("//table[@class=\"min-w-full border-collapse table-auto\"]/tbody/tr/td[2]/select"));
+						wdu.handleDropdown(interviewRound, "Hold");
+						
+						//comments for team leads
+						WebElement commentsforTL = driver.findElement(By.name("commentForTl"));
+						commentsforTL.sendKeys("not intrested anymore");
+					
+						//click on update response
+						Thread.sleep(2000);
+						WebElement updateRes = driver.findElement(By.xpath("//button[text()=\"Update\"]"));
+						updateRes.click();
+						System.out.println("data updated");
+						
+						//take screenshot
+						Thread.sleep(1000);
+						wdu.ScreenShot(driver, "CandidateUpdateToHold");
+						
+						//click on Team leader section
+						Thread.sleep(7000);
+						tl_hp.TeamLeaderSection(driver);
+						
+						//sign out from team leader
+						//scroll down to sign out
+						Thread.sleep(1000);
+						WebElement tl_signout=driver.findElement(By.xpath("//span[text()=\"Logout\"]"));
+						j.executeScript("arguments[0].scollintoview", tl_signout);
+						Thread.sleep(500);
+						tl_signout.click();
+						
+						//select yes or no
+						Thread.sleep(500);
+						WebElement tl_yes = driver.findElement(By.xpath("//button[text()=\"Yes\"]"));
+						WebElement tl_out = driver.findElement(By.className("modal-body"));
+						w.until(ExpectedConditions.visibilityOf(tl_out));
+						tl_yes.click();
+						System.out.println("TL SIGNOUT");
+						
+						//navigate back 
+						driver.navigate().back();
+						
+						//click on recruiter
+						r.RecruiterLogin(driver);
+						Thread.sleep(2000);
+						
+						//login as recruiter
+						lp.login(USERNAME, PASSWORD);
+
+						Thread.sleep(2000);
+						
+						//click on find candidate
+						hp.FinCan(driver);
+						System.out.println("TEST-3");
+						
+						//click on rejected candidate
+						fc.rejectedCandidate(driver);
+						
+						//count the number of candidate
+						List<WebElement> finalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
+						//wait for the visibility of candidate
+						//w.until(ExpectedConditions.visibilityOfAllElements(initalrows));
+						int finalRowsCount=finalrows.size();
+					    System.out.println("recruiter inital row count : "+finalRowsCount);
+						
+					} else {
+						System.out.println("No Data found for Rejected Candidate");
+						
+						//clear search field
+						search.sendKeys(Keys.CONTROL+"a");
+						Thread.sleep(500);
+						search.sendKeys(Keys.BACK_SPACE);
+						
+						//select first candidate and update data
+						WebElement update = driver.findElement(By.xpath("(//button[@class=\"TeamLead-main-table-button\"])[1]"));
+						w.until(ExpectedConditions.visibilityOf(update));
+						update.click();
+						
+						//select interview round
+						Thread.sleep(1000);
+						WebElement interviewRound = driver.findElement(By.xpath("//table[@class=\"min-w-full border-collapse table-auto\"]/tbody/tr/td[2]/select"));
+						wdu.handleDropdown(interviewRound, "Rejected");
+						
+						//comments for team leads
+						WebElement commentsforTL = driver.findElement(By.name("commentForTl"));
+						commentsforTL.sendKeys("not intrested anymore");
+					
+						//click on update response
+						Thread.sleep(2000);
+						WebElement updateRes = driver.findElement(By.xpath("//button[text()=\"Update\"]"));
+						updateRes.click();
+						System.out.println("data updated");
+						
+						//take screenshot
+						Thread.sleep(1000);
+						wdu.ScreenShot(driver, "RejectCandidateUpdate");
+						
+						//click on Team leader section
+						Thread.sleep(7000);
+						tl_hp.TeamLeaderSection(driver);
+						
+						//sign out from team leader
+						//scroll down to sign out
+						Thread.sleep(1000);
+						WebElement tl_signout=driver.findElement(By.xpath("//span[text()=\"Logout\"]"));
+						j.executeScript("arguments[0].scollintoview", tl_signout);
+						Thread.sleep(500);
+						tl_signout.click();
+						
+						//select yes or no
+						Thread.sleep(500);
+						WebElement tl_yes = driver.findElement(By.xpath("//button[text()=\"Yes\"]"));
+						WebElement tl_out = driver.findElement(By.className("modal-body"));
+						w.until(ExpectedConditions.visibilityOf(tl_out));
+						tl_yes.click();
+						System.out.println("TL SIGNOUT");
+						
+						//navigate back 
+						driver.navigate().back();
+						
+						//click on recruiter
+						r.RecruiterLogin(driver);
+						Thread.sleep(2000);
+						
+						//login as recruiter
+						lp.login(USERNAME, PASSWORD);
+						System.out.println("RECRUITER LOGIN");
+
+						Thread.sleep(2000);
+						
+						//click on find candidate
+						hp.FinCan(driver);
+						System.out.println("TEST-3");
+						
+						//click on rejected candidate
+						fc.rejectedCandidate(driver);
+						
+						//count the number of candidate
+						List<WebElement> finalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
+						//wait for the visibility of candidate
+						//w.until(ExpectedConditions.visibilityOfAllElements(initalrows));
+						int finalRowsCount=finalrows.size();
+					    System.out.println("recruiter final row count : "+finalRowsCount);
+					
+						
+					}
+					
+					
+				} else {
+					System.out.println("NOT ABLE TO LOGOUT");
+				}
+				
+				
+				
+			}else {
+				System.out.println("options not found");
+			}
+		}
+		
+	
+			
+
+		
+		
+		
 	}
 
 }

@@ -114,8 +114,8 @@ public class RecruiterhomePage {
    }
 
    public FindCandidate FinCan(WebDriver driver) {
-	   WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
-	   w.until(ExpectedConditions.visibilityOf(FindCandidate));
+	 //  WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
+	   //w.until(ExpectedConditions.visibilityOf(FindCandidate));
 	   FindCandidate.click();
 	   return new FindCandidate(driver);
    }

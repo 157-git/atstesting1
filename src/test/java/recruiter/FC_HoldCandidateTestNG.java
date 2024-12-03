@@ -75,29 +75,27 @@ public class FC_HoldCandidateTestNG extends baseClass{
 		
 		//count the number of candidate
 		List<WebElement> initalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
-		
-		
 		Thread.sleep(1000);
-		int inititalRowsCount=0;
+		int inititalRowsCount=initalrows.size();
+		System.out.println("recruiter inital row count : "+inititalRowsCount);
 		//if candidate with status HOLD found 
 		if(!(initalrows.isEmpty())) {
 			
 			//wait for the visibility of candidate
-			w.until(ExpectedConditions.visibilityOfAllElements(initalrows));
-			inititalRowsCount=initalrows.size();
-			System.out.println("recruiter inital row count : "+inititalRowsCount);
 			
-			//click on filter
-			driver.findElement(By.className("lineUp-Filter-btn")).click();
+			
+//			//click on filter
+//			driver.findElement(By.className("lineUp-Filter-btn")).click();
+//			Thread.sleep(1000);
+//			WebElement status = driver.findElement(By.xpath("//button[text()=\"Final Status\"]"));
+//			status.click();
+//			Thread.sleep(500);
+//			
+//			//click on hold status
+//			WebElement currentType = driver.findElement(By.xpath("//label[contains(text(),\"hold\")]"));
+//			currentType.click();
+			
 			Thread.sleep(1000);
-			WebElement status = driver.findElement(By.xpath("//button[text()=\"Final Status\"]"));
-			status.click();
-			Thread.sleep(500);
-			
-			//click on hold status
-			WebElement currentType = driver.findElement(By.xpath("//label[contains(text(),\"hold\")]"));
-			currentType.click();
-			
 			WebElement action = driver.findElement(By.xpath("(//i[@class=\"fa-regular fa-pen-to-square\"])[1]"));
 			action.click();
 			
@@ -228,6 +226,31 @@ public class FC_HoldCandidateTestNG extends baseClass{
 			Thread.sleep(500);
 			cancelBtn.click();
 			
+			//click on short listed
+			hp.home(driver);
+			
+			//click on filter
+			Thread.sleep(1000);
+			driver.findElement(By.className("lineUp-share-btn")).click();
+			
+			//click on status
+			WebElement status = driver.findElement(By.xpath("//button[text()=\"Final Status\"]"));
+			status.click();
+			Thread.sleep(500);
+			
+			WebElement statusValue=driver.findElement(By.xpath("//label[contains(text(),\"hold\")]"));
+			statusValue.click();
+			
+			List<WebElement> initalRows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
+			int initalRowsCount=initalRows.size();
+			System.out.println("inital rows count :"+initalRowsCount);
+			
+			if (initalRows.isEmpty()) {
+				System.out.println("candidate data not found");
+			} else {
+				System.out.println("candidate data on hold found");
+			}
+			
 		}else {
 			System.out.println("No candidate are kept on Hold");
 		}
@@ -280,7 +303,6 @@ public class FC_HoldCandidateTestNG extends baseClass{
 		
 		//count the number of row count
 		List<WebElement> tl_initalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
-		
 		int initialRowCount=0;
 		
 		
