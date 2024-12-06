@@ -67,6 +67,22 @@
         <artifactId>mysql-connector-java</artifactId>
         <version>8.0.23</version>
     </dependency>
+    
+  <!-- https://mvnrepository.com/artifact/org.zaproxy/zap-clientapi -->
+<dependency>
+    <groupId>org.zaproxy</groupId>
+    <artifactId>zap-clientapi</artifactId>
+    <version>1.14.0</version>
+</dependency>
+
+
+<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+<dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>5.7.0</version>
+</dependency>
+
 
 	</dependencies>
 	<build>
