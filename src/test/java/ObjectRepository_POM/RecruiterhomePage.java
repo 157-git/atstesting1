@@ -2,6 +2,8 @@ package ObjectRepository_POM;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.devtools.v118.database.Database;
@@ -129,4 +131,5 @@ public class RecruiterhomePage {
 	  JobDescription.click();
 	  return new JobDescription(driver);
   }
+ 
 }

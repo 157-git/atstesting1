@@ -29,6 +29,7 @@ import ObjectRepository_POM.RecruiterGear;
 import ObjectRepository_POM.RecruiterhomePage;
 import ObjectRepository_POM.ShortListed;
 import ObjectRepository_POM.loginPage;
+import ObjectRepository_POM.logoutPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 //@Listeners(listenerImplementation.class)
@@ -119,6 +120,11 @@ public class SecurityOWASP {
 			}else {
 				System.out.println("candidate data not found");
 			}
+		
+			//logout............update:-12-9-24----338-341
+			Thread.sleep(1000);
+			logoutPage lo=new logoutPage(driver);
+			lo.logout(driver, "Yes");
 		}
 		
 		

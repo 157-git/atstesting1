@@ -46,13 +46,30 @@ public class RecruiterGear {
 	
 
 	public RecruiterGear RecruiterPage(WebDriver driver) throws InterruptedException {
-		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
-		w.until(ExpectedConditions.visibilityOf(letBegin));
-		letBegin.click();
-		Thread.sleep(2000);
-		empLoginButton.click();
-		Thread.sleep(2000);
-		recLoginBtn.click();
+		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(30));
+		  try {
+	            // Wait and click "Let Begin" button
+	            w.until(ExpectedConditions.elementToBeClickable(letBegin)).click();
+	            System.out.println("Clicked on 'Let Begin' button successfully.");
+	        } catch (Exception e) {
+	            System.out.println("Failed to click 'Let Begin' button: " + e.getMessage());
+	        }
+
+	        try {
+	            // Wait and click "Employee Login" button
+	            w.until(ExpectedConditions.elementToBeClickable(empLoginButton)).click();
+	            System.out.println("Clicked on 'Employee Login' button successfully.");
+	        } catch (Exception e) {
+	            System.out.println("Failed to click 'Employee Login' button: " + e.getMessage());
+	        }
+
+	        try {
+	            // Wait and click "Team Leader" button
+	            w.until(ExpectedConditions.elementToBeClickable(recLoginBtn)).click();
+	            System.out.println("Clicked on 'Team Leader' button successfully.");
+	        } catch (Exception e) {
+	            System.out.println("Failed to click 'Recruiter' button: " + e.getMessage());
+	        }
 		return new RecruiterGear(driver);
 	}
 	

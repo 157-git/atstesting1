@@ -10,7 +10,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -23,6 +25,7 @@ import CommonUtil.listenerImplementation;
 import ObjectRepository_POM.RecruiterGear;
 import ObjectRepository_POM.RecruiterhomePage;
 import ObjectRepository_POM.loginPage;
+import ObjectRepository_POM.logoutPage;
 import ObjectRepository_POM.AddCandidate;
 
 @Listeners(listenerImplementation.class)
@@ -34,7 +37,7 @@ public class AddCandidateTestNG extends baseClass{
 	JavaUtil ju = new JavaUtil();
 	public WebDriver sdriver;
 	
-	@Test(enabled  = true)
+	@Test
 	public void addCandidateVD() throws IOException, InterruptedException {
 		//get data from property file
 		String USERNAME=pfu.getDataFromPropertyFile("username");
@@ -61,6 +64,7 @@ public class AddCandidateTestNG extends baseClass{
 		
 		if (RecPageUrl.equals(LoginPageUrl)) {
 			System.out.println("login failed");
+			Assert.fail("Invalid login details");//.................
 		} else if(RecPageUrl.equals(URL)) {
 			
 			System.out.println("login successfull");
@@ -318,21 +322,29 @@ public class AddCandidateTestNG extends baseClass{
 						Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
 						Thread.sleep(1000);
 						js.executeScript("arguments[0].scrollIntoView();", error);
+						
 					}
 				} else {
 					System.out.println("candidate saved successfully");
+					
 				}
 			  
 		     	
 		   		wdu.ScreenShot(driver, "not-InterestedVD");
 				System.out.println("yet to confirm");
+					
 			}
+		
+		  //logout............update:-12-9-24----338-341
+			Thread.sleep(1000);
+			logoutPage lo=new logoutPage(driver);
+			lo.logout(driver, "Yes");
 		}
 		
 	}
 //........................................................................................................
 	
-	@Test(enabled = false)
+	@Test
 	public void addCandidateIVD() throws IOException, InterruptedException {
 		//get data from property file
 				String USERNAME=pfu.getDataFromPropertyFile("username");
@@ -340,10 +352,11 @@ public class AddCandidateTestNG extends baseClass{
 				String URL="http://93.127.199.85/Dashboard/12/Recruiters";
 				String STATUS=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 3, 2);
 				
-				String url = pfu.getDataFromPropertyFile("url");
-				driver.get(url);
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			//	String url = pfu.getDataFromPropertyFile("url");
+			//	driver.get(url);
+			//	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 				
+				Thread.sleep(2000);
 				RecruiterGear r = new RecruiterGear(driver);
 				r.RecruiterPage(driver);
 
@@ -361,6 +374,7 @@ public class AddCandidateTestNG extends baseClass{
 				
 				if (RecPageUrl.equals(LoginPageUrl)) {
 					System.out.println("login failed");
+					Assert.fail("Invalid login details");//.................
 				} else if(RecPageUrl.equals(URL)){
 					System.out.println("login successfull");
 					
@@ -648,6 +662,10 @@ public class AddCandidateTestNG extends baseClass{
 						}
 				
 				
+					    //logout............update:-12-9-24----665-668
+						Thread.sleep(1000);
+						logoutPage lo=new logoutPage(driver);
+						lo.logout(driver, "Yes");
 				}
 				 
 	}

@@ -1,50 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
-    <line>
-      <![CDATA[ execution is started]]>
-    </line>
-    <line>
-      <![CDATA[UpdatedNoOfCandidateTestScript Execution is Started :]]>
-    </line>
   </reporter-output>
-  <suite started-at="2024-12-06T18:46:10 IST" name="Default suite" finished-at="2024-12-06T18:47:10 IST" duration-ms="60609">
+  <suite started-at="2024-12-09T17:53:06 IST" name="Default suite" finished-at="2024-12-09T17:53:43 IST" duration-ms="37184">
     <groups>
     </groups>
-    <test started-at="2024-12-06T18:46:10 IST" name="Default test" finished-at="2024-12-06T18:47:10 IST" duration-ms="60609">
-      <class name="recruiter.databaseUpdateNoListTestNG">
-        <test-method is-config="true" signature="BS()[pri:0, instance:recruiter.databaseUpdateNoListTestNG@565f390]" started-at="2024-12-06T18:46:07 IST" name="BS" finished-at="2024-12-06T18:46:10 IST" duration-ms="2672" status="PASS">
+    <test started-at="2024-12-09T17:53:06 IST" name="Default test" finished-at="2024-12-09T17:53:43 IST" duration-ms="37184">
+      <class name="Security.SecurityOWASP">
+        <test-method is-config="true" signature="setup()[pri:0, instance:Security.SecurityOWASP@593aaf41]" started-at="2024-12-09T17:53:06 IST" name="setup" finished-at="2024-12-09T17:53:18 IST" duration-ms="12253" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- BS -->
-        <test-method is-config="true" signature="BC()[pri:0, instance:recruiter.databaseUpdateNoListTestNG@565f390]" started-at="2024-12-06T18:46:11 IST" name="BC" finished-at="2024-12-06T18:46:34 IST" duration-ms="22644" status="PASS">
+        </test-method> <!-- setup -->
+        <test-method signature="RecruiterTest()[pri:0, instance:Security.SecurityOWASP@593aaf41]" started-at="2024-12-09T17:53:18 IST" name="RecruiterTest" finished-at="2024-12-09T17:53:42 IST" duration-ms="24288" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- BC -->
-        <test-method is-config="true" signature="BM()[pri:0, instance:recruiter.databaseUpdateNoListTestNG@565f390]" started-at="2024-12-06T18:46:34 IST" name="BM" finished-at="2024-12-06T18:46:34 IST" duration-ms="2" status="PASS">
+        </test-method> <!-- RecruiterTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:Security.SecurityOWASP@593aaf41]" started-at="2024-12-09T17:53:42 IST" name="tearDown" finished-at="2024-12-09T17:53:43 IST" duration-ms="438" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- BM -->
-        <test-method signature="UpdatedNoOfCandidate()[pri:0, instance:recruiter.databaseUpdateNoListTestNG@565f390]" started-at="2024-12-06T18:46:34 IST" name="UpdatedNoOfCandidate" finished-at="2024-12-06T18:47:10 IST" duration-ms="36702" status="PASS">
-          <reporter-output>
-            <line>
-              <![CDATA[UpdatedNoOfCandidateTestScript Execution is Started :]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- UpdatedNoOfCandidate -->
-        <test-method is-config="true" signature="AM()[pri:0, instance:recruiter.databaseUpdateNoListTestNG@565f390]" started-at="2024-12-06T18:47:10 IST" name="AM" finished-at="2024-12-06T18:47:10 IST" duration-ms="8" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- AM -->
-        <test-method is-config="true" signature="AC()[pri:0, instance:recruiter.databaseUpdateNoListTestNG@565f390]" started-at="2024-12-06T18:47:10 IST" name="AC" finished-at="2024-12-06T18:47:10 IST" duration-ms="2" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- AC -->
-        <test-method is-config="true" signature="AS()[pri:0, instance:recruiter.databaseUpdateNoListTestNG@565f390]" started-at="2024-12-06T18:47:13 IST" name="AS" finished-at="2024-12-06T18:47:13 IST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- AS -->
-      </class> <!-- recruiter.databaseUpdateNoListTestNG -->
+        </test-method> <!-- tearDown -->
+      </class> <!-- Security.SecurityOWASP -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
