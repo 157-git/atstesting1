@@ -60,7 +60,7 @@ public class FindCandidate {
 	}
 
 	
-	@FindBy(xpath = "(//i[@class=\"fa-regular fa-pen-to-square\"])[1]")
+	@FindBy(xpath = "//button[@class=\"table-icon-div\"]/i")
 	private WebElement action;
 	
 	
