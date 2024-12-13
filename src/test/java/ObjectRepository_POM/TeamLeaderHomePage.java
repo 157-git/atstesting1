@@ -15,7 +15,11 @@ public class TeamLeaderHomePage{
 	
 	@FindBy(xpath = "//span[text()=\"Team Leader Section\"]")
 	private WebElement teamLeaderSection;
-
+	
+	@FindBy(xpath = "(//span[@class=\"sidebar-text\"])[3]")
+	private WebElement findCandidate;
+	
+	
 	public WebElement getTeamLeaderSection() {
 		return teamLeaderSection;
 	}

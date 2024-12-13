@@ -42,7 +42,7 @@ public class SecurityOWASP {
 	JavaUtil ju = new JavaUtil();
 
 	static final String ZAP_PROXY_ADDRESS="localhost";
-	static final int ZAP_PROXY_PORT=8081;
+	static final int ZAP_PROXY_PORT=8082;
 	static final String ZAP_API_KEY="1vp76t0v7tfi70ft6ffe414rau";
 
 	private WebDriver driver;
