@@ -13,11 +13,14 @@ public class dataBaseUtil {
 
 	    public static void connect() {
 	        try {
+	        	Class.forName("com.mysql.cj.jdbc.Driver");
 	            connection = DriverManager.getConnection(URL, USER, PASSWORD);
 	            System.out.println("Database connection established.");
 	        } catch (SQLException e) {
 	            e.printStackTrace();
-	        }
+	        } catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 	    }
 
 	    public static Connection getConnection() {

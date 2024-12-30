@@ -127,5 +127,32 @@ public class ExcelUtil {
 
 		         return data;
 		    }
+		    
+		    //read data from external excel sheet 
+		    public static int countRowsInExcel(String filePath, String sheetName) {
+		        int rowCount = 0;
+
+		        try (FileInputStream fis = new FileInputStream(new File(filePath))) {
+		            // Create a workbook instance from the Excel file
+		            Workbook workbook = new XSSFWorkbook(fis);
+		            
+		            // Get the sheet by its name
+		            Sheet sheet = workbook.getSheet(sheetName);
+		            
+		            if (sheet != null) {
+		                // Get the number of rows (this counts the rows with content)
+		                rowCount = sheet.getPhysicalNumberOfRows();
+		                
+		                // Optionally, you can also count rows even if they're blank
+		                // rowCount = sheet.getLastRowNum() + 1;
+		            }
+
+		            workbook.close();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+
+		        return rowCount;
+		    }
 	}
 
