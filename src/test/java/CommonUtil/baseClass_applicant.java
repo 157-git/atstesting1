@@ -1,46 +1,58 @@
 package CommonUtil;
 
 import java.io.IOException;
-import java.time.Duration;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 
-
-public class baseClass extends listenerImplementation{
+public class baseClass_applicant extends ApplicantListnerImplementation {
 
 	public WebDriver driver;
 	public static WebDriver sdriver;
 	
 	WebDriverUtil wdu=new WebDriverUtil();
 	PropertyFileUtil pfu=new PropertyFileUtil();
-	
+	private static final String URL = "jdbc:mysql://localhost:3306/Recruiters";
+	private static final String USER = "root";
+	private static final String PASSWORD = "root";
+	public Connection connection;
 	
 	@BeforeSuite
-	public void BS() {
+	public Connection BS() {
 		System.out.println("connected to the DataBase");
-		dataBaseUtil.connect();
+		
+		 try {
+	        	Class.forName("com.mysql.cj.jdbc.Driver");
+	            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+	            if (connection != null) {
+	                System.out.println("Database connected successfully!");
+	            } else {
+	                System.out.println("Failed to make connection to the database.");
+	            }
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		return connection;
 	}
 	
 	@BeforeClass
 	// @Parameters("browser")
 	public void BC() throws IOException {   //public void BC(@Optional("true") String browser) throws
-		String URL = pfu.getDataFromPropertyFile("url");
+		String URL = pfu.getDataFromPropertyFile("applicantUrl");
 		String BROWSER = pfu.getDataFromPropertyFile("browser");
 		
 		if (BROWSER.equals("chrome")) {
@@ -85,10 +97,15 @@ public class baseClass extends listenerImplementation{
 	@AfterSuite			//dis-connect from data base
 	public void AS() {
 		System.out.println("dis-connect from data base");
+		 if (connection != null) {
+	            try {
+	                connection.close();
+	                System.out.println("Database connection closed.");
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+		 }
 	}
-	
 
-	
-			
-	
+
 }

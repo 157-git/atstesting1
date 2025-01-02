@@ -1,5 +1,7 @@
 package CommonUtil;
 
+import java.time.LocalDateTime;
+
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -11,8 +13,8 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-public class listenerImplementation implements ITestListener {
-	
+public class ApplicantListnerImplementation implements ITestListener{
+
 	ExtentReports reports = new ExtentReports();
 	JavaUtil ju=new JavaUtil();
 	ExtentTest test;
@@ -46,7 +48,7 @@ public class listenerImplementation implements ITestListener {
         System.err.println("Error: " + result.getThrowable().getMessage());
 
 		try {
-			String path=wdu.ScreenShot(baseClass.sdriver, "failReport");
+			String path=wdu.ScreenShot(baseClass_applicant.sdriver, "applicantForm");
 			test.addScreenCaptureFromPath(path);
 		} catch (Exception e) {
 			
@@ -80,13 +82,13 @@ public class listenerImplementation implements ITestListener {
 		// TODO Auto-generated method stub
 		JavaUtil ju = new JavaUtil();
 		Reporter.log(" execution is started", true);
-
+		
 		// use extentsparkReporter class just to configure extent report
 		ExtentSparkReporter reporter = new ExtentSparkReporter(
-				"./extentreport/report"+ ju.getRandomNumber()+ ".html");
-		reporter.config().setDocumentTitle("Recruiter's Gear");
+				"./extentreport/report" + ju.getRandomNumber() +"-"+ ju.dateAndTime() + ".html");
+		reporter.config().setDocumentTitle("APPLICANT FORM");
 		reporter.config().setTheme(Theme.DARK);
-		reporter.config().setReportName("ADD CANDIDATE");
+		reporter.config().setReportName("applicant form");
 
 		// use extentReporter class to generate extend report
 		reports = new ExtentReports();
@@ -104,20 +106,4 @@ public class listenerImplementation implements ITestListener {
 		
 		reports.flush();
 	}
-//.........................................................................................................
-	
-
-
-	
-
-
-
-	
-	
-
-	
-
-	
-	
-
 }

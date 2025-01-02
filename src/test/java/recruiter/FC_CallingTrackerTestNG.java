@@ -354,9 +354,10 @@ public class FC_CallingTrackerTestNG extends baseClass{
 							EM=EXPECTEDCTCMONTH.substring(EXPECTEDCTCMONTH.indexOf(",")+1).trim();
 						}
 						expectedCTC_Month.sendKeys(EM);
+						System.out.println(".......5.........");
 						
 						Thread.sleep(1000);
-						WebElement offer_Letter=driver.findElement(By.xpath("(//div[@class=\"update-calling-tracker-two-input-container\"])[8]/div/select"));
+						WebElement offer_Letter=driver.findElement(By.xpath("(//div[@class=\"update-calling-tracker-two-input-container\"])[7]/div/div/select"));
 						//w.until(ExpectedConditions.elementToBeClickable(offer_Letter));
 						//offer_Letter.click();
 						Thread.sleep(1000);
@@ -374,7 +375,7 @@ public class FC_CallingTrackerTestNG extends baseClass{
 						messageFor_TL.sendKeys(MESSAGEFORTL);
 						
 						Thread.sleep(1000);
-						WebElement status_Type=driver.findElement(By.xpath("(//div[@class=\"update-calling-tracker-two-input-container\"])[9]/select"));
+						WebElement status_Type=driver.findElement(By.xpath("(//div[@class=\"update-calling-tracker-two-input-container\"])[8]/select"));
 						//w.until(ExpectedConditions.elementToBeClickable(status_Type));
 						//status_Type.click();
 						Thread.sleep(1000);
