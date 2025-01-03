@@ -385,11 +385,14 @@ public class applicantForm extends baseClass_applicant{
 
                        System.out.println("File saved as: " + filepath);
                    }
-            	}
+            	
 
-			} catch (SQLException e) {
+			 catch (SQLException e) {
            e.printStackTrace();
-				}
+				} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         		
         		
         		

@@ -40,6 +40,52 @@ public class DataBase {
 	@FindBy(xpath = "(//button[text()=\"Upload\"])[2]")
 	private WebElement ResumeUpload;
 	
+	@FindBy(xpath = "//span[text()=\"Send Link\"]")
+	private WebElement SendLink;
+	
+	@FindBy(xpath = "//button[text()=\"Share 🔗\"]")
+	private WebElement shareLink;
+	
+	@FindBy(xpath = "//button[text()=\"Copy Link 🔗\"]")
+	private WebElement CopyLink;
+	
+	@FindBy(xpath = "//button[text()=\"Create\"]")
+	private WebElement CreateResume;
+	
+	
+	
+	public WebElement getSendLink() {
+		return SendLink;
+	}
+
+	public void setSendLink(WebElement sendLink) {
+		SendLink = sendLink;
+	}
+
+	public WebElement getShareLink() {
+		return shareLink;
+	}
+
+	public void setShareLink(WebElement shareLink) {
+		this.shareLink = shareLink;
+	}
+
+	public WebElement getCopyLink() {
+		return CopyLink;
+	}
+
+	public void setCopyLink(WebElement copyLink) {
+		CopyLink = copyLink;
+	}
+
+	public WebElement getCreateResume() {
+		return CreateResume;
+	}
+
+	public void setCreateResume(WebElement createResume) {
+		CreateResume = createResume;
+	}
+
 	public DataBase(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
@@ -120,5 +166,28 @@ public class DataBase {
 		return new dataBaseExcelView(driver);
 	}
 	
+	public dataBaseExcelView shareLink(WebDriver driver) {
+		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
+		SendLink.click();
+		w.until(ExpectedConditions.visibilityOf(CopyLink));
+		shareLink.click();
+		return new dataBaseExcelView(driver);
+	}
+	
+	public dataBaseExcelView copyLink(WebDriver driver) {
+		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
+		SendLink.click();
+		w.until(ExpectedConditions.visibilityOf(CopyLink));
+		CopyLink.click();
+		return new dataBaseExcelView(driver);
+	}
+	
+	public dataBaseExcelView createResume(WebDriver driver) {
+		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
+		SendLink.click();
+		w.until(ExpectedConditions.visibilityOf(CopyLink));
+		CreateResume.click();
+		return new dataBaseExcelView(driver);
+	}
 
 }

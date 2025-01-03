@@ -66,7 +66,7 @@ public class RecruiterGear {
 	        try {
 	            // Wait and click "Team Leader" button
 	            w.until(ExpectedConditions.elementToBeClickable(recLoginBtn)).click();
-	            System.out.println("Clicked on 'Team Leader' button successfully.");
+	            System.out.println("Clicked on 'recruiter' button successfully.");
 	        } catch (Exception e) {
 	            System.out.println("Failed to click 'Recruiter' button: " + e.getMessage());
 	        }

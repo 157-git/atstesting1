@@ -3,17 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="recruiter.applicantForm">
+      <class name="teamLeader.notificationTestNG">
         <methods>
-          <include name="AapplicantFormMYSQL"/>
+          <include name="findCandidate"/>
           <include name="AS"/>
           <include name="AC"/>
+          <include name="BM"/>
+          <include name="AM"/>
           <include name="BS"/>
           <include name="BC"/>
-          <include name="AM"/>
-          <include name="BM"/>
         </methods>
-      </class> <!-- recruiter.applicantForm -->
+      </class> <!-- teamLeader.notificationTestNG -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

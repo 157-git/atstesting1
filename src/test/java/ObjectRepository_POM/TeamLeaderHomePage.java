@@ -13,11 +13,25 @@ public class TeamLeaderHomePage{
 	
 	public WebDriver driver;
 	
+	@FindBy(xpath = "//span[text()=\"Find Candidate\"]")
+	private WebElement findCandidate;
+	
+	@FindBy(xpath = "//span[text()=\"Calling Tracker\"]")
+	private WebElement callingTracker;
+	
+	@FindBy(css  = ".ant-badge.css-1kf000u")
+	private WebElement notification;
+
 	@FindBy(xpath = "//span[text()=\"Team Leader Section\"]")
 	private WebElement teamLeaderSection;
 	
-	@FindBy(xpath = "(//span[@class=\"sidebar-text\"])[3]")
-	private WebElement findCandidate;
+	public WebElement getFindCandidate() {
+		return findCandidate;
+	}
+
+	public WebElement getCallingTracker() {
+		return callingTracker;
+	}
 	
 	
 	public WebElement getTeamLeaderSection() {
@@ -34,6 +48,13 @@ public class TeamLeaderHomePage{
 		return new TeamLeadSection(driver);
 	}
 	
+	public FindCandidate callingTracker(WebDriver driver) throws InterruptedException {
+		findCandidate.click();
+		return new FindCandidate(driver);
+	}
 	
-	
+	public WebDriver notification(WebDriver driver) {
+		notification.click();
+		return driver;
+	}
 }

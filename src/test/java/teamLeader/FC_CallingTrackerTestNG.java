@@ -20,12 +20,15 @@ import CommonUtil.PropertyFileUtil;
 import CommonUtil.WebDriverUtil;
 import CommonUtil.baseClass_TL;
 import CommonUtil.listenerImplementation;
+import CommonUtil.listenerimplementation_TL;
 import ObjectRepository_POM.FindCandidate;
 import ObjectRepository_POM.RecruiterGear;
 import ObjectRepository_POM.RecruiterhomePage;
+import ObjectRepository_POM.TeamLeader;
+import ObjectRepository_POM.TeamLeaderHomePage;
 import ObjectRepository_POM.loginPage;
 
-@Listeners(listenerImplementation.class)
+@Listeners(listenerimplementation_TL.class)
 public class FC_CallingTrackerTestNG extends baseClass_TL {
 	
 	WebDriverUtil wdu=new WebDriverUtil();
@@ -40,13 +43,14 @@ public class FC_CallingTrackerTestNG extends baseClass_TL {
 	@Test(enabled = false)
 	public void findCandidate() throws IOException, InterruptedException {
 		// TODO Auto-generated constructor stub
-		String USERNAME=pfu.getDataFromPropertyFile("username");
-		String PASSWORD=pfu.getDataFromPropertyFile("password");
-		String URL="http://93.127.199.85/Dashboard/12/Recruiters";
+		String USERNAME=pfu.getDataFromPropertyFile("username1");
+		String PASSWORD=pfu.getDataFromPropertyFile("password1");
+		String URL="http://93.127.199.85/Dashboard/432/TeamLeader";
 		
+		//updated;3-1-25
 		Thread.sleep(2000);
-		RecruiterGear r = new RecruiterGear(driver);
-		r.RecruiterPage(driver);
+		TeamLeader tl=new TeamLeader(driver);
+		tl.teamLeaderPage(driver);//
 		
 		Thread.sleep(2000);
 		String LoginPageUrl=driver.getCurrentUrl();
@@ -57,20 +61,19 @@ public class FC_CallingTrackerTestNG extends baseClass_TL {
 		lp.login(USERNAME, PASSWORD);
 
 		//6-12-24 updated
-		Thread.sleep(1000);
-		String RecPageUrl=driver.getCurrentUrl();
-		System.out.println(RecPageUrl);
+		Thread.sleep(2000);
+		String teamleadPageUrl=driver.getCurrentUrl();
+		System.out.println(teamleadPageUrl);
 		
-		//.............LOGIN................
-		
-		if (RecPageUrl.equals(LoginPageUrl)) {
+				
+		if (teamleadPageUrl.equals(LoginPageUrl)) {
 			System.out.println("login failed");
 			//Assert.fail("Invalid login details");
-		} else if(RecPageUrl.equals(URL)) {
+		} else if(teamleadPageUrl.equals(URL)) {
 			System.out.println("login successfull");
 						
-			RecruiterhomePage hp = new RecruiterhomePage(driver);
-			hp.FinCan(driver);
+			TeamLeaderHomePage hp=new TeamLeaderHomePage(driver);
+			hp.callingTracker(driver);
 			System.out.println("TEST");
 			
 			FindCandidate fc=new FindCandidate(driver);
@@ -81,7 +84,7 @@ public class FC_CallingTrackerTestNG extends baseClass_TL {
 			List<WebElement> initalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
 			Thread.sleep(1000);
 			int inititalRowsCount=initalrows.size();
-			System.out.println("recruiter inital row count : "+inititalRowsCount);
+			System.out.println("team lead inital row count : "+inititalRowsCount);
 			
 			if(!(initalrows.isEmpty())) {
 				
@@ -196,7 +199,9 @@ public class FC_CallingTrackerTestNG extends baseClass_TL {
 				
 				Thread.sleep(1000);
 				WebElement cancel_btn = driver.findElement(By.xpath("//button[text()=\"Cancel\"]"));
-				js.executeScript("arguments[0].scrollIntoView();",cancel_btn );
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+//				js.executeScript("arguments[0].scrollIntoView();",cancel_btn );
+				js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 				Thread.sleep(1000);
 				cancel_btn.click();
 				
@@ -213,13 +218,14 @@ public class FC_CallingTrackerTestNG extends baseClass_TL {
 	@Test(enabled = true)
 	public void findCandidate2() throws IOException, InterruptedException {
 		// TODO Auto-generated constructor stub
-		String USERNAME=pfu.getDataFromPropertyFile("username");
-		String PASSWORD=pfu.getDataFromPropertyFile("password");
-		String URL="http://93.127.199.85/Dashboard/12/Recruiters";
+		String USERNAME=pfu.getDataFromPropertyFile("username1");
+		String PASSWORD=pfu.getDataFromPropertyFile("password1");
+String URL="http://93.127.199.85/Dashboard/432/TeamLeader";
 		
+		//updated;3-1-25
 		Thread.sleep(2000);
-		RecruiterGear r = new RecruiterGear(driver);
-		r.RecruiterPage(driver);
+		TeamLeader tl=new TeamLeader(driver);
+		tl.teamLeaderPage(driver);//
 		
 		Thread.sleep(2000);
 		String LoginPageUrl=driver.getCurrentUrl();
@@ -230,20 +236,19 @@ public class FC_CallingTrackerTestNG extends baseClass_TL {
 		lp.login(USERNAME, PASSWORD);
 
 		//6-12-24 updated
-		Thread.sleep(1000);
-		String RecPageUrl=driver.getCurrentUrl();
-		System.out.println(RecPageUrl);
+		Thread.sleep(2000);
+		String teamleadPageUrl=driver.getCurrentUrl();
+		System.out.println(teamleadPageUrl);
 		
-		//.............LOGIN................
-		
-		if (RecPageUrl.equals(LoginPageUrl)) {
+				
+		if (teamleadPageUrl.equals(LoginPageUrl)) {
 			System.out.println("login failed");
 			//Assert.fail("Invalid login details");
-		} else if(RecPageUrl.equals(URL)) {
+		} else if(teamleadPageUrl.equals(URL)) {
 			System.out.println("login successfull");		
 						
-			RecruiterhomePage hp = new RecruiterhomePage(driver);
-			hp.FinCan(driver);
+			TeamLeaderHomePage hp=new TeamLeaderHomePage(driver);
+			hp.callingTracker(driver);
 			System.out.println("TEST");
 			
 			FindCandidate fc=new FindCandidate(driver);
