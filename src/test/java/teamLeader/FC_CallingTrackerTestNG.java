@@ -273,7 +273,7 @@ String URL="http://93.127.199.85/Dashboard/432/TeamLeader";
 				
 				Connection connection=BS();
 				if (connection == null) {
-		            System.out.println("Database connection is null, cannot insert data.");
+		            System.out.println("Database connection is null, cannot fetch  data.");
 		            return;
 		        }
 				

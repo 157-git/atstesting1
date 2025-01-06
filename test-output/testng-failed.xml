@@ -5,9 +5,9 @@
     <classes>
       <class name="teamLeader.notificationTestNG">
         <methods>
-          <include name="findCandidate"/>
           <include name="AS"/>
           <include name="AC"/>
+          <include name="notificationFlow"/>
           <include name="BM"/>
           <include name="AM"/>
           <include name="BS"/>
