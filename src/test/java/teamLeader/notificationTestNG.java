@@ -26,6 +26,7 @@ import ObjectRepository_POM.FindCandidate;
 import ObjectRepository_POM.Manager;
 import ObjectRepository_POM.RecruiterGear;
 import ObjectRepository_POM.RecruiterhomePage;
+import ObjectRepository_POM.Superuser;
 import ObjectRepository_POM.TeamLeader;
 import ObjectRepository_POM.TeamLeaderHomePage;
 import ObjectRepository_POM.loginPage;
@@ -91,7 +92,7 @@ public class notificationTestNG extends baseClass_TL{
 		// TODO Auto-generated constructor stub
 	String USERNAME=pfu.getDataFromPropertyFile("not_username");
 	String PASSWORD=pfu.getDataFromPropertyFile("not_password");
-	String URL="http://93.127.199.85/Dashboard/20/Recruiters";
+	String URL="http://93.127.199.85/Dashboard/19/Recruiters";
 	
 	RecruiterGear r = new RecruiterGear(driver);
 	r.RecruiterPage(driver);
@@ -273,6 +274,7 @@ public class notificationTestNG extends baseClass_TL{
 			//.................................................................................
 			
 			System.out.println("status type is :"+statusType);
+			System.out.println("candidate Name :"+candidateName);
 			Thread.sleep(2000);
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
@@ -293,6 +295,8 @@ public class notificationTestNG extends baseClass_TL{
 				WebElement update_data = driver.findElement(By.xpath("//button[text()=\"Update Data\"]"));
 				Thread.sleep(1000);
 				update_data.click();
+				String dnt = ju.dateAndTime();
+				System.out.println(dnt);
 				Thread.sleep(500);
 				wdu.ScreenShot(driver, "lineup");
 				
@@ -330,39 +334,55 @@ public class notificationTestNG extends baseClass_TL{
 				
 						
 				if (teamleadPageUrl_tl.equals(LoginPageUrl_tl)) {
-					System.out.println("login failed");
-					Assert.fail("Invalid login details");
+
+					WebElement error_msg = driver.findElement(By.className("loginpage-error"));
+					Assert.assertTrue(error_msg.isDisplayed(), "error msg not displayed");
+					System.out.println("Login failed: " + error_msg.getText());
+					
 				} else if(teamleadPageUrl_tl.equals(URL_tl)) {
 					System.out.println("login successfull");
 					
+					Thread.sleep(1000);
 					WebElement notificationIcon = driver.findElement(By.cssSelector(".ant-badge.css-1kf000u"));
 					notificationIcon.click();
 					//System.out.println("No notification found in TEAM LEADER");
 					
 					//put the fixed text value present in every notification(recruiter Name) or id
-					WebElement notification = driver.findElement(By.className("motificationSubCont1"));
-					if (notification.getText().contains("1") && !notification.getText().isEmpty()) {
-						System.out.println("notification PRESENT");
-					} else {
-						System.out.println("notification ABSENT");
+					List<WebElement> notification = driver.findElements(By.xpath("//div[@class=\"motificationSubCont1\"]/p"));
+					for (WebElement noti : notification) {
+						
+						if (noti.getText().contains(candidateName) && !noti.getText().isEmpty()) {
+							System.out.println("notification PRESENT");
+							Thread.sleep(2000);
+							wdu.ScreenShot(driver, "managerNotification");
+						} else {
+							System.out.println("notification ABSENT");
+						}	
+						
 					}	
 					
 					//logout
-					Thread.sleep(1000);
+					Thread.sleep(2000);
 					lo.logout(driver, "Yes");
 				}
 								
 				
 				Thread.sleep(2000);
 				driver.navigate().back();
+				System.out.println("back-1");
+				Thread.sleep(2000);
+				driver.navigate().back();
+				System.out.println("back-2");
 				Thread.sleep(2000);
 				
 				//..............................login as manager........................................
 				String USERNAME_m=pfu.getDataFromPropertyFile("not_usernameM");
 				String PASSWORD_m=pfu.getDataFromPropertyFile("not_passwordM");				
-				String URL_m="http://93.127.199.85//Dashboard/1342/Manager#";
+				String URL_m="http://93.127.199.85/Dashboard/1342/Manager";
 				
-				Manager manager=new Manager();
+				Thread.sleep(2000);
+				System.out.println("on manager page");
+				Manager manager=new Manager(driver);
 				manager.managerLogin(driver);
 				
 				Thread.sleep(2000);
@@ -370,25 +390,109 @@ public class notificationTestNG extends baseClass_TL{
 				System.out.println(loginPageUrl_M);
 				
 				//login
+				Thread.sleep(2000);
 				loginPage lp_m = new loginPage(driver);
 				lp_m.login(USERNAME_m, PASSWORD_m);
 				
+				Thread.sleep(2000);
 				String homePageUrl_M = driver.getCurrentUrl();
 				System.out.println(homePageUrl_M);
 				
 				if (homePageUrl_M.equals(loginPageUrl_M)) {
-					System.out.println("login failed");
-					Assert.fail("Invalid login details");
+					
+					WebElement error_msg = driver.findElement(By.className("loginpage-error"));
+					Assert.assertTrue(error_msg.isDisplayed(), "error msg not displayed");
+					System.out.println("Login failed: " + error_msg.getText());
+					
 				} else if(homePageUrl_M.equals(URL_m)) {
 					System.out.println("login successfull");
 					
+					Thread.sleep(2000);
+					WebElement notificationIcon = driver.findElement(By.cssSelector(".ant-badge.css-1kf000u"));
+					notificationIcon.click();
+					
+					//put the fixed text value present in every notification(recruiter Name) or id
+					Thread.sleep(2000);
+					List<WebElement> notification = driver.findElements(By.xpath("//div[@class=\"motificationSubCont1\"]/p"));
+					for (WebElement noti : notification) {
+						
+					if (noti.getText().contains(candidateName) && !noti.getText().isEmpty()) {
+						System.out.println("notification PRESENT");
+						Thread.sleep(2000);
+						wdu.ScreenShot(driver, "managerNotification");
+					} else {
+						System.out.println("notification ABSENT");
+					}	
+				}
 					
 					//logout
 					Thread.sleep(1000);
 					lo.logout(driver, "Yes");
 				}
 				
+				Thread.sleep(2000);
+				driver.navigate().back();
+				System.out.println("back-3");
+				Thread.sleep(2000);
+				driver.navigate().back();
+				System.out.println("back-4");
+				Thread.sleep(2000);
 				
+				//...........................login as super user.............................
+				String USERNAME_su=pfu.getDataFromPropertyFile("not_usernameSU");
+				String PASSWORD_su=pfu.getDataFromPropertyFile("not_passwordSU");				
+				String URL_su="http://93.127.199.85/Dashboard/391/SuperUser";
+				
+				Thread.sleep(2000);
+				Superuser superuser=new Superuser(driver);
+				superuser.superuserLogin(driver);
+				
+				Thread.sleep(2000);
+				String loginPageUrl_su = driver.getCurrentUrl();
+				System.out.println(loginPageUrl_su);
+				
+				//login
+				Thread.sleep(2000);
+				loginPage lp_su = new loginPage(driver);
+				lp_su.login(USERNAME_su, PASSWORD_su);
+				
+				Thread.sleep(2000);
+				String homePageUrl_su = driver.getCurrentUrl();
+				System.out.println(homePageUrl_su);
+				
+				if (homePageUrl_su.equals(loginPageUrl_su)) {
+					
+					WebElement error_msg = driver.findElement(By.className("loginpage-error"));
+					Assert.assertTrue(error_msg.isDisplayed(), "error msg not displayed");
+					System.out.println("Login failed: " + error_msg.getText());
+					
+				} else if(homePageUrl_su.equals(URL_su)) {
+					System.out.println("login successfull");
+				
+					Thread.sleep(2000);
+					WebElement notificationIcon = driver.findElement(By.cssSelector(".ant-badge.css-1kf000u"));
+					notificationIcon.click();
+					
+					//put the fixed text value present in every notification(recruiter Name) or id
+					Thread.sleep(2000);
+					List<WebElement> notification = driver.findElements(By.xpath("//div[@class=\"motificationSubCont1\"]/p"));
+					for (WebElement noti : notification) {
+						
+					if (noti.getText().contains(candidateName) && !noti.getText().isEmpty()) {
+						System.out.println("notification PRESENT");
+						Thread.sleep(2000);
+						wdu.ScreenShot(driver, "superuserNotification");
+					} else {
+						System.out.println("notification ABSENT");
+					}	
+				}
+					
+					//logout
+					Thread.sleep(1000);
+					lo.logout(driver, "Yes");
+					
+					
+				}	
 					
 		}else {
 			System.out.println("No candidate present to be updated ");
@@ -403,10 +507,9 @@ public class notificationTestNG extends baseClass_TL{
 		
 	}
 	
+	
 }
 	
-	
-	//......................................manager.........................................
 	
 	
 	

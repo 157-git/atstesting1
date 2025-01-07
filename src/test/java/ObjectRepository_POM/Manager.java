@@ -5,6 +5,7 @@ import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -36,6 +37,10 @@ public class Manager {
 
 	public WebElement getManagerBtn() {
 		return managerBtn;
+	}
+	
+	public Manager(WebDriver driver) {
+		PageFactory.initElements(driver, this);
 	}
     
 	public TeamLeader managerPage(WebDriver driver) throws InterruptedException {
@@ -70,7 +75,7 @@ public class Manager {
 	}
 	
 	
-	public TeamLeader managerLogin(WebDriver driver) {
+	public Manager managerLogin(WebDriver driver) {
 		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	        try {
 	            // Wait and click "Team Leader" button
@@ -80,7 +85,7 @@ public class Manager {
 	        } catch (Exception e) {
 	            System.out.println("Failed to click 'Manager' button: " + e.getMessage());
 	        }
-		return new TeamLeader(driver);
+		return new Manager(driver);
 		
 	}
 
