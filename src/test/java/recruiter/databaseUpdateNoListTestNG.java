@@ -180,7 +180,7 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 			    // Update total rows count
 			    TotalInitalRows += UploadexcelDataRows.size();
 
-			    // Log current page and total rows (for debugging)
+			    // Log current page and total rows
 			    System.out.println("Page " + pageNumber + " - Rows in this page: " + UploadexcelDataRows.size() + " - Total Rows: " + TotalInitalRows);
 
 			    // Check for the next page button

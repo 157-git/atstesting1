@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="1" total="2" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
       <![CDATA[ execution is started]]>
     </line>
     <line>
-      <![CDATA[notificationFlowTestScript Execution is Started :]]>
+      <![CDATA[addJobDescriptionTestScript Execution is Started :]]>
     </line>
   </reporter-output>
-  <suite started-at="2025-01-07T18:15:48 IST" name="Default suite" finished-at="2025-01-07T18:18:06 IST" duration-ms="137548">
+  <suite started-at="2025-01-09T17:07:05 IST" name="Default suite" finished-at="2025-01-09T17:07:42 IST" duration-ms="37780">
     <groups>
     </groups>
-    <test started-at="2025-01-07T18:15:48 IST" name="Default test" finished-at="2025-01-07T18:18:06 IST" duration-ms="137548">
-      <class name="teamLeader.notificationTestNG">
-        <test-method is-config="true" signature="BS()[pri:0, instance:teamLeader.notificationTestNG@2794eab6]" started-at="2025-01-07T18:15:44 IST" name="BS" finished-at="2025-01-07T18:15:48 IST" duration-ms="4343" status="PASS">
+    <test started-at="2025-01-09T17:07:05 IST" name="Default test" finished-at="2025-01-09T17:07:42 IST" duration-ms="37780">
+      <class name="teamLeader.sentProfileTestNG">
+        <test-method is-config="true" signature="BS()[pri:0, instance:teamLeader.sentProfileTestNG@41a0aa7d]" started-at="2025-01-09T17:07:02 IST" name="BS" finished-at="2025-01-09T17:07:05 IST" duration-ms="2954" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BS -->
-        <test-method is-config="true" signature="BC()[pri:0, instance:teamLeader.notificationTestNG@2794eab6]" started-at="2025-01-07T18:15:50 IST" name="BC" finished-at="2025-01-07T18:16:13 IST" duration-ms="23027" status="PASS">
+        <test-method is-config="true" signature="BC()[pri:0, instance:teamLeader.sentProfileTestNG@41a0aa7d]" started-at="2025-01-09T17:07:06 IST" name="BC" finished-at="2025-01-09T17:07:24 IST" duration-ms="17493" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BC -->
-        <test-method is-config="true" signature="BM()[pri:0, instance:teamLeader.notificationTestNG@2794eab6]" started-at="2025-01-07T18:16:14 IST" name="BM" finished-at="2025-01-07T18:16:14 IST" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="BM()[pri:0, instance:teamLeader.sentProfileTestNG@41a0aa7d]" started-at="2025-01-09T17:07:24 IST" name="BM" finished-at="2025-01-09T17:07:24 IST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BM -->
-        <test-method signature="notificationFlow()[pri:0, instance:teamLeader.notificationTestNG@2794eab6]" started-at="2025-01-07T18:16:14 IST" name="notificationFlow" finished-at="2025-01-07T18:18:06 IST" duration-ms="112454" status="PASS">
+        <test-method signature="addJobDescription()[pri:0, instance:teamLeader.sentProfileTestNG@41a0aa7d]" started-at="2025-01-09T17:07:24 IST" name="addJobDescription" finished-at="2025-01-09T17:07:42 IST" duration-ms="18699" status="PASS">
           <reporter-output>
             <line>
-              <![CDATA[notificationFlowTestScript Execution is Started :]]>
+              <![CDATA[addJobDescriptionTestScript Execution is Started :]]>
             </line>
           </reporter-output>
-        </test-method> <!-- notificationFlow -->
-        <test-method is-config="true" signature="AM()[pri:0, instance:teamLeader.notificationTestNG@2794eab6]" started-at="2025-01-07T18:18:06 IST" name="AM" finished-at="2025-01-07T18:18:06 IST" duration-ms="2" status="PASS">
+        </test-method> <!-- addJobDescription -->
+        <test-method is-config="true" signature="AM()[pri:0, instance:teamLeader.sentProfileTestNG@41a0aa7d]" started-at="2025-01-09T17:07:42 IST" name="AM" finished-at="2025-01-09T17:07:42 IST" duration-ms="4" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AM -->
-        <test-method is-config="true" signature="AC()[pri:0, instance:teamLeader.notificationTestNG@2794eab6]" started-at="2025-01-07T18:18:06 IST" name="AC" finished-at="2025-01-07T18:18:06 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="AC()[pri:0, instance:teamLeader.sentProfileTestNG@41a0aa7d]" started-at="2025-01-09T17:07:42 IST" name="AC" finished-at="2025-01-09T17:07:42 IST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AC -->
-        <test-method is-config="true" signature="AS()[pri:0, instance:teamLeader.notificationTestNG@2794eab6]" started-at="2025-01-07T18:18:11 IST" name="AS" finished-at="2025-01-07T18:18:11 IST" duration-ms="10" status="PASS">
+        <test-method is-config="true" signature="AS()[pri:0, instance:teamLeader.sentProfileTestNG@41a0aa7d]" started-at="2025-01-09T17:07:45 IST" name="AS" finished-at="2025-01-09T17:07:45 IST" duration-ms="5" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AS -->
-      </class> <!-- teamLeader.notificationTestNG -->
+      </class> <!-- teamLeader.sentProfileTestNG -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
