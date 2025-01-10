@@ -3,17 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="teamLeader.sentProfileTestNG">
+      <class name="teamLeader.notificationTestNG">
         <methods>
           <include name="AS"/>
           <include name="AC"/>
-          <include name="addJobDescription"/>
           <include name="BM"/>
           <include name="AM"/>
+          <include name="notificationFlowSuperToRecruiter"/>
           <include name="BS"/>
           <include name="BC"/>
         </methods>
-      </class> <!-- teamLeader.sentProfileTestNG -->
+      </class> <!-- teamLeader.notificationTestNG -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

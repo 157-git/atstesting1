@@ -132,4 +132,8 @@ public class RecruiterhomePage {
 	  return new JobDescription(driver);
   }
  
+  public WebDriver chooseColour(WebDriver driver) {
+	  ChooseColor.click();
+	  return driver;
+  }
 }

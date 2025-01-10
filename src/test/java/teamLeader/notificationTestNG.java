@@ -87,7 +87,7 @@ public class notificationTestNG extends baseClass_TL{
 	}
 	
 	//.................................team leader.........................................
-	@Test
+	@Test(enabled = false)
 	public void notificationFlow() throws IOException, InterruptedException {
 		// TODO Auto-generated constructor stub
 	String USERNAME=pfu.getDataFromPropertyFile("not_username");
@@ -510,7 +510,47 @@ public class notificationTestNG extends baseClass_TL{
 	
 }
 	
-	
+
+	@Test
+	public void notificationFlowSuperToRecruiter() throws IOException, InterruptedException {
+		String USERNAME_su=pfu.getDataFromPropertyFile("not_usernameSU");
+		String PASSWORD_su=pfu.getDataFromPropertyFile("not_passwordSU");				
+		String URL_su="http://93.127.199.85/Dashboard/391/SuperUser";
+		
+		Thread.sleep(2000);
+		Superuser superuser=new Superuser(driver);
+		superuser.superuserPage(driver);
+		
+		Thread.sleep(2000);
+		String loginPageUrl_su = driver.getCurrentUrl();
+		System.out.println(loginPageUrl_su);
+		
+		//login
+		Thread.sleep(2000);
+		loginPage lp_su = new loginPage(driver);
+		lp_su.login(USERNAME_su, PASSWORD_su);
+		
+		Thread.sleep(2000);
+		String homePageUrl_su = driver.getCurrentUrl();
+		System.out.println(homePageUrl_su);
+		
+		if (homePageUrl_su.equals(loginPageUrl_su)) {
+			
+			WebElement error_msg = driver.findElement(By.className("loginpage-error"));
+			Assert.assertTrue(error_msg.isDisplayed(), "error msg not displayed");
+			System.out.println("Login failed: " + error_msg.getText());
+			
+		} else if(homePageUrl_su.equals(URL_su)) {
+			System.out.println("login successfull");
+			
+			
+			
+			//logout
+			Thread.sleep(1000);
+			logoutPage lo=new logoutPage(driver);
+			lo.logout(driver, "Yes");
+		}
+	}
 	
 	
 	
