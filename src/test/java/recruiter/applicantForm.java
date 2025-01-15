@@ -372,29 +372,31 @@ public class applicantForm extends baseClass_applicant{
         		
         		Thread.sleep(1000);
         		WebElement resumeUpload = driver.findElement(By.id("resumeUpload"));
-        		String filepath="src/test/resources/Resumedownloadedfile.pdf";
-        		try (InputStream inputStream = RESUME.getBinaryStream();
-                        FileOutputStream fileOutputStream = new FileOutputStream(filepath)) {
-
-                       // Read from the InputStream and write to the output file
-                       byte[] buffer = new byte[1024];
-                       int bytesRead;
-                       while ((bytesRead = inputStream.read(buffer)) != -1) {
-                           fileOutputStream.write(buffer, 0, bytesRead);
-                       }
-
-                       System.out.println("File saved as: " + filepath);
-                   }
-            	
-
-			 catch (SQLException e) {
-           e.printStackTrace();
-				} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//        		String filepath="src/test/resources/Resumedownloadedfile.pdf";
+//        		try (InputStream inputStream = RESUME.getBinaryStream();
+//                        FileOutputStream fileOutputStream = new FileOutputStream(filepath)) {
+//
+//                       // Read from the InputStream and write to the output file
+//                       byte[] buffer = new byte[1024];
+//                       int bytesRead;
+//                       while ((bytesRead = inputStream.read(buffer)) != -1) {
+//                           fileOutputStream.write(buffer, 0, bytesRead);
+//                       }
+//
+//                       System.out.println("File saved as: " + filepath);
+//                   }
+//            	
+//
+//			 catch (SQLException e) {
+//           e.printStackTrace();
+//				} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
         		
-        		
+        		File resume=new File("src\\test\\resources\\Resumedownloadedfile.pdf");
+        		resumeUpload.sendKeys(resume.getAbsolutePath());
+        	
         		
         		Thread.sleep(1000);
         		File photo=new File("src\\test\\resources\\uploadPhotoProfile.jpeg");
@@ -406,6 +408,8 @@ public class applicantForm extends baseClass_applicant{
         		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
         		Thread.sleep(2000);
         		submit.click();
+        		
+        		
 
             	
             } else {

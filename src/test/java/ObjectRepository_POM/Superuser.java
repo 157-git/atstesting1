@@ -9,6 +9,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import lombok.Data;
+
+@Data
 public class Superuser {
 	
 		//public WebDriver driver;
@@ -23,20 +26,33 @@ public class Superuser {
 	    @FindBy(xpath = "(//button[@class=\"recpage-login1\"])[2]")
 	    private WebElement superuserBtn;
 	    
+	    @FindBy(xpath = "//span[text()=\"Super User\"]")
+	    private WebElement superUser;
+	    
+	    @FindBy(xpath = "//span[text()=\"Billing Dashboard\"]")
+	    private WebElement billingDashboard;
+	    
+	    @FindBy(xpath = "//span[text()=\" Make Invoice\"]")
+	    private WebElement makeInvoice;
+	    
+	    @FindBy(xpath = "//span[text()=\"Sent Profile\"]")
+	    private WebElement sentProfile;
+	    
+	    @FindBy(xpath = "//span[text()=\"Add Client Details\"]")
+	    private WebElement addClientDetails;
+	    
+	    @FindBy(xpath = "//span[text()=\"Add Manager\"]")
+	    private WebElement addManager;
+	    
+	    @FindBy(xpath = "//span[text()=\"Team Details\"]")
+	    private WebElement teamDetails;
+	    
+	    @FindBy(xpath = "//span[text()=\"Capex\"]")
+	    private WebElement capex;
+	    
+	    
 	    public static ThreadLocal<WebDriver> getDriver() {
 			return driver;
-		}
-
-		public WebElement getLetBegin() {
-			return letBegin;
-		}
-
-		public WebElement getEmployeeButton() {
-			return employeeButton;
-		}
-
-		public WebElement getManagerBtn() {
-			return superuserBtn;
 		}
 
 		public Superuser(WebDriver driver) {

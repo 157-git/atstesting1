@@ -166,8 +166,9 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 			hp.dataBase(driver);
 			
 			DataBase db=new DataBase(driver);
-			//click on upload files
+			//click on upload excel files
 			db.dbDropdown2(driver);
+			Thread.sleep(2000);
 			
 			int TotalInitalRows = 0;
 			Boolean NextPage = true;
@@ -175,24 +176,29 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 
 			while (NextPage) {
 			    // Get the rows of the current page's table
-			    List<WebElement> UploadexcelDataRows = driver.findElements(By.xpath("//table[@class='selfcalling-table attendance-table']/tbody/tr"));
+				Thread.sleep(2000);
+			    List<WebElement> UploadexcelDataRows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
 			    
 			    // Update total rows count
 			    TotalInitalRows += UploadexcelDataRows.size();
 
 			    // Log current page and total rows
+			    Thread.sleep(1000);
 			    System.out.println("Page " + pageNumber + " - Rows in this page: " + UploadexcelDataRows.size() + " - Total Rows: " + TotalInitalRows);
 
 			    // Check for the next page button
+			    Thread.sleep(2000);
 			    List<WebElement> next = driver.findElements(By.cssSelector(".anticon.anticon-right"));
 
-			    if (next.size() > 0 && (next.size()!=next.size())) {
+			    Thread.sleep(2000);
+			    if (!next.isEmpty()) {
 			        // Explicitly check if the 'Next' button is disabled by inspecting the 'disabled' attribute
 			        WebElement nextButton = next.get(0);
 			        
 			        // Log the state of the 'Next' button (disabled or enabled)
 			        boolean isNextPageButtonDisabled = nextButton.getAttribute("disabled") != null;
 			        System.out.println("Next Page button disabled: " + isNextPageButtonDisabled);
+			        Thread.sleep(2000);
 			        
 			        if (!isNextPageButtonDisabled) {
 			            // If the 'Next' button is enabled, click it
@@ -231,10 +237,10 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 		     //upload excel file
 		     db.ExcelUpload(driver);
 		     
-		   Thread.sleep(1000);
+		   Thread.sleep(3000);
 		  WebElement a =driver.findElement(By.xpath("//table[@class=\"selfcalling-table attendance-table\"]/tbody/tr[1]"));
 		 // w.until(ExpectedConditions.visibilityOf(a)); 
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  if (a.isDisplayed()) {
 			System.out.println("data present in excel sheet");
 			Thread.sleep(1000);

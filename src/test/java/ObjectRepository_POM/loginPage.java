@@ -1,9 +1,13 @@
 package ObjectRepository_POM;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class loginPage {
 
@@ -39,10 +43,15 @@ public class loginPage {
 	}
 	
 	public RecruiterhomePage login(String usernameData,String passwordData) {
-		usernametf.sendKeys(usernameData);
-		passwordtf.sendKeys(passwordData);
-		loginButton.click();
+		try {
+			Thread.sleep(1000);
+			usernametf.sendKeys(usernameData);
+			passwordtf.sendKeys(passwordData);
+			loginButton.click();
+			} 
+			catch (Exception e) {
+	            System.out.println("Failed to click on employee ID : " + e.getMessage());
+	        }
 		return new RecruiterhomePage(driver);
-		
 	}
 }

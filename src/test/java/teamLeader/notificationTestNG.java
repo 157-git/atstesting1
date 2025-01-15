@@ -22,6 +22,7 @@ import CommonUtil.PropertyFileUtil;
 import CommonUtil.WebDriverUtil;
 import CommonUtil.baseClass_TL;
 import CommonUtil.listenerimplementation_TL;
+import CommonUtil.listnerImplementation_M;
 import ObjectRepository_POM.FindCandidate;
 import ObjectRepository_POM.Manager;
 import ObjectRepository_POM.RecruiterGear;
@@ -32,7 +33,7 @@ import ObjectRepository_POM.TeamLeaderHomePage;
 import ObjectRepository_POM.loginPage;
 import ObjectRepository_POM.logoutPage;
 
-@Listeners(listenerimplementation_TL.class)
+@Listeners(listnerImplementation_M.class)
 public class notificationTestNG extends baseClass_TL{
 
 	WebDriverUtil wdu=new WebDriverUtil();
@@ -321,7 +322,7 @@ public class notificationTestNG extends baseClass_TL{
 				
 				Thread.sleep(2000);
 				String LoginPageUrl_tl=driver.getCurrentUrl();
-				System.out.println(LoginPageUrl);
+				System.out.println(LoginPageUrl_tl);
 				
 				//login
 				loginPage lp_tl = new loginPage(driver);
@@ -509,48 +510,6 @@ public class notificationTestNG extends baseClass_TL{
 	
 	
 }
-	
-
-	@Test
-	public void notificationFlowSuperToRecruiter() throws IOException, InterruptedException {
-		String USERNAME_su=pfu.getDataFromPropertyFile("not_usernameSU");
-		String PASSWORD_su=pfu.getDataFromPropertyFile("not_passwordSU");				
-		String URL_su="http://93.127.199.85/Dashboard/391/SuperUser";
-		
-		Thread.sleep(2000);
-		Superuser superuser=new Superuser(driver);
-		superuser.superuserPage(driver);
-		
-		Thread.sleep(2000);
-		String loginPageUrl_su = driver.getCurrentUrl();
-		System.out.println(loginPageUrl_su);
-		
-		//login
-		Thread.sleep(2000);
-		loginPage lp_su = new loginPage(driver);
-		lp_su.login(USERNAME_su, PASSWORD_su);
-		
-		Thread.sleep(2000);
-		String homePageUrl_su = driver.getCurrentUrl();
-		System.out.println(homePageUrl_su);
-		
-		if (homePageUrl_su.equals(loginPageUrl_su)) {
-			
-			WebElement error_msg = driver.findElement(By.className("loginpage-error"));
-			Assert.assertTrue(error_msg.isDisplayed(), "error msg not displayed");
-			System.out.println("Login failed: " + error_msg.getText());
-			
-		} else if(homePageUrl_su.equals(URL_su)) {
-			System.out.println("login successfull");
-			
-			
-			
-			//logout
-			Thread.sleep(1000);
-			logoutPage lo=new logoutPage(driver);
-			lo.logout(driver, "Yes");
-		}
-	}
 	
 	
 	
