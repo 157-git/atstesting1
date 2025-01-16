@@ -36,33 +36,9 @@ public class TeamLeaderHomePage{
 	
 	@FindBy(xpath = "//span[text()=\"Sent Profile\"]")
 	private WebElement sentProfile;
-	
-//	public WebElement getFindCandidate() {
-//		return findCandidate;
-//	}
-//
-//	public WebElement getCallingTracker() {
-//		return callingTracker;
-//	}
-//	
-//	
-//	public WebElement getTeamLeaderSection() {
-//		return teamLeaderSection;
-//	}
 
-	
-	
-//	public WebElement getJobDescription() {
-//		return jobDescription;
-//	}
-//
-//	public void setJobDescription(WebElement jobDescription) {
-//		this.jobDescription = jobDescription;
-//	}
-//
-//	public WebElement getViewJobDescription() {
-//		return viewJobDescription;
-//	}
+	@FindBy(xpath = "//span[text()=\"Reports\"]")
+	private WebElement reports;
 	
 
 	public TeamLeaderHomePage(WebDriver driver) {

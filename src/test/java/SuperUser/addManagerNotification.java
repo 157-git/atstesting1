@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,12 +15,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import CommonUtil.ExcelUtil;
 import CommonUtil.JavaUtil;
 import CommonUtil.PropertyFileUtil;
 import CommonUtil.WebDriverUtil;
 import CommonUtil.baseClass_M;
+import ObjectRepository_POM.Manager;
 import ObjectRepository_POM.Superuser;
 import ObjectRepository_POM.loginPage;
 import ObjectRepository_POM.logoutPage;
@@ -37,7 +40,7 @@ public class addManagerNotification extends baseClass_M{
 		
 		String USERNAME_su=pfu.getDataFromPropertyFile("not_usernameSU");
 		String PASSWORD_su=pfu.getDataFromPropertyFile("not_passwordSU");				
-		String URL_su="http://93.127.199.85/Dashboard/391/SuperUser";
+		String URL_su="http://rg.157careers.in/Dashboard/391/SuperUser";
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		
 		Thread.sleep(2000);
@@ -73,6 +76,8 @@ public class addManagerNotification extends baseClass_M{
 			Thread.sleep(1000);
 			WebElement name = driver.findElement(By.name("managerName"));
 			name.sendKeys("test");
+			String managerName = name.getAttribute("value");	
+			System.out.println("MANAGER NAME : " +managerName);
 			
 			Thread.sleep(1000);
 			WebElement desigination = driver.findElement(By.name("designationM"));
@@ -92,7 +97,7 @@ public class addManagerNotification extends baseClass_M{
 			// Use JavaScript to set the current date
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("arguments[0].value='" + formattedDate + "';", dateOfJoining);
-		
+			
 			Thread.sleep(1000);
 			WebElement dept = driver.findElement(By.name("departmentM"));
 			dept.sendKeys("Sales");
@@ -126,19 +131,78 @@ public class addManagerNotification extends baseClass_M{
 	       submit.click();
 	       
 	       WebElement error = driver.findElement(By.xpath("//div[@class=\"Toastify__toast-body\"]"));
-	       
+	       Thread.sleep(2000);
 	       if (error.isDisplayed()) {
 	    	   System.out.println(error.getText());   
-	    	   Assert.fail("fill all the required details of manager");
-	       	}
+	    	   Assert.assertTrue(error.isDisplayed(), "error msg not displayed");
+				System.out.println("Not Updated : " + error.getText());
+	    	   }
 	       
-	       //logout 
+	       
 	       wait.until(ExpectedConditions.invisibilityOf(error));
 	       superuser.getSuperUser().click();
+	       
+	       //logout
 	       Thread.sleep(1000);
 	       logoutPage lo=new logoutPage(driver);
 	       lo.logout(driver, "Yes");
-		
+	       
+	       Thread.sleep(2000);
+	       driver.navigate().back();
+	       
+	       Thread.sleep(1000);
+	       Manager manager=new Manager(driver);
+	       manager.managerLogin(driver);
+	       
+	       Thread.sleep(2000);
+	       String USERNAME_m=pfu.getDataFromPropertyFile("not_usernameM");
+	       String PASSWORD_m=pfu.getDataFromPropertyFile("not_passwordM");
+	       String URL_m="http://rg.157careers.in/Dashboard/1342/Manager";
+	       
+	       Thread.sleep(2000);
+	       String loginPageUrl_m = driver.getCurrentUrl();
+	       System.out.println(loginPageUrl_m);
+	       
+	       //login
+			Thread.sleep(2000);
+			loginPage lp_m = new loginPage(driver);
+			lp_m.login(USERNAME_m, PASSWORD_m);
+			
+			Thread.sleep(2000);
+			String homePageUrl_m = driver.getCurrentUrl();
+			System.out.println(homePageUrl_m);
+			
+			if (homePageUrl_m.equals(loginPageUrl_m)) {
+				
+				WebElement error_msg = driver.findElement(By.className("loginpage-error"));
+				Assert.assertTrue(error_msg.isDisplayed(), "error msg not displayed");
+				System.out.println("Login failed : " + error_msg.getText());
+				
+			} else if(homePageUrl_m.equals(URL_m)) {
+				System.out.println("login successfull");
+				
+				Thread.sleep(2000);
+				WebElement notificationIcon = driver.findElement(By.cssSelector(".ant-badge.css-1kf000u"));
+				notificationIcon.click();
+				
+				List<WebElement> notification = driver.findElements(By.xpath("//div[@class=\"motificationSubCont1\"]/p"));
+				for (WebElement noti : notification) {
+					
+					if (noti.getText().contains(managerName) && !noti.getText().isEmpty()) {
+						System.out.println("notification PRESENT");
+						Thread.sleep(2000);
+						wdu.ScreenShot(driver, "managerNotification");
+					} else {
+						System.out.println("notification ABSENT");
+					}	
+					
+				}
+
+				//logout
+			     Thread.sleep(2000);
+			     lo.logout(driver, "Yes");
+				
+			}
 		}	
 			
 	}

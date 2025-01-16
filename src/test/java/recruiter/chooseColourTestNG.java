@@ -1,6 +1,7 @@
 package recruiter;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -65,8 +66,29 @@ public class chooseColourTestNG extends baseClass{
 			
 			WebElement colourBox = driver.findElement(By.className("modal-body"));
 			if (colourBox.isDisplayed()) {
-				WebElement grid = driver.findElement(By.className("color-picker-main-div"));
-	
+				List<WebElement> grid = driver.findElements(By.className("colorpickerthemes"));
+				for (WebElement colour : grid) {
+					String c = colour.getCssValue("background-color");
+					System.out.println("COLOUR : "+c);
+				}
+				
+				Thread.sleep(2000);
+				WebElement one = driver.findElement(By.xpath("(//div[@class=\"colorpickerthemes\"])[1]"));
+				String firstColour=one.getCssValue("background-color");
+				one.click();
+				System.out.println("FIRST COLOUR : "+firstColour);
+				
+				Thread.sleep(1000);
+				WebElement headerColor = driver.findElement(By.className("daily-timeanddate"));
+				String header = headerColor.getCssValue("background-color");
+				System.out.println("HEADER COLOUR : "+header);
+				
+				if (firstColour.equals(header)) {
+					System.out.println("COLOUR SUCCESSFULLY UPDATED");
+				} else {
+					System.out.println("COLOUR NOT UPDATED");
+				}
+				
 			} else {
 				System.out.println("choose colour box is not displayed");
 				Assert.fail("NO OPTION TO SELECT COLOUR");

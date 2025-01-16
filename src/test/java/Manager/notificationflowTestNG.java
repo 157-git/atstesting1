@@ -175,7 +175,7 @@ public class notificationflowTestNG extends baseClass_M{
 						if (noti.getText().contains(can_name) && noti.getText().contains(rec_name) && !noti.getText().isEmpty()) {
 							System.out.println("notification PRESENT");
 							Thread.sleep(2000);
-							wdu.ScreenShot(driver, "managerNotification");
+							wdu.ScreenShot(driver, "TeamLeadNotification");
 						} else {
 							System.out.println("notification ABSENT");
 						}	
