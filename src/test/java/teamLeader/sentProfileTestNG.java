@@ -41,7 +41,7 @@ public class sentProfileTestNG extends baseClass_TL{
 		// TODO Auto-generated constructor stub
 				String USERNAME=pfu.getDataFromPropertyFile("username1");
 				String PASSWORD=pfu.getDataFromPropertyFile("password1");
-				String URL="http://93.127.199.85/Dashboard/432/TeamLeader";
+				String URL="http://rg.157careers.in/Dashboard/432/TeamLeader";
 				
 				//updated;3-1-25
 				Thread.sleep(2000);

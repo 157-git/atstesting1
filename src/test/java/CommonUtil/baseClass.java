@@ -40,7 +40,7 @@ public class baseClass extends listenerImplementation{
 	@BeforeClass
 	// @Parameters("browser")
 	public void BC() throws IOException {   //public void BC(@Optional("true") String browser) throws
-		String URL = pfu.getDataFromPropertyFile("url");
+		String URL = pfu.getDataFromPropertyFile("updatedUrl");
 		String BROWSER = pfu.getDataFromPropertyFile("browser");
 		
 		if (BROWSER.equals("chrome")) {

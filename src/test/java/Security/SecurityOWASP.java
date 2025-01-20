@@ -75,9 +75,9 @@ public class SecurityOWASP {
 		String USERNAME=pfu.getDataFromPropertyFile("username");
 		String PASSWORD=pfu.getDataFromPropertyFile("password");
 		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
-		String URL="http://93.127.199.85/Dashboard/12/Recruiters";
+		String URL="http://rg.157careers.in/Dashboard/12/Recruiters";
 		
-		driver.get("http://93.127.199.85/");
+		driver.get("http://rg.157careers.in/");
 		
 		Thread.sleep(2000);
 		RecruiterGear r = new RecruiterGear(driver);

@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import lombok.Data;
+
+@Data
 public class TeamLeadSection {
 
 	public WebDriver driver;
@@ -33,37 +36,6 @@ public class TeamLeadSection {
 	@FindBy(xpath = "//span[text()=\"Team Details\"]")
 	private WebElement teamdetails;
 
-	public WebElement getSentProfile() {
-		return sentProfile;
-	}
-
-	public WebElement getUpdateResponse() {
-		return updateResponse;
-	}
-
-	public WebElement getSharedProfile() {
-		return sharedProfile;
-	}
-
-	public WebElement getPayRoll() {
-		return payRoll;
-	}
-
-	public WebElement getCreateQuestionPaper() {
-		return CreateQuestionPaper;
-	}
-
-	public WebElement getScheduledInterview() {
-		return scheduledInterview;
-	}
-
-	public WebElement getAddRecruiter() {
-		return addRecruiter;
-	}
-
-	public WebElement getTeamdetails() {
-		return teamdetails;
-	}
 
 	public TeamLeadSection(WebDriver driver) {
 		PageFactory.initElements(driver, this);

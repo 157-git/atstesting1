@@ -8,8 +8,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import lombok.Data;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+@Data
 public class TeamLeader {
 
 //public WebDriver driver;
@@ -28,17 +32,6 @@ public class TeamLeader {
 		return driver;
 	}
 
-	public WebElement getLetBegin() {
-		return letBegin;
-	}
-
-	public WebElement getEmpLoginButton() {
-		return empLoginButton;
-	}
-
-	public WebElement getTeamLeaderbtn() {
-		return teamLeaderbtn;
-	}
 	
 	public TeamLeader(WebDriver driver) {
 		PageFactory.initElements(driver, this);

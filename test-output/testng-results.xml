@@ -2,36 +2,36 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-01-16T17:51:09 IST" name="Default suite" finished-at="2025-01-16T17:51:58 IST" duration-ms="49446">
+  <suite started-at="2025-01-20T18:53:47 IST" name="Default suite" finished-at="2025-01-20T18:54:40 IST" duration-ms="52885">
     <groups>
     </groups>
-    <test started-at="2025-01-16T17:51:09 IST" name="Default test" finished-at="2025-01-16T17:51:58 IST" duration-ms="49446">
+    <test started-at="2025-01-20T18:53:47 IST" name="Default test" finished-at="2025-01-20T18:54:40 IST" duration-ms="52885">
       <class name="teamLeader.ReportsTestNG">
-        <test-method is-config="true" signature="BS()[pri:0, instance:teamLeader.ReportsTestNG@4b45a2f5]" started-at="2025-01-16T17:51:07 IST" name="BS" finished-at="2025-01-16T17:51:09 IST" duration-ms="2125" status="PASS">
+        <test-method is-config="true" signature="BS()[pri:0, instance:teamLeader.ReportsTestNG@4b45a2f5]" started-at="2025-01-20T18:53:44 IST" name="BS" finished-at="2025-01-20T18:53:47 IST" duration-ms="3116" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BS -->
-        <test-method is-config="true" signature="BC()[pri:0, instance:teamLeader.ReportsTestNG@4b45a2f5]" started-at="2025-01-16T17:51:09 IST" name="BC" finished-at="2025-01-16T17:51:29 IST" duration-ms="20378" status="PASS">
+        <test-method is-config="true" signature="BC()[pri:0, instance:teamLeader.ReportsTestNG@4b45a2f5]" started-at="2025-01-20T18:53:48 IST" name="BC" finished-at="2025-01-20T18:54:09 IST" duration-ms="21307" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BC -->
-        <test-method is-config="true" signature="BM()[pri:0, instance:teamLeader.ReportsTestNG@4b45a2f5]" started-at="2025-01-16T17:51:29 IST" name="BM" finished-at="2025-01-16T17:51:29 IST" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="BM()[pri:0, instance:teamLeader.ReportsTestNG@4b45a2f5]" started-at="2025-01-20T18:54:09 IST" name="BM" finished-at="2025-01-20T18:54:09 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BM -->
-        <test-method signature="reports()[pri:0, instance:teamLeader.ReportsTestNG@4b45a2f5]" started-at="2025-01-16T17:51:29 IST" name="reports" finished-at="2025-01-16T17:51:58 IST" duration-ms="28852" status="PASS">
+        <test-method signature="reports()[pri:0, instance:teamLeader.ReportsTestNG@4b45a2f5]" started-at="2025-01-20T18:54:09 IST" name="reports" finished-at="2025-01-20T18:54:40 IST" duration-ms="31143" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- reports -->
-        <test-method is-config="true" signature="AM()[pri:0, instance:teamLeader.ReportsTestNG@4b45a2f5]" started-at="2025-01-16T17:51:58 IST" name="AM" finished-at="2025-01-16T17:51:58 IST" duration-ms="5" status="PASS">
+        <test-method is-config="true" signature="AM()[pri:0, instance:teamLeader.ReportsTestNG@4b45a2f5]" started-at="2025-01-20T18:54:40 IST" name="AM" finished-at="2025-01-20T18:54:40 IST" duration-ms="4" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AM -->
-        <test-method is-config="true" signature="AC()[pri:0, instance:teamLeader.ReportsTestNG@4b45a2f5]" started-at="2025-01-16T17:51:58 IST" name="AC" finished-at="2025-01-16T17:51:58 IST" duration-ms="3" status="PASS">
+        <test-method is-config="true" signature="AC()[pri:0, instance:teamLeader.ReportsTestNG@4b45a2f5]" started-at="2025-01-20T18:54:40 IST" name="AC" finished-at="2025-01-20T18:54:40 IST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AC -->
-        <test-method is-config="true" signature="AS()[pri:0, instance:teamLeader.ReportsTestNG@4b45a2f5]" started-at="2025-01-16T17:51:58 IST" name="AS" finished-at="2025-01-16T17:51:58 IST" duration-ms="5" status="PASS">
+        <test-method is-config="true" signature="AS()[pri:0, instance:teamLeader.ReportsTestNG@4b45a2f5]" started-at="2025-01-20T18:54:41 IST" name="AS" finished-at="2025-01-20T18:54:41 IST" duration-ms="32" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AS -->

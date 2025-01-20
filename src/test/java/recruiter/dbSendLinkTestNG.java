@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -45,7 +47,7 @@ public class dbSendLinkTestNG extends baseClass{
 		String USERNAME = pfu.getDataFromPropertyFile("username");
 		String PASSWORD = pfu.getDataFromPropertyFile("password");
 		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(20));
-		String URL="http://93.127.199.85/Dashboard/12/Recruiters";
+		String URL="http://rg.157careers.in/Dashboard/12/Recruiters";
 		
 		RecruiterGear r = new RecruiterGear(driver);
 		r.RecruiterPage(driver);
@@ -64,6 +66,11 @@ public class dbSendLinkTestNG extends baseClass{
 		
 		if (RecPageUrl.equals(LoginPageUrl)) {
 			System.out.println("login failed");
+			WebElement error = driver.findElement(By.className("loginpage-error"));
+			if (error.isDisplayed()) {
+				System.out.println(error.getText());
+			}
+			//Assert.fail("Invalid login details");
 		} else if(RecPageUrl.equals(URL)){
 			System.out.println("login successfull");
 			

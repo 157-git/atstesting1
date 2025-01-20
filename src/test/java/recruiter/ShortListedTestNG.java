@@ -42,7 +42,7 @@ public class ShortListedTestNG extends baseClass {
 
 		String USERNAME = pfu.getDataFromPropertyFile("username");
 		String PASSWORD = pfu.getDataFromPropertyFile("password");
-		String URL="http://93.127.199.85/Dashboard/12/Recruiters";
+		String URL="http://rg.157careers.in/Dashboard/12/Recruiters";
 
 		
 		
@@ -62,8 +62,12 @@ public class ShortListedTestNG extends baseClass {
 		System.out.println(RecPageUrl);
 		
 		if (RecPageUrl.equals(LoginPageUrl)) {
-			System.out.println("unable to login");
-			
+			System.out.println("login failed");
+			WebElement error = driver.findElement(By.className("loginpage-error"));
+			if (error.isDisplayed()) {
+				System.out.println(error.getText());
+			}
+			//Assert.fail("Invalid login details");	
 		} else if(RecPageUrl.equals(URL)){
 			RecruiterhomePage hp = new RecruiterhomePage(driver);
 			hp.home(driver);

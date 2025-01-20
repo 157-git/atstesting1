@@ -9,6 +9,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import lombok.Data;
+
+@Data
 public class DataBase {
 	
 	public WebDriver driver;
@@ -54,83 +57,12 @@ public class DataBase {
 	
 	
 	
-	public WebElement getSendLink() {
-		return SendLink;
-	}
-
-	public void setSendLink(WebElement sendLink) {
-		SendLink = sendLink;
-	}
-
-	public WebElement getShareLink() {
-		return shareLink;
-	}
-
-	public void setShareLink(WebElement shareLink) {
-		this.shareLink = shareLink;
-	}
-
-	public WebElement getCopyLink() {
-		return CopyLink;
-	}
-
-	public void setCopyLink(WebElement copyLink) {
-		CopyLink = copyLink;
-	}
-
-	public WebElement getCreateResume() {
-		return CreateResume;
-	}
-
-	public void setCreateResume(WebElement createResume) {
-		CreateResume = createResume;
-	}
 
 	public DataBase(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
 
-	public WebElement getUploadFiles() {
-		return UploadFiles;
-	}
-
-
-	public WebElement getUploadExcelData() {
-		return UploadExcelData;
-	}
-
 	
-	public WebElement getSheetCheckbox() {
-		return SheetCheckbox;
-	}
-
-	public WebDriver getDriver() {
-		return driver;
-	}
-
-	public WebElement getChooseExcel() {
-		return ChooseExcel;
-	}
-
-	public WebElement getExcelView() {
-		return ExcelView;
-	}
-
-	public WebElement getExcelUpload() {
-		return ExcelUpload;
-	}
-
-	public WebElement getChooseResume() {
-		return ChooseResume;
-	}
-
-	public WebElement getResumeView() {
-		return ResumeView;
-	}
-
-	public WebElement getResumeUpload() {
-		return ResumeUpload;
-	}
 	
 	
 	//...........................................

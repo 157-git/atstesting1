@@ -12,6 +12,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import lombok.Data;
+
+@Data
 public class RecruiterhomePage {
 
 	public WebDriver driver;
@@ -51,55 +54,7 @@ public class RecruiterhomePage {
 	
 	@FindBy(xpath = "//span[text()='Logout']")
 	private WebElement Logout;
-
-	public WebElement getShortlisted() {
-		return Shortlisted;
-	}
-
-	public WebElement getAddCandidate() {
-		return AddCandidate;
-	}
-
-	public WebElement getFindCandidate() {
-		return FindCandidate;
-	}
-
-	public WebElement getJobDescription() {
-		return JobDescription;
-	}
-
-	public WebElement getDataBase() {
-		return DataBase;
-	}
-
-	public WebElement getChatSection() {
-		return ChatSection;
-	}
-
-	public WebElement getNotePad() {
-		return NotePad;
-	}
-
-	public WebElement getPortal() {
-		return Portal;
-	}
-
-	public WebElement getAboutUs() {
-		return AboutUs;
-	}
-
-	public WebElement getHelp() {
-		return Help;
-	}
-
-	public WebElement getChooseColor() {
-		return ChooseColor;
-	}
-
-	public WebElement getLogout() {
-		return Logout;
-	}
-     
+   
 	
     public RecruiterhomePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);

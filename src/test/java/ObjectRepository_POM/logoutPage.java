@@ -12,7 +12,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import CommonUtil.WebDriverUtil;
+import lombok.Data;
 
+@Data
 public class logoutPage {
 	
 	WebDriverUtil wdu = new WebDriverUtil();
@@ -27,9 +29,6 @@ public class logoutPage {
 	@FindBy(xpath="//button[text()=\"No\"]")
 	private WebElement no;
 
-	public WebElement getLogout() {
-		return Logout;
-	}
 
 	public logoutPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);

@@ -45,7 +45,7 @@ public class FC_CallingTrackerTestNG extends baseClass_TL {
 		// TODO Auto-generated constructor stub
 		String USERNAME=pfu.getDataFromPropertyFile("username1");
 		String PASSWORD=pfu.getDataFromPropertyFile("password1");
-		String URL="http://93.127.199.85/Dashboard/432/TeamLeader";
+		String URL="http://rg.157careers.in/Dashboard/432/TeamLeader";
 		
 		//updated;3-1-25
 		Thread.sleep(2000);
@@ -68,6 +68,10 @@ public class FC_CallingTrackerTestNG extends baseClass_TL {
 				
 		if (teamleadPageUrl.equals(LoginPageUrl)) {
 			System.out.println("login failed");
+			WebElement error = driver.findElement(By.className("loginpage-error"));
+			if (error.isDisplayed()) {
+				System.out.println(error.getText());
+			}
 			//Assert.fail("Invalid login details");
 		} else if(teamleadPageUrl.equals(URL)) {
 			System.out.println("login successfull");

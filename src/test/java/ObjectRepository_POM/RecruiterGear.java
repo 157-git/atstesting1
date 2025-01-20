@@ -10,6 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import lombok.Data;
+
+@Data
 public class RecruiterGear {
 
 	//public WebDriver driver;
@@ -26,18 +29,6 @@ public class RecruiterGear {
 
 	public ThreadLocal<WebDriver> getDriver() {
 		return driver;
-	}
-
-	public WebElement getLetBegin() {
-		return letBegin;
-	}
-
-	public WebElement getEmpLoginButton() {
-		return empLoginButton;
-	}
-
-	public WebElement getRecLoginBtn() {
-		return recLoginBtn;
 	}
 	
 	public RecruiterGear(WebDriver driver) {

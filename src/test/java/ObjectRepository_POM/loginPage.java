@@ -9,6 +9,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import lombok.Data;
+
+@Data
 public class loginPage {
 
 	public WebDriver driver;
@@ -22,22 +25,6 @@ public class loginPage {
 	@FindBy(xpath = "//button[text()=\"Login\"]")
 	private WebElement loginButton;
 
-	public WebDriver getDriver() {
-		return driver;
-	}
-
-	public WebElement getUsernametf() {
-		return usernametf;
-	}
-
-	public WebElement getPasswordtf() {
-		return passwordtf;
-	}
-
-	public WebElement getLoginButton() {
-		return loginButton;
-	}
-	
 	public loginPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}

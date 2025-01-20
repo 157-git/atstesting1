@@ -41,7 +41,7 @@ public class notificationflowTestNG extends baseClass_M{
 		
 			String USERNAME_m=pfu.getDataFromPropertyFile("not_usernameM");
 			String PASSWORD_m=pfu.getDataFromPropertyFile("not_passwordM");				
-			String URL_m="http://93.127.199.85/Dashboard/1342/Manager";
+			String URL_m="http://rg.157careers.in/Dashboard/1342/Manager";
 			
 			Thread.sleep(2000);
 			Manager manager=new Manager(driver);

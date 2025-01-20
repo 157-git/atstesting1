@@ -6,6 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
+import lombok.Data;
+
+@Data
 public class JobDescription {
 
 	public JobDescription(WebDriver driver) {
@@ -18,14 +21,6 @@ public class JobDescription {
 	
 	@FindBy(xpath = "(//button[text()=\"View\"])[1]")
 	private WebElement viewBtn;
-
-	public WebElement getViewJD() {
-		return viewJD;
-	}
-
-	public WebElement getViewBtn() {
-		return viewBtn;
-	}
 	
 	
 	public JobDescription viewJD(WebDriver driver) {

@@ -2,10 +2,13 @@ package teamLeader;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
 import CommonUtil.ExcelUtil;
@@ -55,6 +58,10 @@ public class ReportsTestNG extends baseClass_TL{
 				
 		if (teamleadPageUrl.equals(LoginPageUrl)) {
 			System.out.println("login failed");
+			WebElement error = driver.findElement(By.className("loginpage-error"));
+			if (error.isDisplayed()) {
+				System.out.println(error.getText());
+			}
 			//Assert.fail("Invalid login details");
 		} else if(teamleadPageUrl.equals(URL)) {
 			System.out.println("login successfull");
@@ -74,7 +81,7 @@ public class ReportsTestNG extends baseClass_TL{
 			WebElement currentMonth = driver.findElement(By.id("CurrentMonth"));
 			currentMonth.click();
 			
-			//number of recruiters
+			//number recruiters
 			Thread.sleep(2000);
 			List<WebElement> recruiters = driver.findElements(By.xpath("//div[@class=\"ant-spin-container\"]/ul/li"));
 			for (WebElement rec : recruiters) {
@@ -93,7 +100,21 @@ public class ReportsTestNG extends baseClass_TL{
 				WebElement ok = driver.findElement(By.xpath("//span[text()=\"OK\"]"));
 				ok.click();
 				
+				WebElement lineup_colour=driver.findElement(By.xpath("(//li[@class=\"listOfIndex\"])[3]"));				
+				String colour1 = lineup_colour.getCssValue("background-color");
+				System.out.println(colour1);
 				
+				WebElement Number_lineup = driver.findElement(By.xpath("(//td[@class=\"tabledata\"])[3]"));
+				String number1 = Number_lineup.getText();
+				System.out.println(number1);
+				
+				WebElement canvas = driver.findElement(By.cssSelector("div>canvas"));
+				Actions a=new Actions(driver);
+				a.moveToElement(canvas);
+				a.perform();
+
+		        
+
 				
 			}else {
 				

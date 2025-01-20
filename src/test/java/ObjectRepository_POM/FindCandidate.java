@@ -9,6 +9,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import lombok.Data;
+
+@Data
 public class FindCandidate {
 
 	public WebDriver driver;
@@ -31,42 +34,9 @@ public class FindCandidate {
 	@FindBy(xpath = "//span[text()=\"Master Tracker\"]")
 	private WebElement masterTracker;
 
-	public WebDriver getDriver() {
-		return driver;
-	}
-
-	public WebElement getCallingTracker() {
-		return callingTracker;
-	}
-
-	public WebElement getLineupTracker() {
-		return lineupTracker;
-	}
-
-	public WebElement getSelectedCandidate() {
-		return selectedCandidate;
-	}
-
-	public WebElement getHoldCandidate() {
-		return holdCandidate;
-	}
-
-	public WebElement getRejectedCandidate() {
-		return rejectedCandidate;
-	}
-
-	public WebElement getMasterTracker() {
-		return masterTracker;
-	}
-
-	
 	@FindBy(xpath = "//button[@class=\"table-icon-div\"]/i")
 	private WebElement action;
 	
-	
-	public WebElement getAction() {
-		return action;
-	}
 
 	public FindCandidate(WebDriver driver) {
 		PageFactory.initElements(driver, this);

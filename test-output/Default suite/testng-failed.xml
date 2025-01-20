@@ -3,17 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="SuperUser.addManagerNotification">
+      <class name="recruiter.applicantForm">
         <methods>
-          <include name="BM"/>
-          <include name="notificationflowTestNG"/>
-          <include name="BS"/>
-          <include name="BC"/>
+          <include name="AapplicantFormMYSQL"/>
           <include name="AS"/>
           <include name="AC"/>
+          <include name="BS"/>
+          <include name="BC"/>
           <include name="AM"/>
+          <include name="BM"/>
         </methods>
-      </class> <!-- SuperUser.addManagerNotification -->
+      </class> <!-- recruiter.applicantForm -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

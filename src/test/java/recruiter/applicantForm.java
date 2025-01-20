@@ -11,9 +11,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -139,8 +143,15 @@ public class applicantForm extends baseClass_applicant{
 		currentLOC.sendKeys(CURRENT_LOCATION);
 		
 		Thread.sleep(1000);
-		WebElement totalExp = driver.findElement(By.name("lineUp.experienceYear"));
-		totalExp.sendKeys(TOTAL_EXPERIENCE);
+		String TOTAL_EXP = TOTAL_EXPERIENCE.split(",")[0];
+		WebElement TotalExp_Y = driver.findElement(By.name("lineUp.experienceYear"));
+		TotalExp_Y.sendKeys(TOTAL_EXP);
+		WebElement totalExp = driver.findElement(By.name("lineUp.experienceMonth"));
+		String TOTAL_EXP_M = "";
+		if (TOTAL_EXPERIENCE.contains(",")) {
+			TOTAL_EXP_M=TOTAL_EXPERIENCE.substring(TOTAL_EXPERIENCE.indexOf(",")+1).trim();
+		}
+		totalExp.sendKeys(TOTAL_EXP_M);
 		
 		Thread.sleep(1000);
 		WebElement releventExp = driver.findElement(By.name("lineUp.relevantExperience"));
@@ -167,11 +178,17 @@ public class applicantForm extends baseClass_applicant{
 			driver.findElement(By.xpath("//span[text()=\"No\"]")).click();
 		}
 		
-		driver.findElement(By.name("questions[0].question1")).sendKeys(Q1);
-		
-		driver.findElement(By.name("questions[0].question3")).sendKeys(Q2);
+		j.executeScript("window.scrollTo(0, 0);");
+		Thread.sleep(1000);
+		//driver.findElement(By.name("questions[0].question1")).sendKeys(Q1);
+		driver.findElement(By.xpath("(//textarea[@class=\"form-textfield\"])[2]")).sendKeys(Q1);
 		
 		Thread.sleep(1000);
+		//driver.findElement(By.name("questions[0].question3")).sendKeys(Q2);
+		driver.findElement(By.xpath("(//textarea[@class=\"form-textfield\"])[3]")).sendKeys(Q2);
+		
+		Thread.sleep(1000);
+		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		File resume=new File("src\\test\\resources\\RecTesting1.pdf");
 		WebElement resumeUpload = driver.findElement(By.id("resumeUpload"));
 		resumeUpload.sendKeys(resume.getAbsolutePath());
@@ -183,11 +200,10 @@ public class applicantForm extends baseClass_applicant{
 		
 		Thread.sleep(1000);
 		WebElement submit = driver.findElement(By.xpath("//button[text()=\"Submit\"]"));
-		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		Thread.sleep(2000);
 		submit.click();
 		
-		String afterSubmitURL = driver.getCurrentUrl();
+		//String afterSubmitURL = driver.getCurrentUrl();
 	
 		WebElement toastmsg = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"Toastify__toast-body\"]/div[2]")));
 		String msg = toastmsg.getText();
@@ -199,17 +215,19 @@ public class applicantForm extends baseClass_applicant{
 		} else if(msg.equals("Failed to submit details")){
 			Assert.fail("FAILED TO SUBMIT DETAILS");
 			wdu.ScreenShot(driver, "applicantForm");
-		}else {
+		}else if(msg.contains("form submitted successfully")){
 			System.out.println("FORM SUBMITED SUCCESSFULLY");
 			wdu.ScreenShot(driver, "applicantForm");
-		}		
+		}else {
+			Assert.fail("FIX THE ERROR TO SUBMIT DETAILS");
+		}	
 	
 	}
 	
 	
 	
-	@Test
-	public void AapplicantFormMYSQL() throws InterruptedException {
+	@Test(enabled = true)
+	public void AapplicantFormMYSQL() throws InterruptedException, ParseException {
 		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
 		JavascriptExecutor j=(JavascriptExecutor) driver;
 		System.out.println("applicant form");
@@ -327,9 +345,21 @@ public class applicantForm extends baseClass_applicant{
         		WebElement interviewdate = driver.findElement(By.name("lineUp.availabilityForInterview"));
         		interviewdate.sendKeys(formattedDate);
         		
+        		WebElement joiningDate = driver.findElement(By.name("lineUp.expectedJoiningDate"));
+        		LocalDate joiningAfter = currentDate.plusDays(30);
+        		String joinDate = joiningAfter.format(formatter);
+        		joiningDate.sendKeys(joinDate);
+        		
         		Thread.sleep(1000);
-        		WebElement totalExp = driver.findElement(By.name("lineUp.experienceYear"));
-        		totalExp.sendKeys(TOTAL_EXP);
+        		String  EXP_Y= TOTAL_EXP.split(",")[0];
+        		WebElement totalExp_y = driver.findElement(By.name("lineUp.experienceYear"));
+        		totalExp_y.sendKeys(EXP_Y);
+        		WebElement totalExp_m = driver.findElement(By.name("lineUp.experienceMonth"));
+        		String EXP_M="";
+        		if (TOTAL_EXP.contains(",")) {
+        			EXP_M=TOTAL_EXP.substring(TOTAL_EXP.indexOf(",")+1).trim();
+        		}
+        		totalExp_m.sendKeys(EXP_M);
         		
         		Thread.sleep(1000);
         		WebElement releventExp = driver.findElement(By.name("lineUp.relevantExperience"));
@@ -363,14 +393,29 @@ public class applicantForm extends baseClass_applicant{
         		WebElement certification = driver.findElement(By.name("lineUp.extraCertification"));
         		certification.sendKeys(CERTIFICATION);
         		
+        		JavascriptExecutor js = (JavascriptExecutor) driver;
         		WebElement dob = driver.findElement(By.name("lineUp.dateOfBirth"));
-        		dob.sendKeys(DOB);
+        		System.out.println(DOB);
+        		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        		SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd-MM-yyyy");
+        		Date date = inputFormat.parse(DOB);
+        		String formattedDate1 = dateFormat1.format(date);
+    	       // js.executeScript("arguments[0].value='" + formattedDate1 + "';", dob);
+        		dob.sendKeys(formattedDate1);
+    	        System.out.println(formattedDate1);
 
-        		driver.findElement(By.name("questions[0].question1")).sendKeys(Q1);
-        		
-        		driver.findElement(By.name("questions[0].question3")).sendKeys(Q2);
+    	        Thread.sleep(1000);
+        		//driver.findElement(By.name("questions[0].question1")).sendKeys(Q1);
+    	        driver.findElement(By.xpath("(//textarea[@class=\"form-textfield\"])[1]")).sendKeys(Q1);
+    	        
+    	        Thread.sleep(1000);
+        		//driver.findElement(By.name("questions[0].question3")).sendKeys(Q2);
+    	        driver.findElement(By.xpath("(//textarea[@class=\"form-textfield\"])[2]")).sendKeys(Q2);
+    	        
+    	        
         		
         		Thread.sleep(1000);
+        		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
         		WebElement resumeUpload = driver.findElement(By.id("resumeUpload"));
 //        		String filepath="src/test/resources/Resumedownloadedfile.pdf";
 //        		try (InputStream inputStream = RESUME.getBinaryStream();
@@ -405,9 +450,26 @@ public class applicantForm extends baseClass_applicant{
         		
         		Thread.sleep(1000);
         		WebElement submit = driver.findElement(By.xpath("//button[text()=\"Submit\"]"));
-        		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
         		Thread.sleep(2000);
         		submit.click();
+        		
+        		WebElement toastmsg = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"Toastify__toast-body\"]/div[2]")));
+        		String msg = toastmsg.getText();
+        		System.out.println(msg);
+        		Thread.sleep(1000);
+        		if (msg.equals("Please fill all required fields")) {
+        			Assert.fail("ALL REQUIRED FILLED DATA IS REQUIRED");
+        			wdu.ScreenShot(driver, "applicantForm");
+        		} else if(msg.equals("Failed to submit details")){
+        			Assert.fail("FAILED TO SUBMIT DETAILS");
+        			wdu.ScreenShot(driver, "applicantForm");
+        		}else if(msg.contains("form submitted successfully")){
+        			System.out.println("FORM SUBMITED SUCCESSFULLY");
+        			wdu.ScreenShot(driver, "applicantForm");
+        		}else {
+        			Assert.fail("FIX THE ERROR TO SUBMIT DETAILS");
+        		}	
+        	
         		
         		
 
@@ -418,7 +480,10 @@ public class applicantForm extends baseClass_applicant{
             
         } catch (SQLException e) {
             e.printStackTrace();
-        }	
+        } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 	
 		
 	

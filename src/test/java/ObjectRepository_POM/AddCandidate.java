@@ -10,8 +10,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import CommonUtil.ExcelUtil;
+import lombok.Data;
 import recruiter.AddCandidateTestNG;
 
+@Data
 public class AddCandidate {
 	
 	@FindBy(name = "candidateName")
@@ -25,30 +27,7 @@ public class AddCandidate {
 	
 	@FindBy(name="alternateNumber")
 	private WebElement candidateWhatapp;
-	
-	
 
-	public WebElement getCandidateName() {
-		return candidateName;
-	}
-
-
-
-	public WebElement getCandidateEmail() {
-		return candidateEmail;
-	}
-
-
-
-	public WebElement getCandidateContact() {
-		return candidateContact;
-	}
-
-
-
-	public WebElement getCandidateWhatapp() {
-		return candidateWhatapp;
-	}
 
 
 

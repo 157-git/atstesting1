@@ -85,7 +85,7 @@ public class ApplicantListnerImplementation implements ITestListener{
 		
 		// use extentsparkReporter class just to configure extent report
 		ExtentSparkReporter reporter = new ExtentSparkReporter(
-				"./extentreport/report" + ju.getRandomNumber() +"-"+ ju.dateAndTime() + ".html");
+				"./extentreport/applicant" + ju.getRandomNumber() +"-"+ ju.dateAndTime() + ".html");
 		reporter.config().setDocumentTitle("APPLICANT FORM");
 		reporter.config().setTheme(Theme.DARK);
 		reporter.config().setReportName("applicant form");

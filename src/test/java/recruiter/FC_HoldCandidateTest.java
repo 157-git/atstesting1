@@ -69,6 +69,11 @@ public class FC_HoldCandidateTest extends baseClass{
 		
 		if (RecPageUrl.equals(LoginPageUrl)) {
 			System.out.println("login failed");
+			WebElement error = driver.findElement(By.className("loginpage-error"));
+			if (error.isDisplayed()) {
+				System.out.println(error.getText());
+			}
+			//Assert.fail("Invalid login details");
 		} else if(RecPageUrl.equals(URL)){
 			System.out.println("login successfull");
 			
