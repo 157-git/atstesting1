@@ -33,7 +33,7 @@ public class chooseColourTestNG extends baseClass{
 		
 		String USERNAME=pfu.getDataFromPropertyFile("username");
 		String PASSWORD=pfu.getDataFromPropertyFile("password");
-		String URL="http://rg.157careers.in/Dashboard/12/Recruiters";
+		String URL="https://rg.157careers.in/Dashboard/12/Recruiters";
 		
 		Thread.sleep(2000);
 		RecruiterGear r = new RecruiterGear(driver);
@@ -51,13 +51,12 @@ public class chooseColourTestNG extends baseClass{
 		String RecPageUrl=driver.getCurrentUrl();
 		System.out.println(RecPageUrl);
 		
-		//.............LOGIN................
+		//.............LOGIN................ 
 		
 		if (RecPageUrl.equals(LoginPageUrl)) {
 			System.out.println("login failed");
-			WebElement error = driver.findElement(By.className("loginpage-error"));
-			if (error.isDisplayed()) {
-				System.out.println(error.getText());
+			if (lp.getLoginError().isDisplayed()) {
+				System.out.println(lp.getLoginError().getText());
 			}
 			//Assert.fail("Invalid login details");
 		} else if(RecPageUrl.equals(URL)) {

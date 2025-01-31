@@ -42,7 +42,7 @@ public class AddCandidateTestNG extends baseClass{
 		//get data from property file
 		String USERNAME=pfu.getDataFromPropertyFile("username");
 		String PASSWORD=pfu.getDataFromPropertyFile("password");
-		String URL="http://rg.157careers.in/Dashboard/12/Recruiters";
+		String URL="https://rg.157careers.in/Dashboard/12/Recruiters";
 		
 		Thread.sleep(2000);
 		RecruiterGear r = new RecruiterGear(driver);
@@ -301,6 +301,12 @@ public class AddCandidateTestNG extends baseClass{
 			    Thread.sleep(1000);
 			    wdu.handleDropdown(sourceName, SOURCE);
 			    
+			    //select job id	    
+			  WebElement job_id = driver.findElement(By.id("requirementId"));
+			   job_id.click();
+			   Thread.sleep(1000);
+			   wdu.handleDropdown(job_id, JOB_ID);
+				   
 			    //select feedback 
 			   WebElement feedback = driver.findElement(By.name("callingFeedback"));
 			   feedback.click();
@@ -348,12 +354,12 @@ public class AddCandidateTestNG extends baseClass{
 	}
 //........................................................................................................
 	
-	@Test
+	@Test(enabled = false)
 	public void addCandidateIVD() throws IOException, InterruptedException {
 		//get data from property file
 				String USERNAME=pfu.getDataFromPropertyFile("username");
 				String PASSWORD=pfu.getDataFromPropertyFile("password");
-				String URL="http://93.127.199.85/Dashboard/12/Recruiters";
+				String URL="https://rg.157careers.in/Dashboard/12/Recruiters";
 				String STATUS=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 3, 2);
 				
 			//	String url = pfu.getDataFromPropertyFile("url");

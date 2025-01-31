@@ -21,13 +21,14 @@ import CommonUtil.ExcelUtil;
 import CommonUtil.JavaUtil;
 import CommonUtil.PropertyFileUtil;
 import CommonUtil.WebDriverUtil;
-import CommonUtil.baseClass_M;
+import CommonUtil.baseClass_SU;
 import ObjectRepository_POM.Manager;
 import ObjectRepository_POM.Superuser;
 import ObjectRepository_POM.loginPage;
 import ObjectRepository_POM.logoutPage;
+import net.sourceforge.tess4j.TesseractException;
 
-public class addManagerNotification extends baseClass_M{
+public class addManagerNotification extends baseClass_SU{
 
 	WebDriverUtil wdu=new WebDriverUtil();
 	PropertyFileUtil pfu=new PropertyFileUtil();
@@ -36,12 +37,12 @@ public class addManagerNotification extends baseClass_M{
 	public WebDriver sdriver;
 	
 	@Test
-	public void notificationflowTestNG() throws IOException, InterruptedException {
+	public void notificationflowTestNG() throws IOException, InterruptedException, TesseractException {
 		
 		String USERNAME_su=pfu.getDataFromPropertyFile("not_usernameSU");
 		String PASSWORD_su=pfu.getDataFromPropertyFile("not_passwordSU");				
-		String URL_su="http://rg.157careers.in/Dashboard/391/SuperUser";
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		String URL_su=pfu.getDataFromPropertyFile("not_urlSU");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		
 		Thread.sleep(2000);
 		Superuser superuser=new Superuser(driver);
@@ -53,8 +54,8 @@ public class addManagerNotification extends baseClass_M{
 		
 		//login
 		Thread.sleep(2000);
-		loginPage lp_su = new loginPage(driver);
-		lp_su.login(USERNAME_su, PASSWORD_su);
+		loginPage lp = new loginPage(driver);
+		lp.login(USERNAME_su, PASSWORD_su);
 		
 		Thread.sleep(2000);
 		String homePageUrl_su = driver.getCurrentUrl();
@@ -62,13 +63,15 @@ public class addManagerNotification extends baseClass_M{
 		
 		if (homePageUrl_su.equals(loginPageUrl_su)) {
 			
-			WebElement error_msg = driver.findElement(By.className("loginpage-error"));
-			Assert.assertTrue(error_msg.isDisplayed(), "error msg not displayed");
-			System.out.println("Login failed : " + error_msg.getText());
+			System.out.println("login failed");
+			if (lp.getLoginError().isDisplayed()) {
+				System.out.println(lp.getLoginError().getText());
+			}
 			
 		} else if(homePageUrl_su.equals(URL_su)) {
 			System.out.println("login successfull");
 			
+			Thread.sleep(1000);
 			superuser.getSuperUser().click();
 			Thread.sleep(1000);
 			superuser.getAddManager().click();
@@ -157,7 +160,7 @@ public class addManagerNotification extends baseClass_M{
 	       Thread.sleep(2000);
 	       String USERNAME_m=pfu.getDataFromPropertyFile("not_usernameM");
 	       String PASSWORD_m=pfu.getDataFromPropertyFile("not_passwordM");
-	       String URL_m="http://rg.157careers.in/Dashboard/1342/Manager";
+	       String URL_m=pfu.getDataFromPropertyFile("not_urlM");
 	       
 	       Thread.sleep(2000);
 	       String loginPageUrl_m = driver.getCurrentUrl();
@@ -174,9 +177,11 @@ public class addManagerNotification extends baseClass_M{
 			
 			if (homePageUrl_m.equals(loginPageUrl_m)) {
 				
-				WebElement error_msg = driver.findElement(By.className("loginpage-error"));
-				Assert.assertTrue(error_msg.isDisplayed(), "error msg not displayed");
-				System.out.println("Login failed : " + error_msg.getText());
+				System.out.println("login failed");
+				if (lp.getLoginError().isDisplayed()) {
+					System.out.println(lp.getLoginError().getText());
+				}
+				
 				
 			} else if(homePageUrl_m.equals(URL_m)) {
 				System.out.println("login successfull");

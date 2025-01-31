@@ -44,7 +44,7 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 		String USERNAME = pfu.getDataFromPropertyFile("username");
 		String PASSWORD = pfu.getDataFromPropertyFile("password");
 		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(20));
-		String URL="http://rg.157careers.in/Dashboard/12/Recruiters";
+		String URL="https://rg.157careers.in/Dashboard/12/Recruiters";
 		
 		RecruiterGear r = new RecruiterGear(driver);
 		r.RecruiterPage(driver);
@@ -136,7 +136,7 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 		String USERNAME = pfu.getDataFromPropertyFile("username");
 		String PASSWORD = pfu.getDataFromPropertyFile("password");
 		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(20));
-		String URL="http://93.127.199.85/Dashboard/12/Recruiters";
+		String URL="https://rg.157careers.in/Dashboard/12/Recruiters";
 		
 		RecruiterGear r = new RecruiterGear(driver);
 		r.RecruiterPage(driver);

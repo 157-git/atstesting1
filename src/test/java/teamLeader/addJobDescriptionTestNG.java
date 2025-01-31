@@ -42,7 +42,7 @@ public class addJobDescriptionTestNG extends baseClass_TL{
 		// TODO Auto-generated constructor stub
 				String USERNAME=pfu.getDataFromPropertyFile("not_usernameTL");
 				String PASSWORD=pfu.getDataFromPropertyFile("not_passwordTL");
-				String URL="http://rg.157careers.in/Dashboard/977/TeamLeader";
+				String URL=pfu.getDataFromPropertyFile("not_urlTL");
 				
 				//updated;3-1-25
 				Thread.sleep(2000);

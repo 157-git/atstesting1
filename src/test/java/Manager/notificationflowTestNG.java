@@ -41,7 +41,7 @@ public class notificationflowTestNG extends baseClass_M{
 		
 			String USERNAME_m=pfu.getDataFromPropertyFile("not_usernameM");
 			String PASSWORD_m=pfu.getDataFromPropertyFile("not_passwordM");				
-			String URL_m="http://rg.157careers.in/Dashboard/1342/Manager";
+			String URL_m=pfu.getDataFromPropertyFile("not_urlM");
 			
 			Thread.sleep(2000);
 			Manager manager=new Manager(driver);
@@ -124,19 +124,21 @@ public class notificationflowTestNG extends baseClass_M{
 				//logout
 				Thread.sleep(1000);
 				logoutPage lo=new logoutPage(driver);
-				lo.logout(driver, "Yes");
+				lo.logout(driver, "Yes 009");
 				
 				Thread.sleep(2000);
 				driver.navigate().back();
+				System.out.println("back-1");
 				Thread.sleep(2000);
 				driver.navigate().back();
+				System.out.println("back-2");
 				Thread.sleep(2000);
+				driver.navigate().back();
 				
 				//.....................login as team leader to check notification.........................
 				String USERNAME_tl=pfu.getDataFromPropertyFile("not_usernameTL");
 				String PASSWORD_tl=pfu.getDataFromPropertyFile("not_passwordTL");				
-				String URL_tl="http://93.127.199.85/Dashboard/977/TeamLeader";
-				
+				String URL_tl=pfu.getDataFromPropertyFile("not_urlTL");				
 				
 				Thread.sleep(2000);
 				TeamLeader tl=new TeamLeader(driver);
@@ -166,7 +168,7 @@ public class notificationflowTestNG extends baseClass_M{
 					System.out.println("login successfull");
 					
 					Thread.sleep(1000);
-					WebElement notificationIcon = driver.findElement(By.cssSelector(".ant-badge.css-1kf000u"));
+					WebElement notificationIcon = driver.findElement(By.cssSelector(".ant-badge.css-nqoqt9"));
 					notificationIcon.click();
 					
 					List<WebElement> notification = driver.findElements(By.xpath("//div[@class=\"motificationSubCont1\"]/p"));
@@ -199,16 +201,15 @@ public class notificationflowTestNG extends baseClass_M{
 				
 				String USERNAME=pfu.getDataFromPropertyFile("not_username");
 				String PASSWORD=pfu.getDataFromPropertyFile("not_password");
-				String URL="http://93.127.199.85/Dashboard/19/Recruiters";
+				String URL=pfu.getDataFromPropertyFile("not_url");
 				
 				RecruiterGear r = new RecruiterGear(driver);
-				r.RecruiterPage(driver);
+				r.RecruiterLogin(driver);
 				
 				Thread.sleep(2000);
 				String LoginPageUrl=driver.getCurrentUrl();
 				System.out.println(LoginPageUrl);
 				
-
 				loginPage lp = new loginPage(driver);
 				lp.login(USERNAME, PASSWORD);
 				
@@ -217,12 +218,14 @@ public class notificationflowTestNG extends baseClass_M{
 				System.out.println(RecPageUrl);
 				
 				if (RecPageUrl.equals(LoginPageUrl)) {
-					System.out.println("login failed");
+					WebElement error_msg = driver.findElement(By.className("loginpage-error"));
+					Assert.assertTrue(error_msg.isDisplayed(), "error msg not displayed");
+					System.out.println("Login failed: " + error_msg.getText());
 				} else if(RecPageUrl.equals(URL)){
 					System.out.println("LOGIN successfull");
 					
 					Thread.sleep(2000);
-					WebElement notificationIcon = driver.findElement(By.cssSelector(".ant-badge.css-1kf000u"));
+					WebElement notificationIcon = driver.findElement(By.cssSelector(".ant-badge.css-nqoqt9"));
 					notificationIcon.click();
 					
 					//put the fixed text value present in every notification(recruiter Name) or id
@@ -237,6 +240,7 @@ public class notificationflowTestNG extends baseClass_M{
 					} else {
 						System.out.println("notification ABSENT");
 					}	
+					
 				}
 					
 					//logout

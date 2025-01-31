@@ -20,6 +20,7 @@ import ObjectRepository_POM.TeamLeader;
 import ObjectRepository_POM.TeamLeaderHomePage;
 import ObjectRepository_POM.loginPage;
 import ObjectRepository_POM.logoutPage;
+import io.percy.selenium.Percy;
 
 public class ReportsTestNG extends baseClass_TL{
 
@@ -35,8 +36,7 @@ public class ReportsTestNG extends baseClass_TL{
 		
 		String USERNAME=pfu.getDataFromPropertyFile("username1");
 		String PASSWORD=pfu.getDataFromPropertyFile("password1");
-		String URL="http://rg.157careers.in/Dashboard/432/TeamLeader";
-		
+		String URL=pfu.getDataFromPropertyFile("tl_url");	
 		
 		Thread.sleep(2000);
 		TeamLeader tl=new TeamLeader(driver);
@@ -108,12 +108,11 @@ public class ReportsTestNG extends baseClass_TL{
 				String number1 = Number_lineup.getText();
 				System.out.println(number1);
 				
-				WebElement canvas = driver.findElement(By.cssSelector("div>canvas"));
-				Actions a=new Actions(driver);
-				a.moveToElement(canvas);
-				a.perform();
-
-		        
+				Percy percy = new Percy(driver);
+				WebElement canvas = driver.findElement(By.xpath("//canvas"));
+				percy.snapshot("PieChart-CanvasTest");
+				
+				
 
 				
 			}else {

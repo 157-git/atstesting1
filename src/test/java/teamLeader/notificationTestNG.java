@@ -43,12 +43,12 @@ public class notificationTestNG extends baseClass_TL{
 	
 	public WebDriver sdriver;
 	
-	@Test(enabled = false)
-	public void findCandidate() throws IOException, InterruptedException {
+	@Test(enabled = true)
+	public void notificationAvailable() throws IOException, InterruptedException {
 		// TODO Auto-generated constructor stub
 		String USERNAME=pfu.getDataFromPropertyFile("username1");
 		String PASSWORD=pfu.getDataFromPropertyFile("password1");
-		String URL="http://rg.157careers.in/Dashboard/432/TeamLeader";
+		String URL=pfu.getDataFromPropertyFile("tl_url");
 		
 		//updated;3-1-25
 		Thread.sleep(2000);
@@ -62,7 +62,7 @@ public class notificationTestNG extends baseClass_TL{
 		//login
 		loginPage lp = new loginPage(driver);
 		lp.login(USERNAME, PASSWORD);
-
+		
 		//6-12-24 updated
 		Thread.sleep(2000);
 		String teamleadPageUrl=driver.getCurrentUrl();
@@ -87,7 +87,10 @@ public class notificationTestNG extends baseClass_TL{
 			int MsgCount = msg.size();
 			System.out.println("number of Notification : "+MsgCount);
 			
-			
+			//logout
+			Thread.sleep(1000);
+			logoutPage lo=new logoutPage(driver);
+			lo.logout(driver, "Yes");
 		}
 	}
 	
@@ -97,7 +100,7 @@ public class notificationTestNG extends baseClass_TL{
 		// TODO Auto-generated constructor stub
 	String USERNAME=pfu.getDataFromPropertyFile("not_username");
 	String PASSWORD=pfu.getDataFromPropertyFile("not_password");
-	String URL="http://93.127.199.85/Dashboard/19/Recruiters";
+	String URL=pfu.getDataFromPropertyFile("not_url");
 	
 	RecruiterGear r = new RecruiterGear(driver);
 	r.RecruiterPage(driver);

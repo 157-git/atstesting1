@@ -49,7 +49,7 @@ public class FC_CallingTrackerTestNG extends baseClass{
 		
 		String USERNAME = pfu.getDataFromPropertyFile("username");
 		String PASSWORD = pfu.getDataFromPropertyFile("password");	
-		String URL="http://rg.157careers.in/Dashboard/12/Recruiters";
+		String URL="https://rg.157careers.in/Dashboard/12/Recruiters";
 		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
 		
 		RecruiterGear r = new RecruiterGear(driver);

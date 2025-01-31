@@ -42,8 +42,7 @@ public class ShortListedTestNG extends baseClass {
 
 		String USERNAME = pfu.getDataFromPropertyFile("username");
 		String PASSWORD = pfu.getDataFromPropertyFile("password");
-		String URL="http://rg.157careers.in/Dashboard/12/Recruiters";
-
+		String URL=pfu.getDataFromPropertyFile("rec_url");
 		
 		
 		RecruiterGear r = new RecruiterGear(driver);
