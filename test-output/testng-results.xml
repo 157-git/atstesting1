@@ -1,47 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="1" total="2" passed="0" failed="1" skipped="0">
   <reporter-output>
+    <line>
+      <![CDATA[ execution is started]]>
+    </line>
+    <line>
+      <![CDATA[ApplicantFormTestScript Execution is Started :]]>
+    </line>
+    <line>
+      <![CDATA[ApplicantFormTestScript Execution is Failure :org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element is not clickable at point (964, 767)
+  (Session info: chrome=133.0.6943.99)
+Build info: version: '4.16.1', revision: '9b4c83354e'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [4f44004e5c0ddd51f4631dead26e86dc, clickElement {id=f.C208282F22361994C2F6293C1AE4EDE5.d.B728925D7A8FF6D56CE9FBECEEE67E10.e.136}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 133.0.6943.99, chrome: {chromedriverVersion: 133.0.6943.126 (cffa127ce7b..., userDataDir: C:\Users\hp\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59952}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59952/devtoo..., se:cdpVersion: 133.0.6943.99, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (4f44004e5c0ddd51f4631dead26e86dc)] -> xpath: (//span[text()="Yes"])[4]]
+Session ID: 4f44004e5c0ddd51f4631dead26e86dc]]>
+    </line>
   </reporter-output>
-  <suite started-at="2025-01-31T16:26:01 IST" name="Default suite" finished-at="2025-01-31T16:28:41 IST" duration-ms="159483">
+  <suite started-at="2025-02-21T18:37:29 IST" name="Default suite" finished-at="2025-02-21T18:38:45 IST" duration-ms="75819">
     <groups>
     </groups>
-    <test started-at="2025-01-31T16:26:01 IST" name="Default test" finished-at="2025-01-31T16:28:41 IST" duration-ms="159483">
-      <class name="recruiter.chooseColourTestNG">
-        <test-method is-config="true" signature="BS()[pri:0, instance:recruiter.chooseColourTestNG@74f6c5d8]" started-at="2025-01-31T16:25:57 IST" name="BS" finished-at="2025-01-31T16:26:01 IST" duration-ms="4535" status="PASS">
+    <test started-at="2025-02-21T18:37:29 IST" name="Default test" finished-at="2025-02-21T18:38:45 IST" duration-ms="75819">
+      <class name="recruiter.applicantForm">
+        <test-method is-config="true" signature="BS()[pri:0, instance:recruiter.applicantForm@74f6c5d8]" started-at="2025-02-21T18:37:26 IST" name="BS" finished-at="2025-02-21T18:37:29 IST" duration-ms="2278" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BS -->
-        <test-method is-config="true" signature="BC()[pri:0, instance:recruiter.chooseColourTestNG@74f6c5d8]" started-at="2025-01-31T16:26:02 IST" name="BC" finished-at="2025-01-31T16:26:52 IST" duration-ms="50489" status="PASS">
+        <test-method is-config="true" signature="BC()[pri:0, instance:recruiter.applicantForm@74f6c5d8]" started-at="2025-02-21T18:37:30 IST" name="BC" finished-at="2025-02-21T18:37:55 IST" duration-ms="24595" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BC -->
-        <test-method is-config="true" signature="BM()[pri:0, instance:recruiter.chooseColourTestNG@74f6c5d8]" started-at="2025-01-31T16:26:52 IST" name="BM" finished-at="2025-01-31T16:26:52 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="BM()[pri:0, instance:recruiter.applicantForm@74f6c5d8]" started-at="2025-02-21T18:37:55 IST" name="BM" finished-at="2025-02-21T18:37:55 IST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BM -->
-        <test-method signature="chooseColour()[pri:0, instance:recruiter.chooseColourTestNG@74f6c5d8]" started-at="2025-01-31T16:26:52 IST" name="chooseColour" finished-at="2025-01-31T16:28:41 IST" duration-ms="108455" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchSessionException">
+        <test-method signature="ApplicantForm()[pri:0, instance:recruiter.applicantForm@74f6c5d8]" started-at="2025-02-21T18:37:55 IST" name="ApplicantForm" finished-at="2025-02-21T18:38:44 IST" duration-ms="49027" status="FAIL">
+          <exception class="org.openqa.selenium.ElementClickInterceptedException">
             <message>
-              <![CDATA[invalid session id: session deleted as the browser has closed the connection
-from disconnected: not connected to DevTools
-  (Session info: chrome=132.0.6834.160)
+              <![CDATA[element click intercepted: Element is not clickable at point (964, 767)
+  (Session info: chrome=133.0.6943.99)
 Build info: version: '4.16.1', revision: '9b4c83354e'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.2'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [39400fddd210f99fcf92b843229dc578, getCurrentUrl {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\hp\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54069}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54069/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 39400fddd210f99fcf92b843229dc578]]>
+Command: [4f44004e5c0ddd51f4631dead26e86dc, clickElement {id=f.C208282F22361994C2F6293C1AE4EDE5.d.B728925D7A8FF6D56CE9FBECEEE67E10.e.136}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 133.0.6943.99, chrome: {chromedriverVersion: 133.0.6943.126 (cffa127ce7b..., userDataDir: C:\Users\hp\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59952}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59952/devtoo..., se:cdpVersion: 133.0.6943.99, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (4f44004e5c0ddd51f4631dead26e86dc)] -> xpath: (//span[text()="Yes"])[4]]
+Session ID: 4f44004e5c0ddd51f4631dead26e86dc]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchSessionException: invalid session id: session deleted as the browser has closed the connection
-from disconnected: not connected to DevTools
-  (Session info: chrome=132.0.6834.160)
+              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element is not clickable at point (964, 767)
+  (Session info: chrome=133.0.6943.99)
 Build info: version: '4.16.1', revision: '9b4c83354e'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.2'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [39400fddd210f99fcf92b843229dc578, getCurrentUrl {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\hp\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54069}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54069/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 39400fddd210f99fcf92b843229dc578
+Command: [4f44004e5c0ddd51f4631dead26e86dc, clickElement {id=f.C208282F22361994C2F6293C1AE4EDE5.d.B728925D7A8FF6D56CE9FBECEEE67E10.e.136}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 133.0.6943.99, chrome: {chromedriverVersion: 133.0.6943.126 (cffa127ce7b..., userDataDir: C:\Users\hp\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59952}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59952/devtoo..., se:cdpVersion: 133.0.6943.99, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (4f44004e5c0ddd51f4631dead26e86dc)] -> xpath: (//span[text()="Yes"])[4]]
+Session ID: 4f44004e5c0ddd51f4631dead26e86dc
 at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
 at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
 at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
@@ -52,10 +69,9 @@ at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.ja
 at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:200)
 at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:175)
 at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:523)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:596)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:600)
-at org.openqa.selenium.remote.RemoteWebDriver.getCurrentUrl(RemoteWebDriver.java:317)
-at recruiter.chooseColourTestNG.chooseColour(chooseColourTestNG.java:43)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
+at recruiter.applicantForm.ApplicantForm(applicantForm.java:230)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 at java.base/java.lang.reflect.Method.invoke(Method.java:578)
 at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
@@ -84,23 +100,37 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchSessionException -->
+          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
           <reporter-output>
+            <line>
+              <![CDATA[ApplicantFormTestScript Execution is Started :]]>
+            </line>
+            <line>
+              <![CDATA[ApplicantFormTestScript Execution is Failure :org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element is not clickable at point (964, 767)
+  (Session info: chrome=133.0.6943.99)
+Build info: version: '4.16.1', revision: '9b4c83354e'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [4f44004e5c0ddd51f4631dead26e86dc, clickElement {id=f.C208282F22361994C2F6293C1AE4EDE5.d.B728925D7A8FF6D56CE9FBECEEE67E10.e.136}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 133.0.6943.99, chrome: {chromedriverVersion: 133.0.6943.126 (cffa127ce7b..., userDataDir: C:\Users\hp\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59952}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59952/devtoo..., se:cdpVersion: 133.0.6943.99, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (4f44004e5c0ddd51f4631dead26e86dc)] -> xpath: (//span[text()="Yes"])[4]]
+Session ID: 4f44004e5c0ddd51f4631dead26e86dc]]>
+            </line>
           </reporter-output>
-        </test-method> <!-- chooseColour -->
-        <test-method is-config="true" signature="AM()[pri:0, instance:recruiter.chooseColourTestNG@74f6c5d8]" started-at="2025-01-31T16:28:41 IST" name="AM" finished-at="2025-01-31T16:28:41 IST" duration-ms="9" status="PASS">
+        </test-method> <!-- ApplicantForm -->
+        <test-method is-config="true" signature="AM()[pri:0, instance:recruiter.applicantForm@74f6c5d8]" started-at="2025-02-21T18:38:45 IST" name="AM" finished-at="2025-02-21T18:38:45 IST" duration-ms="6" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AM -->
-        <test-method is-config="true" signature="AC()[pri:0, instance:recruiter.chooseColourTestNG@74f6c5d8]" started-at="2025-01-31T16:28:41 IST" name="AC" finished-at="2025-01-31T16:28:41 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="AC()[pri:0, instance:recruiter.applicantForm@74f6c5d8]" started-at="2025-02-21T18:38:45 IST" name="AC" finished-at="2025-02-21T18:38:45 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AC -->
-        <test-method is-config="true" signature="AS()[pri:0, instance:recruiter.chooseColourTestNG@74f6c5d8]" started-at="2025-01-31T16:28:41 IST" name="AS" finished-at="2025-01-31T16:28:41 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="AS()[pri:0, instance:recruiter.applicantForm@74f6c5d8]" started-at="2025-02-21T18:38:47 IST" name="AS" finished-at="2025-02-21T18:38:47 IST" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AS -->
-      </class> <!-- recruiter.chooseColourTestNG -->
+      </class> <!-- recruiter.applicantForm -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

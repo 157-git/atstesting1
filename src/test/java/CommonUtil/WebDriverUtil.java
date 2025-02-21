@@ -21,7 +21,7 @@ public class WebDriverUtil {
 	}
 	
 	public void implicitWait(WebDriver driver) {
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 	}
 	
 	public String ScreenShot(WebDriver driver,String ScreenShotName) throws IOException {

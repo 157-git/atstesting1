@@ -51,7 +51,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\hp\AppData\Local\Temp\testng-eclipse-1243463137\testng-customsuite.xml</span>
+                    <span>C:\Users\hp\AppData\Local\Temp\testng-eclipse-2022381979\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -104,7 +104,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="recruiter.chooseColourTestNG" class="method navigator-link" hash-for-method="chooseColour">chooseColour</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="recruiter.applicantForm" class="method navigator-link" hash-for-method="ApplicantForm">ApplicantForm</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -122,23 +122,23 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">recruiter.chooseColourTestNG</span>
+              <span class="class-name">recruiter.applicantForm</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="chooseColour">
-                  </a> <!-- chooseColour -->
-                  <span class="method-name">chooseColour</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchSessionException: invalid session id: session deleted as the browser has closed the connection
-from disconnected: not connected to DevTools
-  (Session info: chrome=132.0.6834.160)
+                  <a name="ApplicantForm">
+                  </a> <!-- ApplicantForm -->
+                  <span class="method-name">ApplicantForm</span>
+                  <div class="stack-trace">org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element is not clickable at point (964, 767)
+  (Session info: chrome=133.0.6943.99)
 Build info: version: &apos;4.16.1&apos;, revision: &apos;9b4c83354e&apos;
 System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;20.0.2&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [39400fddd210f99fcf92b843229dc578, getCurrentUrl {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\hp\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54069}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54069/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 39400fddd210f99fcf92b843229dc578
+Command: [4f44004e5c0ddd51f4631dead26e86dc, clickElement {id=f.C208282F22361994C2F6293C1AE4EDE5.d.B728925D7A8FF6D56CE9FBECEEE67E10.e.136}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 133.0.6943.99, chrome: {chromedriverVersion: 133.0.6943.126 (cffa127ce7b..., userDataDir: C:\Users\hp\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59952}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59952/devtoo..., se:cdpVersion: 133.0.6943.99, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (4f44004e5c0ddd51f4631dead26e86dc)] -&gt; xpath: (//span[text()=&quot;Yes&quot;])[4]]
+Session ID: 4f44004e5c0ddd51f4631dead26e86dc
 	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
 	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
@@ -149,10 +149,9 @@ Session ID: 39400fddd210f99fcf92b843229dc578
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:200)
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:175)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:523)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:596)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:600)
-	at org.openqa.selenium.remote.RemoteWebDriver.getCurrentUrl(RemoteWebDriver.java:317)
-	at recruiter.chooseColourTestNG.chooseColour(chooseColourTestNG.java:43)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
+	at recruiter.applicantForm.ApplicantForm(applicantForm.java:230)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
 	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
@@ -188,7 +187,7 @@ Session ID: 39400fddd210f99fcf92b843229dc578
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\hp\AppData\Local\Temp\testng-eclipse-1243463137\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\hp\AppData\Local\Temp\testng-eclipse-2022381979\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -197,7 +196,7 @@ Session ID: 39400fddd210f99fcf92b843229dc578
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;recruiter.chooseColourTestNG&quot;/&gt;
+      &lt;class name=&quot;recruiter.applicantForm&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -239,14 +238,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'chooseColour')
-data.setCell(0, 2, 'recruiter.chooseColourTestNG')
-data.setCell(0, 3, 108455);
+data.setCell(0, 1, 'ApplicantForm')
+data.setCell(0, 2, 'recruiter.applicantForm')
+data.setCell(0, 3, 49027);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 49 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -257,13 +256,35 @@ return data;
             <span class="header-content">Reporter output for Default suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="reporter-method-div">
+              <span class="reporter-method-name">ApplicantForm</span>
+              <div class="reporter-method-output-div">
+                <span class="reporter-method-output">ApplicantFormTestScript Execution is Started :</span>
+                <span class="reporter-method-output">ApplicantFormTestScript Execution is Failure :org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element is not clickable at point (964, 767)
+  (Session info: chrome=133.0.6943.99)
+Build info: version: '4.16.1', revision: '9b4c83354e'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [4f44004e5c0ddd51f4631dead26e86dc, clickElement {id=f.C208282F22361994C2F6293C1AE4EDE5.d.B728925D7A8FF6D56CE9FBECEEE67E10.e.136}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 133.0.6943.99, chrome: {chromedriverVersion: 133.0.6943.126 (cffa127ce7b..., userDataDir: C:\Users\hp\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59952}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59952/devtoo..., se:cdpVersion: 133.0.6943.99, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (4f44004e5c0ddd51f4631dead26e86dc)] -> xpath: (//span[text()="Yes"])[4]]
+Session ID: 4f44004e5c0ddd51f4631dead26e86dc</span>
+              </div> <!-- reporter-method-output-div -->
+            </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">0 ignored methods</span>
+            <span class="header-content">1 ignored method</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">recruiter.applicantForm</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">AapplicantFormMYSQL</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Default_suite" class="panel">
@@ -272,36 +293,36 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">recruiter.chooseColourTestNG</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">recruiter.applicantForm</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">BS</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-class before">
                 <span class="method-name">BC</span>
-                <span class="method-start">4799 ms</span>
+                <span class="method-start">3926 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
                 <span class="method-name">BM</span>
-                <span class="method-start">55521 ms</span>
+                <span class="method-start">28698 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">chooseColour</span>
-                <span class="method-start">55524 ms</span>
+                <span class="method-name">ApplicantForm</span>
+                <span class="method-start">28702 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">AM</span>
-                <span class="method-start">164001 ms</span>
+                <span class="method-start">78081 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">AC</span>
-                <span class="method-start">164011 ms</span>
+                <span class="method-start">78088 ms</span>
               </div> <!-- configuration-class after -->
               <div class="configuration-suite after">
                 <span class="method-name">AS</span>
-                <span class="method-start">164428 ms</span>
+                <span class="method-start">80639 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
