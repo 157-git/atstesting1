@@ -91,10 +91,10 @@ public class loginPage {
 		boolean error = true;
 		try {
 			
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			usernametf.sendKeys(usernameData);
 			passwordtf.sendKeys(passwordData);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			String captcha = extractCaptchaText();
 			System.out.println("captcha :"+captcha);
 			Captcha.sendKeys(captcha);

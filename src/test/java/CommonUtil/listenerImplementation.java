@@ -46,7 +46,7 @@ public class listenerImplementation implements ITestListener {
         System.err.println("Error: " + result.getThrowable().getMessage());
 
 		try {
-			String path=wdu.ScreenShot(baseClass.sdriver, "failReport");
+			String path=wdu.ScreenShot(baseClass.sdriver, "Recruiter_failReport");
 			test.addScreenCaptureFromPath(path);
 		} catch (Exception e) {
 			

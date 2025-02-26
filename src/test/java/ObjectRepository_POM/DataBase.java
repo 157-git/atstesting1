@@ -87,7 +87,7 @@ public class DataBase {
 		ExcelView.click();
 		return new dataBaseExcelView(driver);
 	}
-	public dataBaseExcelView ExcelUpload(WebDriver driver) throws InterruptedException {
+	public dataBaseExcelView excelUploadSheet(WebDriver driver) throws InterruptedException {
 		ChooseExcel.sendKeys("C:\\Users\\hp\\Downloads\\Calling_Tracker_Format (1).xlsx");
 		Thread.sleep(1000);
 		if (SheetCheckbox.isDisplayed()) {

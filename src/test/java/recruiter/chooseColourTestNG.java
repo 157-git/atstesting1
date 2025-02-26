@@ -18,6 +18,7 @@ import CommonUtil.baseClass;
 import ObjectRepository_POM.RecruiterGear;
 import ObjectRepository_POM.RecruiterhomePage;
 import ObjectRepository_POM.loginPage;
+import ObjectRepository_POM.logoutPage;
 
 public class chooseColourTestNG extends baseClass{
 
@@ -55,8 +56,9 @@ public class chooseColourTestNG extends baseClass{
 		
 		if (RecPageUrl.equals(LoginPageUrl)) {
 			System.out.println("login failed");
-			if (lp.getLoginError().isDisplayed()) {
-				System.out.println(lp.getLoginError().getText());
+			WebElement error = driver.findElement(By.className("loginpage-error"));
+			if (error.isDisplayed()) {
+				System.out.println(error.getText());
 			}
 			//Assert.fail("Invalid login details");
 		} else if(RecPageUrl.equals(URL)) {
@@ -88,9 +90,15 @@ public class chooseColourTestNG extends baseClass{
 				
 				if (firstColour.equals(header)) {
 					System.out.println("COLOUR SUCCESSFULLY UPDATED");
+			
 				} else {
 					System.out.println("COLOUR NOT UPDATED");
+				
 				}
+				
+				Thread.sleep(1000);
+				logoutPage lo=new logoutPage(driver);
+				lo.logout(driver, "Yes");
 				
 			} else {
 				System.out.println("choose colour box is not displayed");

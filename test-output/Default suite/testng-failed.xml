@@ -3,17 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="recruiter.applicantForm">
+      <class name="recruiter.salaryCalculation">
         <methods>
-          <include name="AS"/>
-          <include name="AC"/>
+          <include name="BM"/>
+          <include name="AM"/>
+          <include name="salaryCalculation"/>
           <include name="BS"/>
           <include name="BC"/>
-          <include name="ApplicantForm"/>
-          <include name="AM"/>
-          <include name="BM"/>
+          <include name="AS"/>
+          <include name="AC"/>
         </methods>
-      </class> <!-- recruiter.applicantForm -->
+      </class> <!-- recruiter.salaryCalculation -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

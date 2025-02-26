@@ -36,12 +36,13 @@ public class AddCandidate {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public AddCandidateTestNG CandidateInfo(String candidatename,String candidateemail) throws InterruptedException {	
+	public AddCandidateTestNG CandidateInfo(String candidatename,String candidateemail,String candidatecontact) throws InterruptedException {	
 		
 		candidateName.sendKeys(candidatename);
 		Thread.sleep(1000);
 		candidateEmail.sendKeys(candidateemail);
-		
+		Thread.sleep(1000);
+		candidateContact.sendKeys(candidatecontact);
 		return new AddCandidateTestNG();
 	}
 	

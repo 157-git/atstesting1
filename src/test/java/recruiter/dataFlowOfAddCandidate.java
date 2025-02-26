@@ -1,12 +1,15 @@
 package recruiter;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -40,6 +43,7 @@ public class dataFlowOfAddCandidate extends baseClass{
 		String PASSWORD=pfu.getDataFromPropertyFile("password");
 		String URL="https://rg.157careers.in/Dashboard/12/Recruiters";
 		FindCandidate fc=new FindCandidate(driver);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		
 		Thread.sleep(2000);
 		RecruiterGear r = new RecruiterGear(driver);
@@ -106,16 +110,15 @@ public class dataFlowOfAddCandidate extends baseClass{
 				String LOCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 7);
 				String OTHER_LOC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 8);
 				String EDUCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 9);
-				String OTHER_EDUCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 10);
-				String TOTAL_EXP_YEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 11);
-				String TOTAL_EXP_MONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 12);
-				String RELEVENT_EXP=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 13);
-				String NOTICE_PERIOD=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 14);
-				String COMMUNICATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 15);
-				String CURRENT_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 16);
-				String EXPECTED_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 17);
-				String OFFER_LETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 18);
-				String STATUS_TYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 19);
+				String TOTAL_EXP_YEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 10);
+				String TOTAL_EXP_MONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 11);
+				String RELEVENT_EXP=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 12);
+				String NOTICE_PERIOD=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 13);
+				String COMMUNICATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 14);
+				String CURRENT_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 15);
+				String EXPECTED_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 16);
+				String OFFER_LETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 17);
+				String STATUS_TYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 18);
 				
 				
 				
@@ -126,24 +129,47 @@ public class dataFlowOfAddCandidate extends baseClass{
 				
 				//enter candidateName and candidateEmail
 			    AddCandidate ac=new AddCandidate(driver);
-			    ac.CandidateInfo(CANDIDATE_NAME,CANDIDATE_EMAIL);
+			    ac.CandidateInfo(CANDIDATE_NAME,CANDIDATE_EMAIL,CONTACT);
 			    
 			    
 			    //enter candidate contact number
-				driver.findElement(By.cssSelector("input[name=\"contactNumber\"]")).sendKeys(CONTACT);
+				//driver.findElement(By.cssSelector("input[name=\"contactNumber\"]")).sendKeys(CONTACT);
 				
 				  //Source name select DropDown
 			    Thread.sleep(1000);
 			    WebElement sourceName = driver.findElement(By.name("sourceName"));
 			    sourceName.click();
 			    Thread.sleep(1000);
-			    wdu.handleDropdown(sourceName, SOURCE);
+//			    wdu.handleDropdown(sourceName, SOURCE);
+			    if (SOURCE.equals("linkedIn") || SOURCE.equals("Naukri") || SOURCE.equals("Indeed ") || SOURCE.equals("Times") ||
+			    		SOURCE.equals("Social Media") || SOURCE.equals("Company Page") || SOURCE.equals("Excel") || SOURCE.equals("Friends")) {
+					
+					wdu.handleDropdown(sourceName, SOURCE);
+					System.out.println("selected from dropdown :"+SOURCE);
+				} else if(!(SOURCE.equals("Others"))){
+					driver.findElement(By.xpath("(//option[text()=\"Others\"])[1]")).click();
+					Thread.sleep(1000);
+					WebElement other = driver.findElement(By.name("sourceNameOthers"));
+					//other.click();
+					other.sendKeys(SOURCE);
+				}
 			    
 			    //select feedback 
-			   WebElement feedback = driver.findElement(By.name("callingFeedback"));
-			   feedback.click();
-			   Thread.sleep(1000);
-			   wdu.handleDropdown(feedback, FEEDBACK);
+			    WebElement feedback = driver.findElement(By.name("callingFeedback"));
+				feedback.click();
+				Thread.sleep(1000);
+			   if (FEEDBACK.equals("Call Done") || FEEDBACK.equals("Asked for Call Back") || FEEDBACK.equals("No Answer") || FEEDBACK.equals("Network Issue") ||
+			    		FEEDBACK.equals("Invalid Number") || FEEDBACK.equals("Need to call back") || FEEDBACK.equals("Do not call again")) {
+						
+					wdu.handleDropdown(feedback, FEEDBACK);
+					System.out.println("selected from dropdown :"+FEEDBACK);
+					} else if(!(FEEDBACK.equals("Others"))){
+						driver.findElement(By.xpath("(//option[text()=\"Others\"])[2]")).click();
+						Thread.sleep(1000);
+						WebElement other = driver.findElement(By.name("callingFeedbackOthers"));
+						//other.click();
+						other.sendKeys(FEEDBACK);
+					}
 			  
 			   //select job id	    
 			   WebElement job_id = driver.findElement(By.id("requirementId"));
@@ -208,7 +234,7 @@ public class dataFlowOfAddCandidate extends baseClass{
 			   		notice.sendKeys(NOTICE_PERIOD);
 			   		
 			   		//communication rating
-			   		WebElement communication = driver.findElement(By.name("communicationRating"));
+			   		WebElement communication = driver.findElement(By.cssSelector(".plain-input.setwidthandmarginforratings"));
 			   		communication.sendKeys(COMMUNICATION);
 			   		
 			   		//current CTC
@@ -246,12 +272,16 @@ public class dataFlowOfAddCandidate extends baseClass{
 			     	List<WebElement> error = driver.findElements(By.className("error-message"));
 			     	if (error!=null) {
 						for (WebElement webElement : error) {
+							wait.until(ExpectedConditions.visibilityOf(webElement));
+							js.executeScript("window.scrollTo(0, arguments[0].getBoundingClientRect().top + window.scrollY - 100);",
+						            webElement);
+					   		wdu.ScreenShot(driver, "InterestedVD");
 							Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
 						}
 					} else {
 						System.out.println("candidate saved successfully");
 						
-						//click on line up tracker 
+						//click on find candidate 
 						Thread.sleep(3000);
 						hp.getFindCandidate().click();
 						
@@ -267,11 +297,11 @@ public class dataFlowOfAddCandidate extends baseClass{
 						List<WebElement> initalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
 						Thread.sleep(1000);
 						
-						String candidateName = driver.findElement(By.xpath("")).getText();
+						String candidateName = driver.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[5]")).getText();
 						
-						String candiadteEmail = driver.findElement(By.xpath("")).getText();
+						String candiadteEmail = driver.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[6]")).getText();
 						
-						String jobId = driver.findElement(By.xpath("")).getText();
+						String jobId = driver.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[11]")).getText();
 						
 						if (CANDIDATE_NAME.equals(candidateName) && CANDIDATE_EMAIL.equals(candiadteEmail) && JOB_ID.equals(jobId)) {
 							System.out.println("candidate data found : "+"CANDIDATE DATA FLOW SUCCESSFULL");
@@ -297,16 +327,15 @@ public class dataFlowOfAddCandidate extends baseClass{
 				String LOCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 7);
 				String OTHER_LOC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 8);
 				String EDUCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 9);
-				String OTHER_EDUCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 10);
-				String TOTAL_EXP_YEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 11);
-				String TOTAL_EXP_MONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 12);
-				String RELEVENT_EXP=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 13);
-				String NOTICE_PERIOD=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 14);
-				String COMMUNICATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 15);
-				String CURRENT_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 16);
-				String EXPECTED_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 17);
-				String OFFER_LETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 18);
-				String STATUS_TYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 19);
+				String TOTAL_EXP_YEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 10);
+				String TOTAL_EXP_MONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 11);
+				String RELEVENT_EXP=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 12);
+				String NOTICE_PERIOD=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 13);
+				String COMMUNICATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 14);
+				String CURRENT_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 15);
+				String EXPECTED_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 16);
+				String OFFER_LETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 17);
+				String STATUS_TYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 18);
 				
 				
 				//Scroll up to name field
@@ -316,10 +345,10 @@ public class dataFlowOfAddCandidate extends baseClass{
 				
 				//enter candidateName and candidateEmail
 			    AddCandidate ac=new AddCandidate(driver);
-			    ac.CandidateInfo(CANDIDATE_NAME,CANDIDATE_EMAIL);
+			    ac.CandidateInfo(CANDIDATE_NAME,CANDIDATE_EMAIL,CONTACT);
 			    
 			    //enter candidate contact number
-				driver.findElement(By.cssSelector("input[name=\"contactNumber\"]")).sendKeys(CONTACT);
+				//driver.findElement(By.cssSelector("input[name=\"contactNumber\"]")).sendKeys(CONTACT);
 				
 				  //Source name select DropDown
 			    Thread.sleep(1000);

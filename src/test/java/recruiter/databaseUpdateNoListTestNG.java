@@ -101,7 +101,7 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 	        //click on choose file
 	        db.dbDropdown(driver);
 	        Thread.sleep(1000);
-			db.ExcelUpload(driver);
+			db.excelUploadSheet(driver);
 			System.out.println("......choose file......");
 
 	        //click on view 
@@ -155,8 +155,13 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 		
 		if (RecPageUrl.equals(LoginPageUrl)) {
 			System.out.println("login failed");
+			WebElement error = driver.findElement(By.className("loginpage-error"));
+			if (error.isDisplayed()) {
+				System.out.println(error.getText());
+			}
 		} else if(RecPageUrl.equals(URL)){
 			System.out.println("login successfull");
+			JavascriptExecutor js = (JavascriptExecutor) driver;
 			
 			Thread.sleep(1000);
 			int sheetRows = eu.countRowsInExcel("C:\\Users\\hp\\Downloads\\Calling_Tracker_Format (1).xlsx", "Sheet1");
@@ -174,6 +179,12 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 			//click on upload excel files
 			db.dbDropdown2(driver);
 			Thread.sleep(2000);
+			
+			WebElement totalResult = driver.findElement(By.className("search-count-last-div"));
+			String text=totalResult.getText();
+			String numberOnly = text.replaceAll("[^0-9]", "");
+			int total = Integer.parseInt(numberOnly);
+			System.out.println("Total result :"+total);
 			
 			int TotalInitalRows = 0;
 			Boolean NextPage = true;
@@ -193,6 +204,7 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 
 			    // Check for the next page button
 			    Thread.sleep(2000);
+			    js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 			    List<WebElement> next = driver.findElements(By.cssSelector(".anticon.anticon-right"));
 
 			    Thread.sleep(2000);
@@ -205,29 +217,42 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 			        System.out.println("Next Page button disabled: " + isNextPageButtonDisabled);
 			        Thread.sleep(2000);
 			        
-			        if (!isNextPageButtonDisabled) {
-			            // If the 'Next' button is enabled, click it
+			        if (isNextPageButtonDisabled) {
+			        	
+			        	// If the 'Next' button is enabled, click it
 			            System.out.println("Next Page button is enabled. Moving to next page...");
-			            nextButton.click();
+			           // nextButton.click();
+			            js.executeScript("arguments[0].click();", nextButton);
 			            
 			            // Wait for the table rows to become visible on the next page
-			            w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@class='selfcalling-table attendance-table']/tbody/tr")));
+			            w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr")));
 			            
 			            // Wait for the next page button to become clickable again (to ensure the page transition is complete)
 			            w.until(ExpectedConditions.elementToBeClickable(nextButton));
 			            
 			            // Increment page number for logging purposes
 			            pageNumber++;
+			           
+			           
 			        } else {
 			            // Log when the 'Next' button is disabled (indicating the end of pagination)
 			            System.out.println("Next Page button is disabled. No more pages.");
 			            NextPage = false;  // Exit the loop
 			        }
+			        
+			        if (TotalInitalRows==total) {
+		            	NextPage = false;
+		            	isNextPageButtonDisabled=true;
+					}
+			        
 			    } else {
 			        // Log if the 'Next' button is not found (indicating no further pages)
 			        System.out.println("Next Page button not found. No more pages.");
 			        NextPage = false;  // Exit the loop
 			    }
+			    
+			   
+			    
 			}
 
 
@@ -240,22 +265,29 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 			 db.dbDropdown(driver);
 		     Thread.sleep(1000); 
 		     //upload excel file
-		     db.ExcelUpload(driver);
+		     db.excelUploadSheet(driver);
 		     
 		   Thread.sleep(3000);
-		  WebElement a =driver.findElement(By.xpath("//table[@class=\"selfcalling-table attendance-table\"]/tbody/tr[1]"));
+		  WebElement a =driver.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]"));
 		 // w.until(ExpectedConditions.visibilityOf(a)); 
 		  Thread.sleep(3000);
 		  if (a.isDisplayed()) {
 			System.out.println("data present in excel sheet");
 			Thread.sleep(1000);
-			List<WebElement> rowfetch = driver.findElements(By.xpath("//table[@class=\"selfcalling-table attendance-table\"]/tbody/tr"));
+			
+			WebElement totalResult_uploadExcel = driver.findElement(By.className("search-count-last-div"));
+			String text_uploadExcel =totalResult_uploadExcel.getText();
+			String numberOnly_uploadExcel  = text_uploadExcel.replaceAll("[^0-9]", "");
+			int total_uploadExcel = Integer.parseInt(numberOnly_uploadExcel);
+			System.out.println("Total result on uploading excel :"+total_uploadExcel );
+			
+			List<WebElement> rowfetch = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
 			int fetchRows=rowfetch.size();
 			System.out.println("Rows fetch from excel sheet :- "+fetchRows);
 			
 			//click on upload excel data
 			Thread.sleep(1000);
-			db.ExcelUpload(driver);
+			db.dbDropdown2(driver);
 			
 			//.........................................................
 			
@@ -263,9 +295,9 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 			Boolean NextPage_1 = true;
 			int pageNumber_1 = 1;
 
-			while (NextPage) {
+			while (NextPage_1) {
 			    // Get the rows of the current page's table
-			    List<WebElement> UploadexcelDataRows = driver.findElements(By.xpath("//table[@class='selfcalling-table attendance-table']/tbody/tr"));
+			    List<WebElement> UploadexcelDataRows = driver.findElements(By.xpath("//table[@class='attendance-table']/tbody/tr"));
 			    
 			    // Update total rows count
 			    TotalFinallRows += UploadexcelDataRows.size();
@@ -284,13 +316,13 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 			        boolean isNextPageButtonDisabled = nextButton.getAttribute("disabled") != null;
 			        System.out.println("Next Page button disabled: " + isNextPageButtonDisabled);
 			        
-			        if (!isNextPageButtonDisabled) {
+			        if (isNextPageButtonDisabled) {
 			            // If the 'Next' button is enabled, click it
 			            System.out.println("Next Page button is enabled. Moving to next page...");
 			            nextButton.click();
 			            
 			            // Wait for the table rows to become visible on the next page
-			            w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@class='selfcalling-table attendance-table']/tbody/tr")));
+			            w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@class='attendance-table']/tbody/tr")));
 			            
 			            // Wait for the next page button to become clickable again (to ensure the page transition is complete)
 			            w.until(ExpectedConditions.elementToBeClickable(nextButton));
@@ -333,7 +365,9 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 		}
 		  
 		  
-		  
+		Thread.sleep(1000);
+		logoutPage lo=new logoutPage(driver);
+		lo.logout(driver, "Yes");  
 			
 		}
 	}

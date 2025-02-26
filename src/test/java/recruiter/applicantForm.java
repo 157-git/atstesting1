@@ -188,8 +188,12 @@ public class applicantForm extends baseClass_applicant{
 		WebElement certification = driver.findElement(By.name("lineUp.certificates[0].certificateName"));
 		certification.sendKeys(CERTIFICATION);
 		
+		File certificate=new File("src\\test\\resources\\certificate.pdf");
+		WebElement certificateUpload = driver.findElement(By.name("lineUp.certificates[0].certificateFile"));
+		certificateUpload.sendKeys(certificate.getAbsolutePath());
+		
 		WebElement dob = driver.findElement(By.name("lineUp.dateOfBirth"));
-		dob.sendKeys(DOB);
+		dob.sendKeys("26-10-2000");
 		
 		
 		Thread.sleep(1000);
@@ -559,7 +563,7 @@ public class applicantForm extends baseClass_applicant{
 
             	
             } else {
-                System.out.println("No candidate found with EMAIL : " +ApplicantEmail );
+                System.out.println("No candidate found with EMAIL in DATABASE: " +ApplicantEmail );
             }
             
         } catch (SQLException e) {
