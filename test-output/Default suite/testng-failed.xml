@@ -3,17 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="recruiter.salaryCalculation">
+      <class name="recruiter.dbSendLinkTestNG">
         <methods>
           <include name="BM"/>
+          <include name="dbCopyLink"/>
           <include name="AM"/>
-          <include name="salaryCalculation"/>
           <include name="BS"/>
           <include name="BC"/>
           <include name="AS"/>
           <include name="AC"/>
         </methods>
-      </class> <!-- recruiter.salaryCalculation -->
+      </class> <!-- recruiter.dbSendLinkTestNG -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

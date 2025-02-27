@@ -9,6 +9,7 @@ import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Set;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -30,6 +31,7 @@ import ObjectRepository_POM.DataBase;
 import ObjectRepository_POM.RecruiterGear;
 import ObjectRepository_POM.RecruiterhomePage;
 import ObjectRepository_POM.loginPage;
+import ObjectRepository_POM.logoutPage;
 
 @Listeners(listenerImplementation.class)
 public class dbSendLinkTestNG extends baseClass{
@@ -97,7 +99,7 @@ public class dbSendLinkTestNG extends baseClass{
 		
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void dbCopyLink() throws IOException, InterruptedException {
 		
 		String USERNAME = pfu.getDataFromPropertyFile("username");
@@ -124,9 +126,10 @@ public class dbSendLinkTestNG extends baseClass{
 			System.out.println("login failed");
 		} else if(RecPageUrl.equals(URL)){
 			System.out.println("login successfull");
-			
+					
 			//click on data base
 			RecruiterhomePage hp = new RecruiterhomePage(driver);
+			w.until(ExpectedConditions.visibilityOf(hp.getDataBase()));
 			//click on dataBase
 			hp.dataBase(driver);
 			
@@ -138,12 +141,14 @@ public class dbSendLinkTestNG extends baseClass{
 	        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 	        try {
 	        	clipboardData = (String) clipboard.getData(DataFlavor.stringFlavor);
+	        	
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
 			
             System.out.println("Copied Link : " + clipboardData);
-            
+            String originalWindow = driver.getWindowHandle();
+           
 			
 			Thread.sleep(2000);
 			Robot robot;
@@ -154,6 +159,16 @@ public class dbSendLinkTestNG extends baseClass{
 				robot.keyPress(KeyEvent.VK_T);
 				robot.keyRelease(KeyEvent.VK_T);
 				robot.keyRelease(KeyEvent.VK_CONTROL);
+				
+				// Switch to the new tab
+				Set<String> Window = driver.getWindowHandles();
+				System.out.println(Window);
+			   for (String new_win : Window) {
+				   if (!new_win.equals(originalWindow)) {
+					driver.switchTo().window(new_win);
+					break;
+					}	
+			   }
 				
 				//paste the value
 				robot.keyPress(KeyEvent.VK_CONTROL);
@@ -168,21 +183,34 @@ public class dbSendLinkTestNG extends baseClass{
 			}
 			
 			Thread.sleep(2000);
+			w.until(ExpectedConditions.visibilityOfElementLocated(By.className("applicant-form-December")));
 			String form= driver.getCurrentUrl();
-	
+			System.out.println("link on new tab :"+form);
 			
 			if (clipboardData.equals(form)) {
 				System.out.println("linked copied successfully");
+				
+				wdu.ScreenShot(driver, "copyLink_AF");
 			} else {
 				System.out.println("linked Not copied");
 			}
 			
 			
+			driver.switchTo().window(originalWindow);	
+			
+			//click on dataBase
+			hp.dataBase(driver);
+			
+			//logout
+			Thread.sleep(1000);
+			logoutPage lo=new logoutPage(driver);
+			lo.logout(driver, "Yes");
+			
 		}
 		
 	}
 
-	@Test
+	@Test(enabled = false)
 	public void createResume() throws InterruptedException, IOException {
 		String USERNAME = pfu.getDataFromPropertyFile("username");
 		String PASSWORD = pfu.getDataFromPropertyFile("password");

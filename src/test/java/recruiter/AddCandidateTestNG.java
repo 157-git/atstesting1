@@ -242,13 +242,45 @@ public class AddCandidateTestNG extends baseClass{
 			   		WebElement communication = driver.findElement(By.cssSelector(".plain-input.setwidthandmarginforratings"));
 			   		communication.sendKeys(COMMUNICATION);
 			   	
-			   		//current CTC
-			   		WebElement current_ctc = driver.findElement(By.name("currentCTCLakh"));
-			   		current_ctc.sendKeys(CURRENT_CTC);
+			   	//extract only number from current ctc
+			   	    Pattern pattern = Pattern.compile("(\\d+)\\.?(\\d+)?");
+			        Matcher matcher = pattern.matcher(CURRENT_CTC);
+			        String CTC_lakhs="";
+			        String CTC_thousand="";
+			        if (matcher.find()) {
+			        	CTC_lakhs = matcher.group(1); // Before decimal
+			        	CTC_thousand = matcher.group(2) != null ? matcher.group(2) : ""; 
+			            
+			            System.out.println("Original Input: " + CURRENT_CTC);
+			            System.out.println("Integer Part: " + CTC_lakhs);
+			            System.out.println("Decimal Part: " + CTC_thousand);
+			        }
+			        
+			        //current CTC
+			   		WebElement current_ctc_lakh = driver.findElement(By.name("currentCTCLakh"));
+			   		current_ctc_lakh.sendKeys(CTC_lakhs);
+			        
+			   		WebElement current_ctc_thousand = driver.findElement(By.name("currentCTCThousand")); 
+			   		current_ctc_thousand.sendKeys(CTC_thousand);
 			   		
+			        Matcher matcher_1= pattern.matcher(EXPECTED_CTC);
+			        String ECTC_lakhs="";
+			        String ECTC_thousand="";
+			        if (matcher_1.find()) {
+			        	ECTC_lakhs = matcher_1.group(1); // Before decimal
+			        	ECTC_thousand = matcher_1.group(2) != null ? matcher_1.group(2) : ""; 
+			            
+			            System.out.println("Original Input: " + EXPECTED_CTC);
+			            System.out.println("Integer Part: " + ECTC_lakhs);
+			            System.out.println("Decimal Part: " + ECTC_thousand);
+			        }
+			   
 			   		//expected CTC
 			   		WebElement expected_ctc = driver.findElement(By.name("expectedCTCLakh"));
-			   		expected_ctc.sendKeys(EXPECTED_CTC);
+			   		expected_ctc.sendKeys(ECTC_lakhs);
+			   		
+			   		WebElement expected_ctc_thousand = driver.findElement(By.name("expectedCTCThousand")); 
+			   		expected_ctc_thousand.sendKeys(ECTC_thousand);
 			   		
 			   		//scroll
 			   		js.executeScript("arguments[0].scrollIntoView();", status);
@@ -823,6 +855,7 @@ public class AddCandidateTestNG extends baseClass{
 									Thread.sleep(1000);
 							   		wdu.ScreenShot(driver, "not-InterestedIVD");
 									Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
+								
 								}
 							} else {
 								System.out.println("candidate saved successfully");
