@@ -3,6 +3,7 @@ package recruiter;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,7 +39,7 @@ public class AddCandidateTestNG extends baseClass{
 	JavaUtil ju = new JavaUtil();
 	public WebDriver sdriver;
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void addCandidateVD() throws IOException, InterruptedException {
 		//get data from property file
 		String USERNAME=pfu.getDataFromPropertyFile("username");
@@ -89,6 +90,8 @@ public class AddCandidateTestNG extends baseClass{
 		    WebElement status = driver.findElement(By.name("selectYesOrNo"));
 		    js.executeScript("arguments[0].scrollIntoView();", status);
 		    
+		    long startTime = System.currentTimeMillis();
+		    System.out.println("startTime :"+startTime);
 		    
 		    //select status type from dropDown
 		    Thread.sleep(1000);
@@ -224,11 +227,12 @@ public class AddCandidateTestNG extends baseClass{
 			   		
 			   		//total experience
 			   		WebElement totalExpYear = driver.findElement(By.name("experienceYear"));
-			   		totalExpYear.sendKeys(TOTAL_EXP_YEAR);
-			   		System.out.println(TOTAL_EXP_YEAR);
+			   		int expYear = (int) Double.parseDouble(TOTAL_EXP_YEAR);
+			   		totalExpYear.sendKeys(String.valueOf(expYear));
+			   		
 			   		WebElement totalExpMonth = driver.findElement(By.name("experienceMonth"));
-			   		totalExpMonth.sendKeys(TOTAL_EXP_MONTH);
-			   		System.out.println(TOTAL_EXP_MONTH);
+			   		int expMonth = (int) Double.parseDouble(TOTAL_EXP_MONTH);
+			   		totalExpMonth.sendKeys(String.valueOf(expMonth));
 			   		
 			   		//relevant experience
 			   		WebElement releExp = driver.findElement(By.name("relevantExperience"));
@@ -305,9 +309,12 @@ public class AddCandidateTestNG extends baseClass{
 			   		Thread.sleep(1000);
 			   		driver.findElement(By.xpath("//button[text()=\"Yes\"]")).click();
 			   		
+			   		long endTime = System.currentTimeMillis();
+			   		System.out.println("endTime :"+endTime);
+			   		
 			   	//error message
 			     	List<WebElement> error = driver.findElements(By.className("error-message"));
-			     	if (error!=null) {
+			     	if (!error.isEmpty()) {
 						for (WebElement webElement : error) {
 							wait.until(ExpectedConditions.visibilityOf(webElement));
 							js.executeScript("window.scrollTo(0, arguments[0].getBoundingClientRect().top + window.scrollY - 100);",
@@ -318,6 +325,8 @@ public class AddCandidateTestNG extends baseClass{
 						}
 					} else {
 						System.out.println("candidate saved successfully");
+						 long timeTaken = TimeUnit.MILLISECONDS.toSeconds(endTime - startTime);
+					     System.out.println("Form filled and submitted in: " + timeTaken + " seconds");
 						Thread.sleep(3000);
 				   		wdu.ScreenShot(driver, "InterestedVD");
 					}
@@ -435,20 +444,20 @@ public class AddCandidateTestNG extends baseClass{
 					wdu.ScreenShot(driver, "not-InterestedVD");
 				}
 			  
-		     	
+		     	//logout............update:-12-9-24----338-341
+				Thread.sleep(1000);
+				logoutPage lo=new logoutPage(driver);
+				lo.logout(driver, "Yes");
 					
 			}
 		
-		  //logout............update:-12-9-24----338-341
-			Thread.sleep(1000);
-			logoutPage lo=new logoutPage(driver);
-			lo.logout(driver, "Yes");
+		  
 		}
 		
 	}
 //........................................................................................................
 	
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void addCandidateIVD() throws IOException, InterruptedException {
 		//get data from property file
 				String USERNAME=pfu.getDataFromPropertyFile("username");

@@ -43,7 +43,7 @@ public class dbSendLinkTestNG extends baseClass{
 	JavaUtil ju = new JavaUtil();
 	public WebDriver sdriver;
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void dbShareLink() throws IOException, InterruptedException {
 		
 		String USERNAME = pfu.getDataFromPropertyFile("username");
@@ -78,6 +78,7 @@ public class dbSendLinkTestNG extends baseClass{
 			
 			//click on data base
 			RecruiterhomePage hp = new RecruiterhomePage(driver);
+			w.until(ExpectedConditions.visibilityOf(hp.getDataBase()));
 			//click on dataBase
 			hp.dataBase(driver);
 			
@@ -85,21 +86,24 @@ public class dbSendLinkTestNG extends baseClass{
 			DataBase db=new DataBase(driver);
 			db.shareLink(driver);
 			
-			//wait for alert to display
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-	        
-			//handle the alert as ok
-			//Alert popup = driver.switchTo().alert();
-	        Thread.sleep(1000);
-			alert.accept();
+//			//wait for alert to display
+//			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//	        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+//	        
+//			//handle the alert as ok
+//			//Alert popup = driver.switchTo().alert();
+//	        Thread.sleep(1000);
+//			alert.accept();
+		
+			
+			
 			
 			
 		}
 		
 	}
 	
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void dbCopyLink() throws IOException, InterruptedException {
 		
 		String USERNAME = pfu.getDataFromPropertyFile("username");

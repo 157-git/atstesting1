@@ -1,6 +1,9 @@
 package CommonUtil;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -29,12 +32,30 @@ public class baseClass extends listenerImplementation{
 	
 	WebDriverUtil wdu=new WebDriverUtil();
 	PropertyFileUtil pfu=new PropertyFileUtil();
+	private static final String URL = "jdbc:mysql://localhost:3306/Recruiters";
+	private static final String USER = "root";
+	private static final String PASSWORD = "root";
+	public Connection connection;
 	
 	
 	@BeforeSuite
-	public void BS() {
+	public Connection BS() {
 		System.out.println("connected to the DataBase");
-		dataBaseUtil.connect();
+		 try {
+	        	Class.forName("com.mysql.cj.jdbc.Driver");
+	            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+	            if (connection != null) {
+	                System.out.println("Database connected successfully!");
+	            } else {
+	                System.out.println("Failed to make connection to the database.");
+	            }
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		return connection;
 	}
 	
 	@BeforeClass
