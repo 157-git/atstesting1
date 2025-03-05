@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="1" total="2" passed="1" failed="0" skipped="0">
+<testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
       <![CDATA[ execution is started]]>
     </line>
     <line>
-      <![CDATA[addCandidateVDTestScript Execution is Started :]]>
+      <![CDATA[sentProfileUpdateResponseTestScript Execution is Started :]]>
     </line>
   </reporter-output>
-  <suite started-at="2025-02-28T18:15:10 IST" name="Default suite" finished-at="2025-02-28T18:17:33 IST" duration-ms="142344">
+  <suite started-at="2025-03-05T19:06:15 IST" name="Default suite" finished-at="2025-03-05T19:08:41 IST" duration-ms="146378">
     <groups>
     </groups>
-    <test started-at="2025-02-28T18:15:10 IST" name="Default test" finished-at="2025-02-28T18:17:33 IST" duration-ms="142344">
-      <class name="recruiter.AddCandidateTestNG">
-        <test-method is-config="true" signature="BS()[pri:0, instance:recruiter.AddCandidateTestNG@74f6c5d8]" started-at="2025-02-28T18:15:08 IST" name="BS" finished-at="2025-02-28T18:15:10 IST" duration-ms="2499" status="PASS">
+    <test started-at="2025-03-05T19:06:15 IST" name="Default test" finished-at="2025-03-05T19:08:41 IST" duration-ms="146378">
+      <class name="teamLeader.sentProfileTestNG">
+        <test-method is-config="true" signature="BS()[pri:0, instance:teamLeader.sentProfileTestNG@5e2c3d18]" started-at="2025-03-05T19:06:10 IST" name="BS" finished-at="2025-03-05T19:06:15 IST" duration-ms="4990" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BS -->
-        <test-method is-config="true" signature="BC()[pri:0, instance:recruiter.AddCandidateTestNG@74f6c5d8]" started-at="2025-02-28T18:15:12 IST" name="BC" finished-at="2025-02-28T18:15:32 IST" duration-ms="19661" status="PASS">
+        <test-method is-config="true" signature="BC()[pri:0, instance:teamLeader.sentProfileTestNG@5e2c3d18]" started-at="2025-03-05T19:06:16 IST" name="BC" finished-at="2025-03-05T19:07:10 IST" duration-ms="54220" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BC -->
-        <test-method is-config="true" signature="BM()[pri:0, instance:recruiter.AddCandidateTestNG@74f6c5d8]" started-at="2025-02-28T18:15:32 IST" name="BM" finished-at="2025-02-28T18:15:32 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="BM()[pri:0, instance:teamLeader.sentProfileTestNG@5e2c3d18]" started-at="2025-03-05T19:07:11 IST" name="BM" finished-at="2025-03-05T19:07:11 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BM -->
-        <test-method signature="addCandidateVD()[pri:0, instance:recruiter.AddCandidateTestNG@74f6c5d8]" started-at="2025-02-28T18:15:32 IST" name="addCandidateVD" finished-at="2025-02-28T18:17:33 IST" duration-ms="120990" status="PASS">
+        <test-method signature="sentProfileUpdateResponse()[pri:0, instance:teamLeader.sentProfileTestNG@5e2c3d18]" started-at="2025-03-05T19:07:11 IST" name="sentProfileUpdateResponse" finished-at="2025-03-05T19:08:41 IST" duration-ms="90176" status="PASS">
           <reporter-output>
             <line>
-              <![CDATA[addCandidateVDTestScript Execution is Started :]]>
+              <![CDATA[sentProfileUpdateResponseTestScript Execution is Started :]]>
             </line>
           </reporter-output>
-        </test-method> <!-- addCandidateVD -->
-        <test-method is-config="true" signature="AM()[pri:0, instance:recruiter.AddCandidateTestNG@74f6c5d8]" started-at="2025-02-28T18:17:33 IST" name="AM" finished-at="2025-02-28T18:17:33 IST" duration-ms="3" status="PASS">
+        </test-method> <!-- sentProfileUpdateResponse -->
+        <test-method is-config="true" signature="AM()[pri:0, instance:teamLeader.sentProfileTestNG@5e2c3d18]" started-at="2025-03-05T19:08:41 IST" name="AM" finished-at="2025-03-05T19:08:41 IST" duration-ms="36" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AM -->
-        <test-method is-config="true" signature="AC()[pri:0, instance:recruiter.AddCandidateTestNG@74f6c5d8]" started-at="2025-02-28T18:17:33 IST" name="AC" finished-at="2025-02-28T18:17:33 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="AC()[pri:0, instance:teamLeader.sentProfileTestNG@5e2c3d18]" started-at="2025-03-05T19:08:41 IST" name="AC" finished-at="2025-03-05T19:08:41 IST" duration-ms="5" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AC -->
-        <test-method is-config="true" signature="AS()[pri:0, instance:recruiter.AddCandidateTestNG@74f6c5d8]" started-at="2025-02-28T18:17:35 IST" name="AS" finished-at="2025-02-28T18:17:35 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="AS()[pri:0, instance:teamLeader.sentProfileTestNG@5e2c3d18]" started-at="2025-03-05T19:08:49 IST" name="AS" finished-at="2025-03-05T19:08:49 IST" duration-ms="18" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AS -->
-      </class> <!-- recruiter.AddCandidateTestNG -->
+      </class> <!-- teamLeader.sentProfileTestNG -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

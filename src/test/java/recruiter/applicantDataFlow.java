@@ -492,11 +492,6 @@ public class applicantDataFlow extends baseClass{
 			
 			
 			
-			
-			
-			
-			
-			
 			} else {
 				System.out.println("COPIED LINK IS IN-VALID");
 				

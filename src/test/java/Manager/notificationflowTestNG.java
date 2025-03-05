@@ -53,8 +53,8 @@ public class notificationflowTestNG extends baseClass_M{
 			
 			//login
 			Thread.sleep(2000);
-			loginPage lp_su = new loginPage(driver);
-			lp_su.login(USERNAME_m, PASSWORD_m);
+			loginPage lp_m = new loginPage(driver);
+			lp_m.login(USERNAME_m, PASSWORD_m);
 			
 			Thread.sleep(2000);
 			String homePageUrl_m = driver.getCurrentUrl();
