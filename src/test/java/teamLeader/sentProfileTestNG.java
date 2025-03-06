@@ -479,7 +479,11 @@ public class sentProfileTestNG extends baseClass_TL{
 				String status_beforeUpdate = profleStatus_beforeUpdate.getText();
 				System.out.println("STATUS BEFORE UPDATE :"+status_beforeUpdate);
 				
-				driver.findElement(By.xpath("//i[@class=\"fa-regular fa-pen-to-square\"][1]")).click();	
+				JavascriptExecutor js = (JavascriptExecutor) driver; 
+				
+				WebElement edit = driver.findElement(By.xpath("(//i[@class=\"fa-regular fa-pen-to-square\"])[2]"));	
+				js.executeScript("arguments[0].scrollIntoView();", edit);
+				edit.click();
 				
 				WebElement select_status=driver.findElement(By.className("update-profile-drop-down"));
 				select_status.click();		

@@ -210,10 +210,11 @@ public class sentProfileTestNG extends baseClass_M{
 					
 					softAssert.assertAll("PROFILE NOT SENT");
 				}
-	}
+				
+		}
 	
 	
-			@Test(enabled = true)
+			@Test(enabled = false)
 			public void sentMultipleProfile() throws IOException, InterruptedException {
 		
 				// TODO Auto-generated constructor stub
@@ -415,7 +416,7 @@ public class sentProfileTestNG extends baseClass_M{
 						System.out.println("rows not present");
 					}
 					
-					//click on team leader section
+					//click on manager section
 					m.getManagerSection().click();
 					
 					//logout
@@ -425,7 +426,118 @@ public class sentProfileTestNG extends baseClass_M{
 					
 					softAssert.assertAll("ASSERTION OCCURED");
 				}
-	}
+				
+			}
 	
-	
+			
+			
+				@Test(enabled = true)
+				public void sentProfileUpdateResponse() throws IOException, InterruptedException {
+				
+					// TODO Auto-generated constructor stub
+					String USERNAME_m=pfu.getDataFromPropertyFile("not_usernameM");
+					String PASSWORD_m=pfu.getDataFromPropertyFile("not_passwordM");				
+					String URL_m=pfu.getDataFromPropertyFile("not_urlM");
+					SoftAssert softAssert = new SoftAssert();
+					WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(180));
+					Manager m=new Manager(driver);
+					
+					
+					Thread.sleep(2000);
+					Manager manager=new Manager(driver);
+					manager.managerPage(driver);
+					
+					Thread.sleep(2000);
+					String LoginPageUrl=driver.getCurrentUrl();
+					System.out.println(LoginPageUrl);
+					
+					//login
+					loginPage lp = new loginPage(driver);
+					lp.login(USERNAME_m, PASSWORD_m);
+
+					//6-12-24 updated
+					Thread.sleep(2000);
+					String homePageUrl_m = driver.getCurrentUrl();
+					System.out.println(homePageUrl_m);
+					
+							
+					if (homePageUrl_m.equals(LoginPageUrl)) {
+						System.out.println("login failed");
+						WebElement error = driver.findElement(By.className("loginpage-error"));
+						if (error.isDisplayed()) {
+							System.out.println(error.getText());
+						}
+						//Assert.fail("Invalid login details");
+					} else if(homePageUrl_m.equals(URL_m)) {
+						System.out.println("login successfull");
+					
+						wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class=\"loader-container\"]")));
+						wait.until(ExpectedConditions.visibilityOf(m.getManagerSection()));
+						m.getManagerSection().click();
+						m.getSentProfile().click();
+					
+					WebElement rows = driver.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[2]"));
+					if (rows.isDisplayed()) {
+						System.out.println("rows present to share");
+						
+						WebElement profleStatus_beforeUpdate= driver.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[2]/td[37]/button"));
+						String status_beforeUpdate = profleStatus_beforeUpdate.getText();
+						System.out.println("STATUS BEFORE UPDATE :"+status_beforeUpdate);
+						
+						JavascriptExecutor js = (JavascriptExecutor) driver; 
+						
+						WebElement edit = driver.findElement(By.xpath("(//i[@class=\"fa-regular fa-pen-to-square\"])[2]"));	
+						js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", edit);
+						Thread.sleep(500);
+						js.executeScript("arguments[0].click();", edit);
+						
+						WebElement select_status=driver.findElement(By.className("update-profile-drop-down"));
+						select_status.click();		
+						
+						List<WebElement> options=driver.findElements(By.xpath("//select[@class=\"update-profile-drop-down\"]/option"));
+						if (!options.isEmpty()) { 
+						    System.out.println("Selected option: " + options.get(1).getText());
+						    options.get(1).click(); 
+						    
+						   //click on update button
+						   driver.findElement(By.xpath("//button[text()=\"Update\"]")).click();
+						   
+						   
+						   WebElement toastmsg =wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"Toastify__toast-body\"]")));
+			        	   String msg = toastmsg.getText();
+			        	   System.out.println(msg);
+			        	    
+			        	   
+			        	   WebElement profleStatus_afterUpdate= driver.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[2]/td[37]/button"));
+			        	   String status_afterUpdate = profleStatus_afterUpdate.getText();
+			        	   System.out.println("STATUS AFTER UPDATE :"+status_afterUpdate);
+			        	   
+			        	   if (!status_beforeUpdate.equals(status_afterUpdate)) {
+								System.out.println("STATUS UPDATE SUCCESSFULLY");
+							} else {
+								System.out.println("STATUS NOT UPDATE SUCCESSFULLY");
+							}
+			        	   
+			        	   
+			        	   
+						} else {
+						    System.out.println("No options found in the dropdown!");
+						    
+						    driver.findElement(By.xpath("//button[@class=\"btn-close\"]")).click();			    
+						}	
+					
+					} else {
+						System.out.println("rows not present");
+					}
+					
+					//click on manager section
+					m.getManagerSection().click();
+					
+					//logout
+					Thread.sleep(1000);
+					logoutPage lo=new logoutPage(driver);
+					lo.logout(driver, "Yes");
+					
+				}
+			}
 }

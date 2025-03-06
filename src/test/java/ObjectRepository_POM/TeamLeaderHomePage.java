@@ -25,6 +25,30 @@ public class TeamLeaderHomePage{
 	@FindBy(xpath = "//span[text()=\"Team Leader Section\"]")
 	private WebElement teamLeaderSection;
 	
+	@FindBy(xpath = "//span[text()=\"Sent Profile\"]")
+	private WebElement sentProfile;
+	
+	@FindBy(xpath = "//span[text()=\"Interview Feedback\"]")
+	private WebElement updateResponse;
+	
+	@FindBy(xpath = "//span[text()=\"Shared Profiles\"]")
+	private WebElement sharedProfile;
+
+	@FindBy(xpath = "//span[text()=\"Pay Roll\"]")
+	private WebElement payRoll;
+	
+	@FindBy(xpath = "//span[text()=\"Create Question paper\"]")
+	private WebElement CreateQuestionPaper;
+	
+	@FindBy(xpath = "//span[text()=\"Schedule Interview\"]")
+	private WebElement scheduledInterview;
+	
+	@FindBy(xpath = "//span[text()=\"Add Recruiters\"]")
+	private WebElement addRecruiter;
+	
+	@FindBy(xpath = "//span[text()=\"Team Details\"]")
+	private WebElement teamdetails;
+	
 	@FindBy(xpath = "//span[text()=\"Job Description\"]")
 	private WebElement jobDescription;
 	
@@ -33,9 +57,6 @@ public class TeamLeaderHomePage{
 	
 	@FindBy(xpath = "//span[text()=\"Add Job Description\"]")
 	private WebElement addJobDescription;
-	
-	@FindBy(xpath = "//span[text()=\"Sent Profile\"]")
-	private WebElement sentProfile;
 
 	@FindBy(xpath = "//span[text()=\"Reports\"]")
 	private WebElement reports;
@@ -77,6 +98,11 @@ public class TeamLeaderHomePage{
 		teamLeaderSection.click();
 		Thread.sleep(1000);
 		sentProfile.click();
+		return driver;
+	}
+	
+	public WebDriver updateResponse(WebDriver driver) {
+		updateResponse.click();
 		return driver;
 	}
 }
