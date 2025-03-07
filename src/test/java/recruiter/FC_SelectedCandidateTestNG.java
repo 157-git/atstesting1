@@ -4,6 +4,9 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.io.PrintStream;
+import java.io.FilterOutputStream;
+
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -98,7 +101,7 @@ public class FC_SelectedCandidateTestNG extends baseClass{
 					long endTime = System.nanoTime();
 					long timeTakenInNanoseconds = endTime - startTime;
 			        double timeTakenInMilliseconds = timeTakenInNanoseconds / 1_000_000.0;
-			        double seconds = timeTakenInMilliseconds / 1000.0;
+			        double seconds = (endTime - startTime) / 1000.0;
 			        System.out.printf("Time taken to upload the file: %.2f seconds%n", seconds);
 					pfu.fileDetails(aadharCard);
 					

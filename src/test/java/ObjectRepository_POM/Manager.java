@@ -75,7 +75,7 @@ public class Manager {
     @FindBy(xpath = "//span[text()=\"Invoice Report\"]")
     private WebElement invoiceReport;
     
-    @FindBy(xpath = "//span[text()=\"Update Response\"]")
+    @FindBy(xpath = "//span[text()=\"Interview Feedback\"]")
     private WebElement updateResponse;
     
     @FindBy(xpath = "//span[text()=\"Shared Profiles\"]")
