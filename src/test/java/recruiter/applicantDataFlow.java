@@ -189,16 +189,16 @@ public class applicantDataFlow extends baseClass{
 //	            	String INTERVIEW_DATE=resultSet.getString("InterviewDate");
 //	            	String JOINING_DATE=resultSet.getString("JoiningDate");
 	            	String TOTAL_EXP=resultSet.getString("TotalExperience");
-	            	String RELEVENT_EXP=resultSet.getString("ReleventExperience");
+	            	//String RELEVENT_EXP=resultSet.getString("ReleventExperience");
 	            	String GENDER=resultSet.getString("Gender");
-	            	String COMPANY_NAME=resultSet.getString("CompanyName");
-	            	String OFFER_SALARY=resultSet.getString("OfferSalary");
-	            	String OFFER_DETAILS=resultSet.getString("OfferDetails");
-	            	String CERTIFICATION=resultSet.getString("Certification");
-	            	String DOB=resultSet.getString("DateOfBirth");
-	            	String WHATSAPP=resultSet.getString("whatsappNumber");
-	            	String DISABILITY=resultSet.getString("disability");
-	            	String NEGOTIATION=resultSet.getString("negotiation");
+	            	//String COMPANY_NAME=resultSet.getString("CompanyName");
+	            	//String OFFER_SALARY=resultSet.getString("OfferSalary");
+	            	//String OFFER_DETAILS=resultSet.getString("OfferDetails");
+	            	//String CERTIFICATION=resultSet.getString("Certification");
+	            	//String DOB=resultSet.getString("DateOfBirth");
+	            	//String WHATSAPP=resultSet.getString("whatsappNumber");
+	            	//String DISABILITY=resultSet.getString("disability");
+	            	//String NEGOTIATION=resultSet.getString("negotiation");
 	            	//certificates and profile not added
 	            	Blob RESUME = resultSet.getBlob("Resume");
 	            	
@@ -253,19 +253,19 @@ public class applicantDataFlow extends baseClass{
 	        		WebElement notice_period = driver.findElement(By.name("lineUp.noticePeriod"));
 	        		notice_period.sendKeys(NOTICE_PERIOD);
 	        		
-	        		LocalDate currentDate = LocalDate.now();
-	                LocalDate nextDate = currentDate.plusDays(1);
-	                // Format the next date to 'YYYY-MM-DD' format
-	                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	                String formattedDate = nextDate.format(formatter);
-	        		WebElement interviewdate = driver.findElement(By.name("lineUp.availabilityForInterview"));
-	        		interviewdate.sendKeys(formattedDate);
+//	        		LocalDate currentDate = LocalDate.now();
+//	                LocalDate nextDate = currentDate.plusDays(1);
+//	                // Format the next date to 'YYYY-MM-DD' format
+//	                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//	                String formattedDate = nextDate.format(formatter);
+//	        		WebElement interviewdate = driver.findElement(By.name("lineUp.availabilityForInterview"));
+//	        		interviewdate.sendKeys(formattedDate);
 	        		
-	        		Thread.sleep(1000);
-	        		LocalDate joiningAfter = currentDate.plusDays(60);
-	        		String joinDate = joiningAfter.format(formatter);
-	        		WebElement joiningDate = driver.findElement(By.id("lineUp.expectedJoinDate"));
-	        		joiningDate.sendKeys(joinDate);
+//	        		Thread.sleep(1000);
+//	        		LocalDate joiningAfter = currentDate.plusDays(60);
+//	        		String joinDate = joiningAfter.format(formatter);
+//	        		WebElement joiningDate = driver.findElement(By.id("lineUp.expectedJoinDate"));
+//	        		joiningDate.sendKeys(joinDate);
 	        		
 	        		Thread.sleep(1000);
 	        		//String  EXP_Y= TOTAL_EXP.split(",")[0];
@@ -279,11 +279,11 @@ public class applicantDataFlow extends baseClass{
 	        		}
 	        		totalExp_m.sendKeys(EXP_M);
 	        		
-	        		Thread.sleep(1000);
-	        		WebElement releventExp = driver.findElement(By.name("lineUp.relevantExperience"));
-	        		String REL_EXP = RELEVENT_EXP.replaceAll("[^0-9.]", ""); 
-	        		releventExp.sendKeys(REL_EXP);
-	        		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+//	        		Thread.sleep(1000);
+//	        		WebElement releventExp = driver.findElement(By.name("lineUp.relevantExperience"));
+//	        		String REL_EXP = RELEVENT_EXP.replaceAll("[^0-9.]", ""); 
+//	        		releventExp.sendKeys(REL_EXP);
+//	        		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 	        		
 	        		if (GENDER.contains("Male")) {
 	        			driver.findElement(By.xpath("//span[text()=\"Male\"]")).click();
@@ -291,33 +291,33 @@ public class applicantDataFlow extends baseClass{
 	        			driver.findElement(By.xpath("//span[text()=\"Female\"]")).click();
 	        		}
 	        		
-	        		Thread.sleep(1000);
-	        		if (!(DISABILITY.isEmpty())) {
-	        			driver.findElement(By.xpath("(//span[text()=\"Yes\"])[1]")).click();
-	        			w.until(ExpectedConditions.visibilityOfElementLocated(By.className("disability-dropdown")));
-	        			WebElement DIS_DD = driver.findElement(By.name("lineUp.disabilityDetails"));
-	        			DIS_DD.click();
-	        			Thread.sleep(500);
-	        			wdu.handleDropdown(DIS_DD, DISABILITY);
-	        			} else {
-	        			driver.findElement(By.xpath("(//span[text()=\"No\"])[1]")).click();
-	        		}
+//	        		Thread.sleep(1000);
+//	        		if (!(DISABILITY.isEmpty())) {
+//	        			driver.findElement(By.xpath("(//span[text()=\"Yes\"])[1]")).click();
+//	        			w.until(ExpectedConditions.visibilityOfElementLocated(By.className("disability-dropdown")));
+//	        			WebElement DIS_DD = driver.findElement(By.name("lineUp.disabilityDetails"));
+//	        			DIS_DD.click();
+//	        			Thread.sleep(500);
+//	        			wdu.handleDropdown(DIS_DD, DISABILITY);
+//	        			} else {
+//	        			driver.findElement(By.xpath("(//span[text()=\"No\"])[1]")).click();
+//	        		}
 	        		
-	        		j.executeScript("window.scrollTo(0, 0);");
-	        		Thread.sleep(1000);
-	        		WebElement certification = driver.findElement(By.name("lineUp.certificates[0].certificateName"));
-	        		certification.sendKeys(CERTIFICATION);
+//	        		j.executeScript("window.scrollTo(0, 0);");
+//	        		Thread.sleep(1000);
+//	        		WebElement certification = driver.findElement(By.name("lineUp.certificates[0].certificateName"));
+//	        		certification.sendKeys(CERTIFICATION);
 	        		
-	        		JavascriptExecutor js = (JavascriptExecutor) driver;
-	        		WebElement dob = driver.findElement(By.name("lineUp.dateOfBirth"));
-	        		System.out.println(DOB);
-	        		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-	        		SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd-MM-yyyy");
-	        		Date date = inputFormat.parse(DOB);
-	        		String formattedDate1 = dateFormat1.format(date);
-	    	       // js.executeScript("arguments[0].value='" + formattedDate1 + "';", dob);
-	        		dob.sendKeys(formattedDate1);
-	    	        System.out.println(formattedDate1);
+//	        		JavascriptExecutor js = (JavascriptExecutor) driver;
+//	        		WebElement dob = driver.findElement(By.name("lineUp.dateOfBirth"));
+//	        		System.out.println(DOB);
+//	        		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+//	        		SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd-MM-yyyy");
+//	        		Date date = inputFormat.parse(DOB);
+//	        		String formattedDate1 = dateFormat1.format(date);
+//	    	       // js.executeScript("arguments[0].value='" + formattedDate1 + "';", dob);
+//	        		dob.sendKeys(formattedDate1);
+//	    	        System.out.println(formattedDate1);
 	    	        
 	        		Thread.sleep(1000);
 	        		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
@@ -353,37 +353,37 @@ public class applicantDataFlow extends baseClass{
 	        		File photo=new File("src\\test\\resources\\uploadPhotoProfile.jpeg");
 	        		photoUpload.sendKeys(photo.getAbsolutePath());
 	        		
-	        		Thread.sleep(1000);
-	        		if (!(COMPANY_NAME.isEmpty())) {
-	        			driver.findElement(By.xpath("(//span[text()=\"Yes\"])[2]")).click();
-	        			j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-	        			
-	        			WebElement CompanyName = driver.findElement(By.name("lineUp.companyName"));
-	        			CompanyName.sendKeys(COMPANY_NAME);
-	        			
-	        			driver.findElement(By.name("lineUp.offersalary")).sendKeys(OFFER_SALARY);
-	        			
-	        			if (!(NEGOTIATION.isEmpty())) {
-	        				driver.findElement(By.xpath("(//span[text()=\"Yes\"])[3]")).click();
-						} else {
-							driver.findElement(By.xpath("(//span[text()=\"No\"])[3]")).click();
-						}
-	        			
-	        			driver.findElement(By.name("lineUp.offerdetails")).sendKeys(OFFER_DETAILS);
-	        			
-	        		} else {
-	        			driver.findElement(By.xpath("//span[text()=\"No\"]")).click();
-	        		}
+//	        		Thread.sleep(1000);
+//	        		if (!(COMPANY_NAME.isEmpty())) {
+//	        			driver.findElement(By.xpath("(//span[text()=\"Yes\"])[2]")).click();
+//	        			j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+//	        			
+//	        			WebElement CompanyName = driver.findElement(By.name("lineUp.companyName"));
+//	        			CompanyName.sendKeys(COMPANY_NAME);
+//	        			
+//	        			driver.findElement(By.name("lineUp.offersalary")).sendKeys(OFFER_SALARY);
+//	        			
+//	        			if (!(NEGOTIATION.isEmpty())) {
+//	        				driver.findElement(By.xpath("(//span[text()=\"Yes\"])[3]")).click();
+//						} else {
+//							driver.findElement(By.xpath("(//span[text()=\"No\"])[3]")).click();
+//						}
+//	        			
+//	        			driver.findElement(By.name("lineUp.offerdetails")).sendKeys(OFFER_DETAILS);
+//	        			
+//	        		} else {
+//	        			driver.findElement(By.xpath("//span[text()=\"No\"]")).click();
+//	        		}
 	        		
-	        		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-	        		if (!(WHATSAPP.isEmpty())) {
-						driver.findElement(By.xpath("(//span[text()=\"Yes\"])[4]")).click();
-						w.until(ExpectedConditions.visibilityOfElementLocated(By.name("alternateNumber")));
-						driver.findElement(By.name("alternateNumber")).sendKeys(WHATSAPP);
-						
-					} else {
-						driver.findElement(By.xpath("(//span[text()=\"No\"])[4]")).click();
-					}
+//	        		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+//	        		if (!(WHATSAPP.isEmpty())) {
+//						driver.findElement(By.xpath("(//span[text()=\"Yes\"])[4]")).click();
+//						w.until(ExpectedConditions.visibilityOfElementLocated(By.name("alternateNumber")));
+//						driver.findElement(By.name("alternateNumber")).sendKeys(WHATSAPP);
+//						
+//					} else {
+//						driver.findElement(By.xpath("(//span[text()=\"No\"])[4]")).click();
+//					}
 	        		
 	        		
 	        		Thread.sleep(1000);
@@ -475,6 +475,8 @@ public class applicantDataFlow extends baseClass{
 						break;
 					}
 				}
+				
+				
 				
 				//click on find candidate
 	 			hp.FinCan(driver);

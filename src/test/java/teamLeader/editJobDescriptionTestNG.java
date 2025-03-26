@@ -86,6 +86,18 @@ public class editJobDescriptionTestNG extends baseClass_TL {
 							WebElement edit = driver.findElement(By.xpath("//div[@class=\"action-joblist-options\"]/a[1]"));
 							edit.click();
 							
+							WebElement element = driver.findElement(By.xpath("//section[@class='job-performance']//h3[text()='Update Job Description']"));
+							 
+
+							
+							//..................................?......................................
+							Thread.sleep(1000);
+							if (element.isDisplayed()){
+								System.out.println(element.getText());
+							} else {
+								
+							}
+							
 							
 							
 						} else {

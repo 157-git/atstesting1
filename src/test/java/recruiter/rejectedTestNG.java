@@ -31,7 +31,7 @@ import ObjectRepository_POM.logoutPage;
 import junit.framework.Assert;
 
 @Listeners(listenerImplementation.class)
-public class rejectedTest extends baseClass{
+public class rejectedTestNG extends baseClass{
 
 	PropertyFileUtil pfu = new PropertyFileUtil();
 	WebDriverUtil wdu = new WebDriverUtil();
@@ -45,14 +45,14 @@ public class rejectedTest extends baseClass{
 		JavascriptExecutor j=(JavascriptExecutor) driver;
 		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
 		
-		String USERNAME = pfu.getDataFromPropertyFile("username");
-		String PASSWORD = pfu.getDataFromPropertyFile("password");	
-		String URL=pfu.getDataFromPropertyFile("rec_url");
+		String USERNAME = pfu.getDataFromPropertyFile("not_username");
+		String PASSWORD = pfu.getDataFromPropertyFile("not_password");	
+		String URL=pfu.getDataFromPropertyFile("not_url");
 		
 		//login details of team leader
-		String TL_USERNAME=pfu.getDataFromPropertyFile("username1");
-		String TL_PASSWORD=pfu.getDataFromPropertyFile("password1");
-		String URL_tl=pfu.getDataFromPropertyFile("tl_url");
+		String TL_USERNAME=pfu.getDataFromPropertyFile("not_usernameTL");
+		String TL_PASSWORD=pfu.getDataFromPropertyFile("not_passwordTL");
+		String URL_tl=pfu.getDataFromPropertyFile("not_urlTL");
 
 		RecruiterGear r = new RecruiterGear(driver);
 		r.RecruiterPage(driver);
@@ -110,6 +110,9 @@ public class rejectedTest extends baseClass{
 				lo.logout(driver, "Yes");
 				
 				//click on window back button
+				Thread.sleep(1000);
+				driver.navigate().back();
+				
 				Thread.sleep(1000);
 				driver.navigate().back();
 				

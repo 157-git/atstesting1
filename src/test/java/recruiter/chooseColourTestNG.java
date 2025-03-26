@@ -65,9 +65,15 @@ public class chooseColourTestNG extends baseClass{
 			
 			System.out.println("login successfull");
 			
+			Thread.sleep(1000);
+			WebElement headerColorbefore = driver.findElement(By.className("daily-timeanddate"));
+			String headerBefore = headerColorbefore.getCssValue("background-color");
+			System.out.println("HEADER COLOUR BEFORE CHANGE: "+headerBefore);
+			
 			//click on add candidate
 			RecruiterhomePage hp=new RecruiterhomePage(driver);
 			hp.chooseColour(driver);
+			
 			
 			WebElement colourBox = driver.findElement(By.className("modal-body"));
 			if (colourBox.isDisplayed()) {

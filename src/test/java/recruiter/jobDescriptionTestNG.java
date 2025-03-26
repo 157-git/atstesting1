@@ -532,13 +532,14 @@ public class jobDescriptionTestNG extends baseClass{
 						
 						System.out.println("................");
 						if (play.isDisplayed()) {
+							
 							//click on share job description
 							Thread.sleep(1000);
 							shareJobDescription.click();
 							
 							//click on close button
 							Thread.sleep(1000);
-							WebElement closeJobDescription = driver.findElement(By.xpath("(//button[@class=\"apply-button-share\"])[2]"));
+							WebElement closeJobDescription = driver.findElement(By.xpath("//button[text()=\"Close\"]"));
 							js.executeScript("arguments[0].scrollIntoView();", closeJobDescription);
 							Thread.sleep(1000);
 							closeJobDescription.click();
@@ -566,7 +567,16 @@ public class jobDescriptionTestNG extends baseClass{
 					    System.out.println("An error occurred: " + e.getMessage());
 					}
 					
-				
+					//click on jd
+					jd.viewJD(driver);
+					
+					//logout............update:-12-9-24----665-668
+					Thread.sleep(1000);
+					logoutPage lo=new logoutPage(driver);
+					lo.logout(driver, "Yes");
+					
+					
+					
 				}
 	}
 				

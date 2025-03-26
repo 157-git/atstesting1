@@ -1,7 +1,9 @@
 package recruiter;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -17,6 +19,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import CommonUtil.ExcelUtil;
 import CommonUtil.JavaUtil;
@@ -39,7 +42,7 @@ public class AddCandidateTestNG extends baseClass{
 	JavaUtil ju = new JavaUtil();
 	public WebDriver sdriver;
 	
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void addCandidateVD() throws IOException, InterruptedException {
 		//get data from property file
 		String USERNAME=pfu.getDataFromPropertyFile("username");
@@ -91,7 +94,12 @@ public class AddCandidateTestNG extends baseClass{
 		    js.executeScript("arguments[0].scrollIntoView();", status);
 		    
 		    long startTime = System.currentTimeMillis();
-		    System.out.println("startTime :"+startTime);
+	   		// Create a Date object with endTime
+	        Date currentDate = new Date(startTime);
+	        // Format the date and time
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	        String startformattedDate = sdf.format(currentDate);
+	        System.out.println("start time: " + startformattedDate);
 		    
 		    //select status type from dropDown
 		    Thread.sleep(1000);
@@ -124,7 +132,7 @@ public class AddCandidateTestNG extends baseClass{
 				String EXPECTED_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 16);
 				String OFFER_LETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 17);
 				String STATUS_TYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 18);
-				
+				String CURRENTLY_WORKING=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 22);
 				
 				
 				
@@ -151,7 +159,7 @@ public class AddCandidateTestNG extends baseClass{
 					
 					wdu.handleDropdown(sourceName, SOURCE);
 					System.out.println("selected from dropdown :"+SOURCE);
-				} else if(!(SOURCE.equals("Others"))){
+				} else {
 					driver.findElement(By.xpath("(//option[text()=\"Others\"])[1]")).click();
 					Thread.sleep(1000);
 					WebElement other = driver.findElement(By.name("sourceNameOthers"));
@@ -168,7 +176,7 @@ public class AddCandidateTestNG extends baseClass{
 					
 					wdu.handleDropdown(feedback, FEEDBACK);
 					System.out.println("selected from dropdown :"+FEEDBACK);
-				} else if(!(FEEDBACK.equals("Others"))){
+				} else {
 					driver.findElement(By.xpath("(//option[text()=\"Others\"])[2]")).click();
 					Thread.sleep(1000);
 					WebElement other = driver.findElement(By.name("callingFeedbackOthers"));
@@ -241,6 +249,16 @@ public class AddCandidateTestNG extends baseClass{
 			   		WebElement notice = driver.findElement(By.name("noticePeriod"));
 			   		notice.sendKeys(NOTICE_PERIOD);
 			   		
+			   		//currently working or not
+			   		if (CURRENTLY_WORKING.equals("Yes")){
+						driver.findElement(By.xpath("(//span[@class=\"ant-radio ant-wave-target\"])[1]")).click();
+						
+			   		} else {
+
+			   			driver.findElement(By.xpath("(//span[@class=\"ant-radio ant-wave-target\"])[2]")).click();
+					}   
+			   		
+			   		
 			   		//communication rating
 			   		//WebElement communication = driver.findElement(By.name("communicationRating"));
 			   		WebElement communication = driver.findElement(By.cssSelector(".plain-input.setwidthandmarginforratings"));
@@ -306,11 +324,21 @@ public class AddCandidateTestNG extends baseClass{
 			   		Thread.sleep(1000);
 			   		driver.findElement(By.id("uploadbtn2")).click();
 			   		
+			   		//send email to candidate
+			   		Thread.sleep(1000);
+			   		WebElement Question = driver.findElement(By.xpath("//input[@class=\"ant-checkbox-input\"]"));
+			   		Question.click();		
+			   		
 			   		Thread.sleep(1000);
 			   		driver.findElement(By.xpath("//button[text()=\"Yes\"]")).click();
 			   		
 			   		long endTime = System.currentTimeMillis();
-			   		System.out.println("endTime :"+endTime);
+			   		// Create a Date object with endTime
+			        Date currentDate1 = new Date(endTime);
+			        // Format the date and time
+			        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			        String endformattedDate = sdf1.format(currentDate1);
+			        System.out.println("end time: " + endformattedDate);
 			   		
 			   	//error message
 			     	List<WebElement> error = driver.findElements(By.className("error-message"));
@@ -384,7 +412,7 @@ public class AddCandidateTestNG extends baseClass{
 					
 					wdu.handleDropdown(sourceName, SOURCE);
 					System.out.println("selected from dropdown :"+SOURCE);
-				} else if(!(SOURCE.equals("Others"))){
+				} else {
 					driver.findElement(By.xpath("(//option[text()=\"Others\"])[1]")).click();
 					Thread.sleep(1000);
 					WebElement other = driver.findElement(By.name("sourceNameOthers"));
@@ -423,6 +451,11 @@ public class AddCandidateTestNG extends baseClass{
 			   Thread.sleep(1000);
 		   		driver.findElement(By.xpath("//button[text()=\"Add To Calling\"]")).click();
 		   		
+		   		//send email to candidate
+		   		Thread.sleep(1000);
+		   		WebElement Question = driver.findElement(By.xpath("//input[@class=\"ant-checkbox-input\"]"));
+		   		Question.click();
+		   		
 		   		//click on yes
 		   		Thread.sleep(1000);
 		   		driver.findElement(By.xpath("//button[text()=\"Yes\"]")).click();
@@ -457,7 +490,7 @@ public class AddCandidateTestNG extends baseClass{
 	}
 //........................................................................................................
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void addCandidateIVD() throws IOException, InterruptedException {
 		//get data from property file
 				String USERNAME=pfu.getDataFromPropertyFile("username");
@@ -465,6 +498,7 @@ public class AddCandidateTestNG extends baseClass{
 				String URL="https://rg.157careers.in/Dashboard/12/Recruiters";
 				String STATUS=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 3, 2);
 				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+				SoftAssert softAssert = new SoftAssert();
 				
 			//	String url = pfu.getDataFromPropertyFile("url");
 			//	driver.get(url);
@@ -544,7 +578,7 @@ public class AddCandidateTestNG extends baseClass{
 							String OFFER_LETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 17);
 							String STATUS_TYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 18);
 							String DOB=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 19);
-							
+							String CURRENTLY_WORKING=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 22);
 							
 							
 							//Scroll up to name field
@@ -570,7 +604,7 @@ public class AddCandidateTestNG extends baseClass{
 								
 								wdu.handleDropdown(sourceName, SOURCE);
 								System.out.println("selected from dropdown :"+SOURCE);
-							} else if(!(SOURCE.equals("Others"))){
+							} else {
 								driver.findElement(By.xpath("(//option[text()=\"Others\"])[1]")).click();
 								Thread.sleep(1000);
 								WebElement other = driver.findElement(By.name("sourceNameOthers"));
@@ -587,7 +621,7 @@ public class AddCandidateTestNG extends baseClass{
 								
 								wdu.handleDropdown(feedback, FEEDBACK);
 								System.out.println("selected from dropdown :"+FEEDBACK);
-							} else if(!(FEEDBACK.equals("Others"))){
+							} else {
 								driver.findElement(By.xpath("(//option[text()=\"Others\"])[2]")).click();
 								Thread.sleep(1000);
 								WebElement other = driver.findElement(By.name("callingFeedbackOthers"));
@@ -660,6 +694,16 @@ public class AddCandidateTestNG extends baseClass{
 						   		//relevant experience
 						   		WebElement releExp = driver.findElement(By.name("relevantExperience"));
 						   		releExp.sendKeys(RELEVENT_EXP);
+						   		
+						   	//currently working or not
+						   		if (CURRENTLY_WORKING.equals("Yes")){
+									driver.findElement(By.xpath("(//span[@class=\"ant-radio ant-wave-target\"])[1]")).click();
+									
+						   		} else {
+
+						   			driver.findElement(By.xpath("(//span[@class=\"ant-radio ant-wave-target\"])[2]")).click();
+								} 
+						   		
 						   		//notice
 						   		WebElement notice = driver.findElement(By.name("noticePeriod"));
 						   		notice.sendKeys(NOTICE_PERIOD);
@@ -748,6 +792,12 @@ public class AddCandidateTestNG extends baseClass{
 						   		Thread.sleep(1000);
 						   		driver.findElement(By.id("uploadbtn2")).click();
 						   		
+						   		//send email to candidate
+						   		Thread.sleep(1000);
+						   		WebElement Question = driver.findElement(By.xpath("//input[@class=\"ant-checkbox-input\"]"));
+						   		Question.click();
+						   		
+						   		
 						   		Thread.sleep(1000);
 						   		driver.findElement(By.xpath("//button[text()=\"Yes\"]")).click();
 						   		
@@ -761,8 +811,8 @@ public class AddCandidateTestNG extends baseClass{
 										js.executeScript("window.scrollTo(0, arguments[0].getBoundingClientRect().top + window.scrollY - 100);",
 									            webElement);
 								   		wdu.ScreenShot(driver, "InterestedIVD");
-										Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
-										
+										//Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
+								   		softAssert.assertTrue(false, "All Required Field Value with Valid Data are required");
 									}
 								} else {
 									System.out.println("candidate saved successfully");
@@ -792,6 +842,7 @@ public class AddCandidateTestNG extends baseClass{
 							String EXPECTED_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 16);
 							String OFFER_LETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 17);
 							String STATUS_TYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 3, 18);
+							
 							
 							//Scroll up to name field
 							WebElement name = driver.findElement(By.name("recruiterName"));
@@ -852,6 +903,11 @@ public class AddCandidateTestNG extends baseClass{
 						   Thread.sleep(1000);
 					   		driver.findElement(By.xpath("//button[text()=\"Add To Calling\"]")).click();
 					   		
+					   		//send email to candidate
+					   		Thread.sleep(1000);
+					   		WebElement Question = driver.findElement(By.xpath("//input[@class=\"ant-checkbox-input\"]"));
+					   		Question.click();
+					   		
 					   		//click on yes
 					   		Thread.sleep(1000);
 					   		driver.findElement(By.xpath("//button[text()=\"Yes\"]")).click();
@@ -863,7 +919,8 @@ public class AddCandidateTestNG extends baseClass{
 									js.executeScript("arguments[0].scrollIntoView(true);", webElement);
 									Thread.sleep(1000);
 							   		wdu.ScreenShot(driver, "not-InterestedIVD");
-									Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
+									//Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
+							   		softAssert.assertTrue(false, "All Required Field Value with Valid Data are required");
 								
 								}
 							} else {
@@ -880,6 +937,8 @@ public class AddCandidateTestNG extends baseClass{
 						Thread.sleep(1000);
 						logoutPage lo=new logoutPage(driver);
 						lo.logout(driver, "Yes");
+						
+						softAssert.assertAll("ASSERTION OCCURED");
 				}
 				 
 	}

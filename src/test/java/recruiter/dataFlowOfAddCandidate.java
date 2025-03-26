@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import CommonUtil.ExcelUtil;
 import CommonUtil.JavaUtil;
@@ -46,6 +47,7 @@ public class dataFlowOfAddCandidate extends baseClass{
 		String URL="https://rg.157careers.in/Dashboard/12/Recruiters";
 		FindCandidate fc=new FindCandidate(driver);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		SoftAssert softAssert = new SoftAssert();
 		
 		Thread.sleep(2000);
 		RecruiterGear r = new RecruiterGear(driver);
@@ -78,17 +80,16 @@ public class dataFlowOfAddCandidate extends baseClass{
 			
 			//click on add candidate
 			RecruiterhomePage hp=new RecruiterhomePage(driver);
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("spinner-container")));
 			hp.addCan(driver);
 			
 			//get data from excel file
 			String STATUS=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 1, 2);
 
-		    
 		    //scrollDown to bottom to select status type
 		    JavascriptExecutor js = (JavascriptExecutor) driver;
 		    WebElement status = driver.findElement(By.name("selectYesOrNo"));
 		    js.executeScript("arguments[0].scrollIntoView();", status);
-		    
 		    
 		    //select status type from dropDown
 		    Thread.sleep(1000);
@@ -96,9 +97,7 @@ public class dataFlowOfAddCandidate extends baseClass{
 		    statusType.click();
 		    Thread.sleep(3000);
 		    wdu.handleDropdown(statusType, STATUS);
-		   
-		   
-		    
+		     
 		    if (STATUS.equals("Interested")) {
 				System.out.println("Interested");
 				
@@ -121,7 +120,7 @@ public class dataFlowOfAddCandidate extends baseClass{
 				String EXPECTED_CTC = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 16);
 				String OFFER_LETTER = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 17);
 				String STATUS_TYPE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 18);
-				
+				String CURRENTLY_WORKING=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 1, 22);
 				
 				
 				
@@ -132,12 +131,11 @@ public class dataFlowOfAddCandidate extends baseClass{
 				//enter candidateName and candidateEmail
 			    AddCandidate ac=new AddCandidate(driver);
 			    ac.CandidateInfo(CANDIDATE_NAME,CANDIDATE_EMAIL,CONTACT);
-			    
-			    
+			   
 			    //enter candidate contact number
 				//driver.findElement(By.cssSelector("input[name=\"contactNumber\"]")).sendKeys(CONTACT);
 				
-				  //Source name select DropDown
+				//Source name select DropDown
 			    Thread.sleep(1000);
 			    WebElement sourceName = driver.findElement(By.name("sourceName"));
 			    sourceName.click();
@@ -148,7 +146,7 @@ public class dataFlowOfAddCandidate extends baseClass{
 					
 					wdu.handleDropdown(sourceName, SOURCE);
 					System.out.println("selected from dropdown :"+SOURCE);
-				} else if(!(SOURCE.equals("Others"))){
+				}else{
 					driver.findElement(By.xpath("(//option[text()=\"Others\"])[1]")).click();
 					Thread.sleep(1000);
 					WebElement other = driver.findElement(By.name("sourceNameOthers"));
@@ -165,7 +163,7 @@ public class dataFlowOfAddCandidate extends baseClass{
 						
 					wdu.handleDropdown(feedback, FEEDBACK);
 					System.out.println("selected from dropdown :"+FEEDBACK);
-					} else if(!(FEEDBACK.equals("Others"))){
+					} else {
 						driver.findElement(By.xpath("(//option[text()=\"Others\"])[2]")).click();
 						Thread.sleep(1000);
 						WebElement other = driver.findElement(By.name("callingFeedbackOthers"));
@@ -178,6 +176,7 @@ public class dataFlowOfAddCandidate extends baseClass{
 			   job_id.click();
 			   Thread.sleep(1000);
 			   wdu.handleDropdown(job_id, JOB_ID);
+			   System.out.println(JOB_ID);
 			   
 			   //select location
 			   WebElement location = driver.findElement(By.name("currentLocation"));
@@ -304,18 +303,20 @@ public class dataFlowOfAddCandidate extends baseClass{
 			   		
 			   		//error message
 			     	List<WebElement> error = driver.findElements(By.className("error-message"));
-			     	if (error!=null) {
+			     	if (!error.isEmpty()) {
 						for (WebElement webElement : error) {
 							wait.until(ExpectedConditions.visibilityOf(webElement));
 							js.executeScript("window.scrollTo(0, arguments[0].getBoundingClientRect().top + window.scrollY - 100);",
 						            webElement);
 					   		wdu.ScreenShot(driver, "InterestedVD");
-							Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
+							//Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
+					   		softAssert.assertTrue(false, "All Required Field Value with Valid Data are required");
 						}
 					} else {
+						
 						System.out.println("candidate saved successfully");
 						
-						//click on find candidate 
+						//click on find candidate
 						Thread.sleep(3000);
 						hp.getFindCandidate().click();
 						
@@ -325,23 +326,56 @@ public class dataFlowOfAddCandidate extends baseClass{
 						
 						//enter the value to be searched
 						Thread.sleep(1000);
-						WebElement search = driver.findElement(By.className("forxmarkdiv"));					
+						WebElement search = driver.findElement(By.xpath("//input[@class=\"search-input removeBorderForSearchInput\"]"));
+						search.click();
 						search.sendKeys(CANDIDATE_EMAIL);
 						
-						List<WebElement> initalrows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
+						List<WebElement> initialRows = driver.findElements(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr"));
 						Thread.sleep(1000);
+//						
+//						String candidateName = driver.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[5]")).getText();
+//						
+//						String candiadteEmail = driver.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[6]")).getText();
+//						
+//						String jobId = driver.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[11]")).getText();
+//						
+//						if (CANDIDATE_NAME.equals(candidateName) && CANDIDATE_EMAIL.equals(candiadteEmail) && JOB_ID.equals(jobId)) {
+//							System.out.println("candidate data found : "+"CANDIDATE DATA FLOW SUCCESSFULL");
+//						} else {
+//							System.out.println("no candidate data found : "+"NO DATA FLOW");
+//						}
 						
-						String candidateName = driver.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[5]")).getText();
-						
-						String candiadteEmail = driver.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[6]")).getText();
-						
-						String jobId = driver.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[11]")).getText();
-						
-						if (CANDIDATE_NAME.equals(candidateName) && CANDIDATE_EMAIL.equals(candiadteEmail) && JOB_ID.equals(jobId)) {
-							System.out.println("candidate data found : "+"CANDIDATE DATA FLOW SUCCESSFULL");
+						// Check if rows are present in the table
+						if (!initialRows.isEmpty()) {
+						    boolean isDataFound = false;
+						    for (WebElement row : initialRows) {
+						        String candidateName = row.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[5]")).getText();
+						        System.out.println(candidateName);
+						        String candidateEmail = row.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[6]")).getText();
+						        String jobId = row.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[11]")).getText();
+						        System.out.println(jobId);
+						        String desigination = row.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[10]")).getText();
+						        System.out.println(desigination);
+						        
+						        if (
+						        		CANDIDATE_NAME.equals(candidateName) &&
+						        		CANDIDATE_EMAIL.equals(candidateEmail) && 
+						        		JOB_ID.equals(jobId.concat(" - ").concat(desigination))
+						        		) {
+						            System.out.println("Candidate data found: " + candidateName + " | Email: " + candidateEmail);
+						            isDataFound = true;
+						            break;  
+						        }
+						    }
+						    
+						    if (!isDataFound) {
+						        System.out.println("No matching candidate data found: NO DATA FLOW.");
+						    }
 						} else {
-							System.out.println("no candidate data found : "+"NO DATA FLOW");
+						    System.out.println("No rows found in the table: DATA TABLE IS EMPTY!");
 						}
+
+
 						//.............................................................................................................
 						
 					}
@@ -419,9 +453,11 @@ public class dataFlowOfAddCandidate extends baseClass{
 		     	List<WebElement> error = driver.findElements(By.className("error-message"));
 		     	if (error!=null) {
 					for (WebElement webElement : error) {
-						Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
+						wait.until(ExpectedConditions.visibilityOf(webElement));
+//						Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
+						softAssert.assertTrue(false, "All Required Field Value with Valid Data are required");
 						Thread.sleep(1000);
-						js.executeScript("arguments[0].scrollIntoView();", error);
+						//js.executeScript("arguments[0].scrollIntoView();", error);
 						
 					}
 				} else {
@@ -440,16 +476,33 @@ public class dataFlowOfAddCandidate extends baseClass{
 					System.out.println("number of candidate :"+count);
 					Thread.sleep(1000);
 					
-					String candidateName = driver.findElement(By.xpath("")).getText();
-					
-					String candiadteEmail = driver.findElement(By.xpath("")).getText();
-					
-					String jobId = driver.findElement(By.xpath("")).getText();
-					
-					if (CANDIDATE_NAME.equals(candidateName) && CANDIDATE_EMAIL.equals(candiadteEmail) && JOB_ID.equals(jobId)) {
-						System.out.println("candidate data found : "+"CANDIDATE DATA FLOW SUCCESSFULL");
+					if (!initalrows.isEmpty()) {
+					    boolean isDataFound = false;
+					    for (WebElement row : initalrows) {
+					        String candidateName = row.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[5]")).getText();
+					        System.out.println(candidateName);
+					        String candidateEmail = row.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[6]")).getText();
+					        String jobId = row.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[11]")).getText();
+					        System.out.println(jobId);
+					        String desigination = row.findElement(By.xpath("//table[@class=\"attendance-table\"]/tbody/tr[1]/td[10]")).getText();
+					        System.out.println(desigination);
+					        
+					        if (
+					        		CANDIDATE_NAME.equals(candidateName) &&
+					        		CANDIDATE_EMAIL.equals(candidateEmail) && 
+					        		JOB_ID.equals(jobId.concat(" - ").concat(desigination))
+					        		) {
+					            System.out.println("Candidate data found: " + candidateName + " | Email: " + candidateEmail);
+					            isDataFound = true;
+					            break;  
+					        }
+					    }
+					    
+					    if (!isDataFound) {
+					        System.out.println("No matching candidate data found: NO DATA FLOW.");
+					    }
 					} else {
-						System.out.println("no candidate data found : "+"NO DATA FLOW");
+					    System.out.println("No rows found in the table: DATA TABLE IS EMPTY!");
 					}
 					
 					
@@ -464,7 +517,9 @@ public class dataFlowOfAddCandidate extends baseClass{
 		  //logout............update:-12-9-24----338-341
 			Thread.sleep(1000);
 			logoutPage lo=new logoutPage(driver);
-			lo.logout(driver, "Yes 009");
+			lo.logout(driver, "Yes");
+			
+			softAssert.assertAll("ASSERTION OCCURED");
 		}
 		
 	}

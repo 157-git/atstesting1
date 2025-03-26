@@ -38,7 +38,7 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 	JavaUtil ju = new JavaUtil();
 	public WebDriver sdriver;
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void UpdatedNoOfCandidate() throws IOException, InterruptedException {
 		
 		String USERNAME = pfu.getDataFromPropertyFile("username");
@@ -89,11 +89,11 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 //			
 //			System.out.println("..........1.........");
 //			
-			WebElement table = driver.findElement(By.cssSelector("table[class=\"selfcalling-table attendance-table\"]"));
+			WebElement table = driver.findElement(By.cssSelector("table[class=\"attendance-table\"]"));
 			w.until(ExpectedConditions.visibilityOf(table));
 			
 			//Locate the table and count initial rows
-			 List<WebElement> initialRows = driver.findElements(By.xpath("//table[@class='selfcalling-table attendance-table']/tbody/tr"));
+			 List<WebElement> initialRows = driver.findElements(By.xpath("//table[@class='attendance-table']/tbody/tr"));
 	         int initialRowCount = initialRows.size();
 	         System.out.println("Initial row count: " + initialRowCount);
 			
@@ -105,16 +105,17 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 			System.out.println("......choose file......");
 
 	        //click on view 
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			db.dbDropdown2(driver);
 	        
 			System.out.println(".......uploaded excel viewed.........");
 			
 	        // Count rows again after adding data
-			WebElement table1 = driver.findElement(By.cssSelector("table[class=\"selfcalling-table attendance-table\"]"));
+			WebElement table1 = driver.findElement(By.cssSelector("table[class=\"attendance-table\"]"));
 			w.until(ExpectedConditions.visibilityOf(table1));
 			
-	        List<WebElement> finalRows = driver.findElements(By.xpath("//table[@class='selfcalling-table attendance-table']/tbody/tr"));
+	      //  List<WebElement> finalRows = driver.findElements(By.xpath("//table[@class='selfcalling-table attendance-table']/tbody/tr"));
+			List<WebElement> finalRows = driver.findElements(By.xpath("//table[@class='attendance-table']/tbody/tr"));
 	        int finalRowCount = finalRows.size();
 	        System.out.println("Final row count: " + finalRowCount);
 			
@@ -130,7 +131,7 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 	}
 	
 	
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void uploadExcelData() throws IOException, InterruptedException {
 		
 		String USERNAME = pfu.getDataFromPropertyFile("username");

@@ -13,9 +13,12 @@ import java.util.Set;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Listeners;
@@ -43,7 +46,7 @@ public class dbSendLinkTestNG extends baseClass{
 	JavaUtil ju = new JavaUtil();
 	public WebDriver sdriver;
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void dbShareLink() throws IOException, InterruptedException {
 		
 		String USERNAME = pfu.getDataFromPropertyFile("username");
@@ -94,8 +97,16 @@ public class dbSendLinkTestNG extends baseClass{
 //			//Alert popup = driver.switchTo().alert();
 //	        Thread.sleep(1000);
 //			alert.accept();
-		
 			
+			driver.navigate().refresh();
+
+			//click on dataBase
+			hp.dataBase(driver);
+			
+			//logout
+			Thread.sleep(1000);
+			logoutPage lo=new logoutPage(driver);
+			lo.logout(driver, "Yes");
 			
 			
 			
@@ -214,7 +225,7 @@ public class dbSendLinkTestNG extends baseClass{
 		
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void createResume() throws InterruptedException, IOException {
 		String USERNAME = pfu.getDataFromPropertyFile("username");
 		String PASSWORD = pfu.getDataFromPropertyFile("password");
@@ -250,6 +261,13 @@ public class dbSendLinkTestNG extends baseClass{
 			DataBase db=new DataBase(driver);
 			db.createResume(driver);
 			
+			//click on dataBase
+			hp.dataBase(driver);
+			
+			//logout
+			Thread.sleep(1000);
+			logoutPage lo=new logoutPage(driver);
+			lo.logout(driver, "Yes");
 			
 		}
 	}

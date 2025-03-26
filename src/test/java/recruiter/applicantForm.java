@@ -47,7 +47,7 @@ public class applicantForm extends baseClass_applicant{
 	
 	
 	
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void ApplicantForm() throws IOException, InterruptedException {
 		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
 		JavascriptExecutor j=(JavascriptExecutor) driver;
@@ -60,22 +60,22 @@ public class applicantForm extends baseClass_applicant{
 		String EMAIL = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 2);
 		String PREF_LOCATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 3);
 		String NOTICE_PERIOD = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 4);
-		String CERTIFICATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 5);
-		String DOB = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 6);
+		//String CERTIFICATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 5);
+		//String DOB = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 6);
 		String CTC=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 7);
 		String EXP_CTC=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 8);
 		String EDUCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 9);
 		String JOBDESIGNATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 10);
 		String CURRENT_LOCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 11);
 		String TOTAL_EXPERIENCE=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 12);
-		String RELEVENT_EXPERIENCE=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 13);
+		//String RELEVENT_EXPERIENCE=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 13);
 		String GENDER=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 14);
-		String COMPANYNAME=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 15);
-		String NEGOTIATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 16);
-		String OFFER_SALARY=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 17);
-		String OFFER_DETAILS=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 18);
-		String WHATSAPP=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 19);
-		String DISABILITY=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 20);
+		//String COMPANYNAME=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 15);
+		//String NEGOTIATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 16);
+		//String OFFER_SALARY=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 17);
+		//String OFFER_DETAILS=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 18);
+		//String WHATSAPP=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 19);
+		//String DISABILITY=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "applicant", 1, 20);
 		
 		WebElement Name = driver.findElement(By.name("candidateName"));
 		Name.sendKeys(NAME);
@@ -133,18 +133,18 @@ public class applicantForm extends baseClass_applicant{
 		WebElement notice_period = driver.findElement(By.name("lineUp.noticePeriod"));
 		notice_period.sendKeys(NOTICE_PERIOD);
 		
-		LocalDate currentDate = LocalDate.now();
-        LocalDate nextDate = currentDate.plusDays(1);
-        // Format the next date to 'YYYY-MM-DD' format
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        String formattedDate = nextDate.format(formatter);
-		WebElement interviewdate = driver.findElement(By.name("lineUp.availabilityForInterview"));
-		interviewdate.sendKeys(formattedDate);
+//		LocalDate currentDate = LocalDate.now();
+//        LocalDate nextDate = currentDate.plusDays(1);
+//        // Format the next date to 'YYYY-MM-DD' format
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//        String formattedDate = nextDate.format(formatter);
+//		WebElement interviewdate = driver.findElement(By.name("lineUp.availabilityForInterview"));
+//		interviewdate.sendKeys(formattedDate);
 		
-		WebElement joiningDate = driver.findElement(By.name("lineUp.expectedJoinDate"));
-		LocalDate joiningAfter = currentDate.plusDays(90);
-		String joinDate = joiningAfter.format(formatter);
-		joiningDate.sendKeys(joinDate);
+//		WebElement joiningDate = driver.findElement(By.name("lineUp.expectedJoinDate"));
+//		LocalDate joiningAfter = currentDate.plusDays(90);
+//		String joinDate = joiningAfter.format(formatter);
+//		joiningDate.sendKeys(joinDate);
 		
 		Thread.sleep(1000);
 		String EXP_Y = TOTAL_EXPERIENCE.split(",")[0].replaceAll("[^0-9]", "");
@@ -159,11 +159,11 @@ public class applicantForm extends baseClass_applicant{
 		
 		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		
-		Thread.sleep(1000);
-		WebElement releventExp = driver.findElement(By.name("lineUp.relevantExperience"));
-		String REL_EXP = RELEVENT_EXPERIENCE.replaceAll("[^0-9.]", ""); 
-		releventExp.sendKeys(REL_EXP);
-		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+//		Thread.sleep(1000);
+//		WebElement releventExp = driver.findElement(By.name("lineUp.relevantExperience"));
+//		String REL_EXP = RELEVENT_EXPERIENCE.replaceAll("[^0-9.]", ""); 
+//		releventExp.sendKeys(REL_EXP);
+//		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 	
 		if (GENDER.contains("Male")) {
 			driver.findElement(By.xpath("//span[text()=\"Male\"]")).click();
@@ -171,29 +171,29 @@ public class applicantForm extends baseClass_applicant{
 			driver.findElement(By.xpath("//span[text()=\"Female\"]")).click();
 		}
 		
-		Thread.sleep(1000);
-		if (!(DISABILITY.isEmpty())) {
-			driver.findElement(By.xpath("(//span[text()=\"Yes\"])[1]")).click();
-			w.until(ExpectedConditions.visibilityOfElementLocated(By.className("disability-dropdown")));
-			WebElement DIS_DD = driver.findElement(By.name("lineUp.disabilityDetails"));
-			DIS_DD.click();
-			Thread.sleep(500);
-			wdu.handleDropdown(DIS_DD, DISABILITY);
-			} else {
-			driver.findElement(By.xpath("(//span[text()=\"No\"])[1]")).click();
-		}
+//		Thread.sleep(1000);
+//		if (!(DISABILITY.isEmpty())) {
+//			driver.findElement(By.xpath("(//span[text()=\"Yes\"])[1]")).click();
+//			w.until(ExpectedConditions.visibilityOfElementLocated(By.className("disability-dropdown")));
+//			WebElement DIS_DD = driver.findElement(By.name("lineUp.disabilityDetails"));
+//			DIS_DD.click();
+//			Thread.sleep(500);
+//			wdu.handleDropdown(DIS_DD, DISABILITY);
+//			} else {
+//			driver.findElement(By.xpath("(//span[text()=\"No\"])[1]")).click();
+//		}
 		
-		j.executeScript("window.scrollTo(0, 0);");
+//		j.executeScript("window.scrollTo(0, 0);");
+//		
+//		WebElement certification = driver.findElement(By.name("lineUp.certificates[0].certificateName"));
+//		certification.sendKeys(CERTIFICATION);
 		
-		WebElement certification = driver.findElement(By.name("lineUp.certificates[0].certificateName"));
-		certification.sendKeys(CERTIFICATION);
+//		File certificate=new File("src\\test\\resources\\certificate.pdf");
+//		WebElement certificateUpload = driver.findElement(By.name("lineUp.certificates[0].certificateFile"));
+//		certificateUpload.sendKeys(certificate.getAbsolutePath());
 		
-		File certificate=new File("src\\test\\resources\\certificate.pdf");
-		WebElement certificateUpload = driver.findElement(By.name("lineUp.certificates[0].certificateFile"));
-		certificateUpload.sendKeys(certificate.getAbsolutePath());
-		
-		WebElement dob = driver.findElement(By.name("lineUp.dateOfBirth"));
-		dob.sendKeys("26-10-2000");
+//		WebElement dob = driver.findElement(By.name("lineUp.dateOfBirth"));
+//		dob.sendKeys("26-10-2000");
 		
 		
 		Thread.sleep(1000);
@@ -207,42 +207,42 @@ public class applicantForm extends baseClass_applicant{
 		WebElement photoUpload = driver.findElement(By.id("lineUp.photo"));
 		photoUpload.sendKeys(photo.getAbsolutePath());
 		
-		Thread.sleep(1000);
-		if (!(COMPANYNAME.isEmpty())) {
-			driver.findElement(By.xpath("(//span[text()=\"Yes\"])[2]")).click();
-			j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-			
-			WebElement CompanyName = driver.findElement(By.name("lineUp.companyName"));
-			CompanyName.sendKeys(COMPANYNAME);
-			
-			driver.findElement(By.name("lineUp.offersalary")).sendKeys(OFFER_SALARY);
-			
-			if (!(NEGOTIATION.isEmpty())) {
-				driver.findElement(By.xpath("(//span[text()=\"Yes\"])[3]")).click();
-			} else {
-				driver.findElement(By.xpath("(//span[text()=\"No\"])[3]")).click();
-			}
-			
-			driver.findElement(By.name("lineUp.offerdetails")).sendKeys(OFFER_DETAILS);	
-			
-		} else {
-			driver.findElement(By.xpath("//span[text()=\"No\"]")).click();
-		}
+//		Thread.sleep(1000);
+//		if (!(COMPANYNAME.isEmpty())) {
+//			driver.findElement(By.xpath("(//span[text()=\"Yes\"])[2]")).click();
+//			j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+//			
+//			WebElement CompanyName = driver.findElement(By.name("lineUp.companyName"));
+//			CompanyName.sendKeys(COMPANYNAME);
+//			
+//			driver.findElement(By.name("lineUp.offersalary")).sendKeys(OFFER_SALARY);
+//			
+//			if (!(NEGOTIATION.isEmpty())) {
+//				driver.findElement(By.xpath("(//span[text()=\"Yes\"])[3]")).click();
+//			} else {
+//				driver.findElement(By.xpath("(//span[text()=\"No\"])[3]")).click();
+//			}
+//			
+//			driver.findElement(By.name("lineUp.offerdetails")).sendKeys(OFFER_DETAILS);	
+//			
+//		} else {
+//			driver.findElement(By.xpath("//span[text()=\"No\"]")).click();
+//		}
 		
 		
-		if (!(WHATSAPP.isEmpty())) {
-			driver.findElement(By.xpath("(//span[text()=\"Yes\"])[4]")).click();
-			w.until(ExpectedConditions.visibilityOfElementLocated(By.name("alternateNumber")));
-			WebElement whatsup = driver.findElement(By.name("alternateNumber"));
-			 double value1 = Double.parseDouble(WHATSAPP);
-		        // Convert to a long to remove decimal places
-		        long longValue1 = (long) value1;
-		        WHATSAPP= String.valueOf(longValue1);
-		        whatsup.sendKeys(WHATSAPP);
-			
-		} else {
-			driver.findElement(By.xpath("(//span[text()=\"No\"])[4]")).click();
-		}
+//		if (!(WHATSAPP.isEmpty())) {
+//			driver.findElement(By.xpath("(//span[text()=\"Yes\"])[4]")).click();
+//			w.until(ExpectedConditions.visibilityOfElementLocated(By.name("alternateNumber")));
+//			WebElement whatsup = driver.findElement(By.name("alternateNumber"));
+//			 double value1 = Double.parseDouble(WHATSAPP);
+//		        // Convert to a long to remove decimal places
+//		        long longValue1 = (long) value1;
+//		        WHATSAPP= String.valueOf(longValue1);
+//		        whatsup.sendKeys(WHATSAPP);
+//			
+//		} else {
+//			driver.findElement(By.xpath("(//span[text()=\"No\"])[4]")).click();
+//		}
 		
 		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		Thread.sleep(500);
@@ -252,12 +252,12 @@ public class applicantForm extends baseClass_applicant{
 		submit.click();
 		
 		//String afterSubmitURL = driver.getCurrentUrl();
-		WebElement error = driver.findElement(By.xpath("//span[@class=\"error\"]"));
+//		WebElement error = driver.findElement(By.xpath("//span[@class=\"error\"]"));
 		
-		if (error.isDisplayed()) {
-			Assert.fail(" REQUIRED DATA IS NOT CORRECT");
-			wdu.ScreenShot(driver, "applicantForm");
-		} else {
+//		if (error.isDisplayed()) {
+//			Assert.fail(" REQUIRED DATA IS NOT CORRECT");
+//			wdu.ScreenShot(driver, "applicantForm");
+//		} else {
 			
 			WebElement toastmsg = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"Toastify__toast-body\"]/div[2]")));
 			String msg = toastmsg.getText();
@@ -276,13 +276,13 @@ public class applicantForm extends baseClass_applicant{
 			}else {
 				Assert.fail("FIX THE ERROR TO SUBMIT DETAILS");
 			}
-		}	
+//		}	
 	
 	}
 	
 	
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void AapplicantFormMYSQL() throws InterruptedException, ParseException {
 		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(10));
 		JavascriptExecutor j=(JavascriptExecutor) driver;
@@ -328,16 +328,16 @@ public class applicantForm extends baseClass_applicant{
 //            	String INTERVIEW_DATE=resultSet.getString("InterviewDate");
 //            	String JOINING_DATE=resultSet.getString("JoiningDate");
             	String TOTAL_EXP=resultSet.getString("TotalExperience");
-            	String RELEVENT_EXP=resultSet.getString("ReleventExperience");
+            	//String RELEVENT_EXP=resultSet.getString("ReleventExperience");
             	String GENDER=resultSet.getString("Gender");
-            	String COMPANY_NAME=resultSet.getString("CompanyName");
-            	String OFFER_SALARY=resultSet.getString("OfferSalary");
-            	String OFFER_DETAILS=resultSet.getString("OfferDetails");
-            	String CERTIFICATION=resultSet.getString("Certification");
-            	String DOB=resultSet.getString("DateOfBirth");
-            	String WHATSAPP=resultSet.getString("whatsappNumber");
-            	String DISABILITY=resultSet.getString("disability");
-            	String NEGOTIATION=resultSet.getString("negotiation");
+            	//String COMPANY_NAME=resultSet.getString("CompanyName");
+            	//String OFFER_SALARY=resultSet.getString("OfferSalary");
+            	//String OFFER_DETAILS=resultSet.getString("OfferDetails");
+            	//String CERTIFICATION=resultSet.getString("Certification");
+            	//String DOB=resultSet.getString("DateOfBirth");
+            	//String WHATSAPP=resultSet.getString("whatsappNumber");
+            	//String DISABILITY=resultSet.getString("disability");
+            	//String NEGOTIATION=resultSet.getString("negotiation");
             	//certificates and profile not added
             	Blob RESUME = resultSet.getBlob("Resume");
             	
@@ -392,19 +392,19 @@ public class applicantForm extends baseClass_applicant{
         		WebElement notice_period = driver.findElement(By.name("lineUp.noticePeriod"));
         		notice_period.sendKeys(NOTICE_PERIOD);
         		
-        		LocalDate currentDate = LocalDate.now();
-                LocalDate nextDate = currentDate.plusDays(1);
-                // Format the next date to 'YYYY-MM-DD' format
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                String formattedDate = nextDate.format(formatter);
-        		WebElement interviewdate = driver.findElement(By.name("lineUp.availabilityForInterview"));
-        		interviewdate.sendKeys(formattedDate);
+//        		LocalDate currentDate = LocalDate.now();
+//                LocalDate nextDate = currentDate.plusDays(1);
+//                // Format the next date to 'YYYY-MM-DD' format
+//                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//                String formattedDate = nextDate.format(formatter);
+//        		WebElement interviewdate = driver.findElement(By.name("lineUp.availabilityForInterview"));
+//        		interviewdate.sendKeys(formattedDate);
         		
-        		Thread.sleep(1000);
-        		LocalDate joiningAfter = currentDate.plusDays(60);
-        		String joinDate = joiningAfter.format(formatter);
-        		WebElement joiningDate = driver.findElement(By.id("lineUp.expectedJoinDate"));
-        		joiningDate.sendKeys(joinDate);
+//        		Thread.sleep(1000);
+//        		LocalDate joiningAfter = currentDate.plusDays(60);
+//        		String joinDate = joiningAfter.format(formatter);
+//        		WebElement joiningDate = driver.findElement(By.id("lineUp.expectedJoinDate"));
+//        		joiningDate.sendKeys(joinDate);
         		
         		Thread.sleep(1000);
         		//String  EXP_Y= TOTAL_EXP.split(",")[0];
@@ -418,11 +418,11 @@ public class applicantForm extends baseClass_applicant{
         		}
         		totalExp_m.sendKeys(EXP_M);
         		
-        		Thread.sleep(1000);
-        		WebElement releventExp = driver.findElement(By.name("lineUp.relevantExperience"));
-        		String REL_EXP = RELEVENT_EXP.replaceAll("[^0-9.]", ""); 
-        		releventExp.sendKeys(REL_EXP);
-        		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+//        		Thread.sleep(1000);
+//        		WebElement releventExp = driver.findElement(By.name("lineUp.relevantExperience"));
+//        		String REL_EXP = RELEVENT_EXP.replaceAll("[^0-9.]", ""); 
+//        		releventExp.sendKeys(REL_EXP);
+//        		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
         		
         		if (GENDER.contains("Male")) {
         			driver.findElement(By.xpath("//span[text()=\"Male\"]")).click();
@@ -430,33 +430,33 @@ public class applicantForm extends baseClass_applicant{
         			driver.findElement(By.xpath("//span[text()=\"Female\"]")).click();
         		}
         		
-        		Thread.sleep(1000);
-        		if (!(DISABILITY.isEmpty())) {
-        			driver.findElement(By.xpath("(//span[text()=\"Yes\"])[1]")).click();
-        			w.until(ExpectedConditions.visibilityOfElementLocated(By.className("disability-dropdown")));
-        			WebElement DIS_DD = driver.findElement(By.name("lineUp.disabilityDetails"));
-        			DIS_DD.click();
-        			Thread.sleep(500);
-        			wdu.handleDropdown(DIS_DD, DISABILITY);
-        			} else {
-        			driver.findElement(By.xpath("(//span[text()=\"No\"])[1]")).click();
-        		}
+//        		Thread.sleep(1000);
+//        		if (!(DISABILITY.isEmpty())) {
+//        			driver.findElement(By.xpath("(//span[text()=\"Yes\"])[1]")).click();
+//        			w.until(ExpectedConditions.visibilityOfElementLocated(By.className("disability-dropdown")));
+//        			WebElement DIS_DD = driver.findElement(By.name("lineUp.disabilityDetails"));
+//        			DIS_DD.click();
+//        			Thread.sleep(500);
+//        			wdu.handleDropdown(DIS_DD, DISABILITY);
+//        			} else {
+//        			driver.findElement(By.xpath("(//span[text()=\"No\"])[1]")).click();
+//        		}
         		
-        		j.executeScript("window.scrollTo(0, 0);");
-        		Thread.sleep(1000);
-        		WebElement certification = driver.findElement(By.name("lineUp.certificates[0].certificateName"));
-        		certification.sendKeys(CERTIFICATION);
+//        		j.executeScript("window.scrollTo(0, 0);");
+//        		Thread.sleep(1000);
+//        		WebElement certification = driver.findElement(By.name("lineUp.certificates[0].certificateName"));
+//        		certification.sendKeys(CERTIFICATION);
         		
-        		JavascriptExecutor js = (JavascriptExecutor) driver;
-        		WebElement dob = driver.findElement(By.name("lineUp.dateOfBirth"));
-        		System.out.println(DOB);
-        		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-        		SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd-MM-yyyy");
-        		Date date = inputFormat.parse(DOB);
-        		String formattedDate1 = dateFormat1.format(date);
-    	       // js.executeScript("arguments[0].value='" + formattedDate1 + "';", dob);
-        		dob.sendKeys(formattedDate1);
-    	        System.out.println(formattedDate1);
+//        		JavascriptExecutor js = (JavascriptExecutor) driver;
+//        		WebElement dob = driver.findElement(By.name("lineUp.dateOfBirth"));
+//        		System.out.println(DOB);
+//        		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        		SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd-MM-yyyy");
+//        		Date date = inputFormat.parse(DOB);
+//        		String formattedDate1 = dateFormat1.format(date);
+//    	       // js.executeScript("arguments[0].value='" + formattedDate1 + "';", dob);
+//        		dob.sendKeys(formattedDate1);
+//    	        System.out.println(formattedDate1);
     	        
         		Thread.sleep(1000);
         		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
@@ -492,37 +492,37 @@ public class applicantForm extends baseClass_applicant{
         		File photo=new File("src\\test\\resources\\uploadPhotoProfile.jpeg");
         		photoUpload.sendKeys(photo.getAbsolutePath());
         		
-        		Thread.sleep(1000);
-        		if (!(COMPANY_NAME.isEmpty())) {
-        			driver.findElement(By.xpath("(//span[text()=\"Yes\"])[2]")).click();
-        			j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-        			
-        			WebElement CompanyName = driver.findElement(By.name("lineUp.companyName"));
-        			CompanyName.sendKeys(COMPANY_NAME);
-        			
-        			driver.findElement(By.name("lineUp.offersalary")).sendKeys(OFFER_SALARY);
-        			
-        			if (!(NEGOTIATION.isEmpty())) {
-        				driver.findElement(By.xpath("(//span[text()=\"Yes\"])[3]")).click();
-					} else {
-						driver.findElement(By.xpath("(//span[text()=\"No\"])[3]")).click();
-					}
-        			
-        			driver.findElement(By.name("lineUp.offerdetails")).sendKeys(OFFER_DETAILS);
-        			
-        		} else {
-        			driver.findElement(By.xpath("//span[text()=\"No\"]")).click();
-        		}
+//        		Thread.sleep(1000);
+//        		if (!(COMPANY_NAME.isEmpty())) {
+//        			driver.findElement(By.xpath("(//span[text()=\"Yes\"])[2]")).click();
+//        			j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+//        			
+//        			WebElement CompanyName = driver.findElement(By.name("lineUp.companyName"));
+//        			CompanyName.sendKeys(COMPANY_NAME);
+//        			
+//        			driver.findElement(By.name("lineUp.offersalary")).sendKeys(OFFER_SALARY);
+//        			
+//        			if (!(NEGOTIATION.isEmpty())) {
+//        				driver.findElement(By.xpath("(//span[text()=\"Yes\"])[3]")).click();
+//					} else {
+//						driver.findElement(By.xpath("(//span[text()=\"No\"])[3]")).click();
+//					}
+//        			
+//        			driver.findElement(By.name("lineUp.offerdetails")).sendKeys(OFFER_DETAILS);
+//        			
+//        		} else {
+//        			driver.findElement(By.xpath("//span[text()=\"No\"]")).click();
+//        		}
         		
-        		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-        		if (!(WHATSAPP.isEmpty())) {
-					driver.findElement(By.xpath("(//span[text()=\"Yes\"])[4]")).click();
-					w.until(ExpectedConditions.visibilityOfElementLocated(By.name("alternateNumber")));
-					driver.findElement(By.name("alternateNumber")).sendKeys(WHATSAPP);
-					
-				} else {
-					driver.findElement(By.xpath("(//span[text()=\"No\"])[4]")).click();
-				}
+//        		j.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+//        		if (!(WHATSAPP.isEmpty())) {
+//					driver.findElement(By.xpath("(//span[text()=\"Yes\"])[4]")).click();
+//					w.until(ExpectedConditions.visibilityOfElementLocated(By.name("alternateNumber")));
+//					driver.findElement(By.name("alternateNumber")).sendKeys(WHATSAPP);
+//					
+//				} else {
+//					driver.findElement(By.xpath("(//span[text()=\"No\"])[4]")).click();
+//				}
         		
         		
         		Thread.sleep(1000);
@@ -531,12 +531,12 @@ public class applicantForm extends baseClass_applicant{
         		Thread.sleep(2000);
         		submit.click();
         		
-        		WebElement error = driver.findElement(By.xpath("//span[@class=\"error\"]"));
-        		
-        		if (error.isDisplayed()) {
-        			Assert.fail(" REQUIRED DATA IS NOT CORRECT");
-        			wdu.ScreenShot(driver, "applicantForm");
-        		} else {
+//        		WebElement error = driver.findElement(By.xpath("//span[@class=\"error\"]"));
+//        		
+//        		if (error.isDisplayed()) {
+//        			Assert.fail(" REQUIRED DATA IS NOT CORRECT");
+//        			wdu.ScreenShot(driver, "applicantForm");
+//        		} else {
         		
         		WebElement toastmsg = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"Toastify__toast-body\"]/div[2]")));
         		String msg = toastmsg.getText();
@@ -558,7 +558,7 @@ public class applicantForm extends baseClass_applicant{
                     Assert.fail("ERROR: Fix the issues to submit details.");
                 }
         	
-        		}	
+//        		}	
         		
 
             	

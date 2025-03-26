@@ -22,7 +22,7 @@ import ObjectRepository_POM.RecruiterhomePage;
 import ObjectRepository_POM.loginPage;
 import ObjectRepository_POM.logoutPage;
 
-public class help_Distance extends baseClass{
+public class help_DistanceTestNG extends baseClass{
 	
 	PropertyFileUtil pfu = new PropertyFileUtil();
 	WebDriverUtil wdu=new WebDriverUtil();

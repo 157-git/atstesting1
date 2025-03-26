@@ -58,7 +58,6 @@ public class FC_CallingTrackerTestNG extends baseClass{
 		Thread.sleep(2000);
 		String LoginPageUrl=driver.getCurrentUrl();
 		System.out.println(LoginPageUrl);
-		
 	
 		loginPage lp = new loginPage(driver);
 		lp.login(USERNAME, PASSWORD);
@@ -142,8 +141,13 @@ public class FC_CallingTrackerTestNG extends baseClass{
 				String passout=driver.findElement(By.name("lineUp.yearOfPassing")).getAttribute("value");
 				eu.writeDataInExcel("callingTracker",1, 12, passout);
 				
-				String certification=driver.findElement(By.name("lineUp.extraCertification")).getAttribute("value");
-				eu.writeDataInExcel("callingTracker",1, 13, certification);
+				WebElement currentlyWorking = driver.findElement(By.xpath("//span[@class=\"ant-radio-label\"]"));
+				if(currentlyWorking.isSelected()) {
+					String cw=currentlyWorking.getAttribute("value");
+					System.out.println(eu.writeDataInExcel("callingTracker",1, 13, cw));
+				}else {
+					eu.writeDataInExcel("callingTracker",1, 13, "");
+				}
 				
 				String Currentcompany=driver.findElement(By.name("lineUp.companyName")).getAttribute("value");
 				eu.writeDataInExcel("callingTracker",1, 14, Currentcompany);
@@ -207,7 +211,7 @@ public class FC_CallingTrackerTestNG extends baseClass{
 				String CALLSUMMARY = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 10);
 				String EDUCATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 11);
 				String PASSOUT = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 12);
-				String CERTIFICATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 13);
+				String CURRENTLY_WORKING = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 13);
 				String CURRENTCOMPANY = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 14);
 				String TOTALEXPYEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 15);
 				String TOTALEXPMONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 15);
@@ -225,6 +229,7 @@ public class FC_CallingTrackerTestNG extends baseClass{
 				String FINALSTATUS = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 25);
 				String INTERVIEWDATE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 26);
 				String INTERVIEWTIME = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "callingTracker", 2, 27);
+				//String CURRENTLY_WORKING=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "AddCandidate", 2, 22);
 				
 				//............UPDATE DATA IN THE FIELD FROM EXCEL SHEET...............
 				
@@ -245,22 +250,46 @@ public class FC_CallingTrackerTestNG extends baseClass{
 						whatsup_Number.clear();
 						whatsup_Number.sendKeys(WHATSUPNUMBER);
 						
-						WebElement Source = driver.findElement(By.name("sourceName"));
-						Source.click();
+						Thread.sleep(1000);
+					    WebElement sourceName = driver.findElement(By.name("sourceName"));
+					    sourceName.click();
 					    Thread.sleep(1000);
-						wdu.handleDropdown(Source, SOURCE);
+//					    wdu.handleDropdown(sourceName, SOURCE);
+					    if (SOURCE.equals("linkedIn") || SOURCE.equals("Naukri") || SOURCE.equals("Indeed ") || SOURCE.equals("Times") ||
+					    		SOURCE.equals("Social Media") || SOURCE.equals("Company Page") || SOURCE.equals("Excel") || SOURCE.equals("Friends")) {
+							
+							wdu.handleDropdown(sourceName, SOURCE);
+							System.out.println("selected from dropdown :"+SOURCE);
+						} else {
+							driver.findElement(By.xpath("(//option[text()=\"others\"])[1]")).click();
+							Thread.sleep(1000);
+							WebElement other = driver.findElement(By.name("sourceNameOthers"));
+							//other.click();
+							other.sendKeys(SOURCE);
+						}
 						System.out.println("//.........1......");
 						
 						WebElement job_Id = driver.findElement(By.name("requirementId"));
-						Source.click();
+						job_Id.click();
 						Thread.sleep(1000);
 						wdu.handleDropdown(job_Id, JOBID);
 						System.out.println("...........2......");
 						
-						WebElement calling_Feedback = driver.findElement(By.name("callingFeedback"));
-						calling_Feedback.click();
-						Thread.sleep(1000);
-						wdu.handleDropdown(calling_Feedback, CALLINGFEEDBACK);
+						 WebElement feedback = driver.findElement(By.name("callingFeedback"));
+						 feedback.click();
+						 Thread.sleep(1000);
+						   if (CALLINGFEEDBACK.equals("Call Done") || CALLINGFEEDBACK.equals("Asked for Call Back") || CALLINGFEEDBACK.equals("No Answer") || CALLINGFEEDBACK.equals("Network Issue") ||
+								   CALLINGFEEDBACK.equals("Invalid Number") || CALLINGFEEDBACK.equals("Need to call back") || CALLINGFEEDBACK.equals("Do not call again")) {
+								
+								wdu.handleDropdown(feedback, CALLINGFEEDBACK);
+								System.out.println("selected from dropdown :"+CALLINGFEEDBACK);
+							} else {
+								driver.findElement(By.xpath("(//option[text()=\"Other\"])[1]")).click();
+								Thread.sleep(1000);
+								WebElement other = driver.findElement(By.name("callingFeedbackOthers"));
+								//other.click();
+								other.sendKeys(CALLINGFEEDBACK);
+							}
 						
 						WebElement d_o_b = driver.findElement(By.name("lineUp.dateOfBirth"));
 						d_o_b.clear();
@@ -294,9 +323,14 @@ public class FC_CallingTrackerTestNG extends baseClass{
 						Passout.clear();
 						Passout.sendKeys(PASSOUT);
 						
-						WebElement Certification=driver.findElement(By.name("lineUp.extraCertification"));
-						Certification.clear();
-						Certification.sendKeys(CERTIFICATION);
+						//currently working or not
+				   		if (CURRENTLY_WORKING.equals("Yes")){
+							driver.findElement(By.xpath("(//span[@class=\"ant-radio ant-wave-target\"])[1]")).click();
+							
+				   		} else {
+
+				   			driver.findElement(By.xpath("(//span[@class=\"ant-radio ant-wave-target\"])[2]")).click();
+						}  
 						
 						WebElement Current_company=driver.findElement(By.name("lineUp.companyName"));
 						Current_company.clear();
@@ -326,10 +360,9 @@ public class FC_CallingTrackerTestNG extends baseClass{
 						notice_Period.sendKeys(NOTICEPERIOD);
 						
 						
-						WebElement comm_Rating=driver.findElement(By.name("communicationRating"));
-						comm_Rating.clear();
-						comm_Rating.sendKeys(COMMRATING);
-						
+						WebElement comm_Rating=driver.findElement(By.xpath("(//div[@class=\"setDisplayFlexForUpdateForm\"])[14]/select"));
+						Thread.sleep(1000);
+						wdu.handleDropdown(comm_Rating, COMMRATING);				
 						
 						WebElement CurrentCTC_Year=driver.findElement(By.name("lineUp.currentCTCLakh"));
 						WebElement CurrentCTC_Month=driver.findElement(By.name("lineUp.currentCTCThousand"));
@@ -362,7 +395,7 @@ public class FC_CallingTrackerTestNG extends baseClass{
 						System.out.println(".......5.........");
 						
 						Thread.sleep(1000);
-						WebElement offer_Letter=driver.findElement(By.xpath("(//div[@class=\"update-calling-tracker-two-input-container\"])[7]/div/div/select"));
+						WebElement offer_Letter=driver.findElement(By.xpath("(//div[@class=\"update-calling-tracker-two-input-container\"])[5]/div/div/select"));
 						//w.until(ExpectedConditions.elementToBeClickable(offer_Letter));
 						//offer_Letter.click();
 						Thread.sleep(1000);
@@ -380,7 +413,7 @@ public class FC_CallingTrackerTestNG extends baseClass{
 						messageFor_TL.sendKeys(MESSAGEFORTL);
 						
 						Thread.sleep(1000);
-						WebElement status_Type=driver.findElement(By.xpath("(//div[@class=\"update-calling-tracker-two-input-container\"])[8]/select"));
+						WebElement status_Type=driver.findElement(By.xpath("(//div[@class=\"intresteddiv\"])/select"));
 						//w.until(ExpectedConditions.elementToBeClickable(status_Type));
 						//status_Type.click();
 						Thread.sleep(1000);
