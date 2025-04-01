@@ -1,12 +1,16 @@
 package recruiter;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -22,6 +26,7 @@ import ObjectRepository_POM.RecruiterhomePage;
 import ObjectRepository_POM.RecruiterGear;
 import ObjectRepository_POM.ShortListed;
 import ObjectRepository_POM.loginPage;
+import ObjectRepository_POM.logoutPage;
 
 @Listeners(listenerImplementation.class)
 public class ShortListedTestNG extends baseClass {
@@ -40,9 +45,10 @@ public class ShortListedTestNG extends baseClass {
 //		wdu.maximize(driver);
 //		wdu.implicitWait(driver);
 
-		String USERNAME = pfu.getDataFromPropertyFile("username");
-		String PASSWORD = pfu.getDataFromPropertyFile("password");
-		String URL=pfu.getDataFromPropertyFile("rec_url");
+		String USERNAME = pfu.getDataFromPropertyFile("not_username");
+		String PASSWORD = pfu.getDataFromPropertyFile("not_password");
+		String URL=pfu.getDataFromPropertyFile("not_url");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		
 		
 		RecruiterGear r = new RecruiterGear(driver);
@@ -68,7 +74,19 @@ public class ShortListedTestNG extends baseClass {
 			}
 			//Assert.fail("Invalid login details");	
 		} else if(RecPageUrl.equals(URL)){
+			
+			System.out.println("login successfull");
+			
+			List<WebElement> alerts = driver.findElements(By.className("ant-modal-content"));
+			if (!alerts.isEmpty() && alerts.get(0).isDisplayed()) {
+			    WebElement ok = driver.findElement(By.xpath("//div[@class=\"ant-modal-footer\"]/button[2]"));
+			    ok.click();
+			}
+
+
+			
 			RecruiterhomePage hp = new RecruiterhomePage(driver);
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("spinner-container")));
 			hp.home(driver);
 			System.out.println("TEST");
 			
@@ -101,8 +119,18 @@ public class ShortListedTestNG extends baseClass {
 				String whatsupNumber = driver.findElement(By.name("alternateNumber")).getAttribute("value");
 				eu.writeDataInExcel("shortlisted",1, 3, whatsupNumber);
 				
-				String source = driver.findElement(By.name("sourceName")).getAttribute("value");
-				eu.writeDataInExcel("shortlisted",1, 4, source);
+				String source = driver.findElement(By.name("sourceName")).getAttribute("value");	
+				 Thread.sleep(1000);
+				    if (source.equals("linkedIn") || source.equals("Naukri") || source.equals("Indeed ") || source.equals("Times") ||
+				    		source.equals("Social Media") || source.equals("Company Page") || source.equals("Excel") || source.equals("Friends")) {
+						
+				    	eu.writeDataInExcel("shortlisted",1, 4, source);
+						System.out.println("selected from dropdown :"+source);
+					} else if(source.equals("others")){
+						
+						String other = driver.findElement(By.xpath("//input[@name=\"sourceName\"]")).getAttribute("value");
+						eu.writeDataInExcel("shortlisted",1, 4, other);
+					}
 				
 				String jobId = driver.findElement(By.name("requirementId")).getAttribute("value");
 				System.out.println(eu.writeDataInExcel("shortlisted",1, 5, jobId));;
@@ -111,8 +139,18 @@ public class ShortListedTestNG extends baseClass {
 				eu.writeDataInExcel("shortlisted",1, 6, company);
 				
 				String callingFeedback = driver.findElement(By.name("callingFeedback")).getAttribute("value");
-				System.out.println(eu.writeDataInExcel("shortlisted",1, 7, callingFeedback));;
-				
+				 Thread.sleep(1000);
+				   if (callingFeedback.equals("Call Done") || callingFeedback.equals("Asked for Call Back") || callingFeedback.equals("No Answer") || callingFeedback.equals("Network Issue") ||
+						   callingFeedback.equals("Invalid Number") || callingFeedback.equals("Need to call back") || callingFeedback.equals("Do not call again")) {
+						
+					   eu.writeDataInExcel("shortlisted",1, 7, callingFeedback);
+						System.out.println("selected from dropdown :"+callingFeedback);
+					} else {
+						String other = driver.findElement(By.name("callingFeedbackOthers")).getAttribute("value");
+						eu.writeDataInExcel("shortlisted",1, 7, other);
+					}
+				   
+				;
 				String dob = driver.findElement(By.name("lineUp.dateOfBirth")).getAttribute("value");
 				System.out.println(eu.writeDataInExcel("shortlisted",1, 8, dob));
 				
@@ -134,8 +172,15 @@ public class ShortListedTestNG extends baseClass {
 				String passout=driver.findElement(By.name("lineUp.yearOfPassing")).getAttribute("value");
 				eu.writeDataInExcel("shortlisted",1, 12, passout);
 				
-				String certification=driver.findElement(By.name("lineUp.extraCertification")).getAttribute("value");
-				eu.writeDataInExcel("shortlisted",1, 13, certification);
+				//currently working or not
+				WebElement currentlyWorking = driver.findElement(By.name("lineUp.extraCertification"));
+				if (currentlyWorking.isSelected()){
+					String cw=currentlyWorking.getAttribute("value");
+					eu.writeDataInExcel("shortlisted",1, 13, cw);
+		   		} else {
+		   			eu.writeDataInExcel("shortlisted",1, 13, "");
+				}
+				
 				
 				String Currentcompany=driver.findElement(By.name("lineUp.companyName")).getAttribute("value");
 				eu.writeDataInExcel("shortlisted",1, 14, Currentcompany);
@@ -201,7 +246,7 @@ public class ShortListedTestNG extends baseClass {
 				String CALLSUMMARY = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "shortlisted", 2, 10);
 				String EDUCATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "shortlisted", 2, 11);
 				String PASSOUT = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "shortlisted", 2, 12);
-				String CERTIFICATION = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "shortlisted", 2, 13);
+				String CURRENTLY_WORKING = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "shortlisted", 2, 13);
 				String CURRENTCOMPANY = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "shortlisted", 2, 14);
 				String TOTALEXPYEAR = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "shortlisted", 2, 15);
 				String TOTALEXPMONTH = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "shortlisted", 2, 15);
@@ -219,6 +264,7 @@ public class ShortListedTestNG extends baseClass {
 				String FINALSTATUS = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "shortlisted", 2, 25);
 				String INTERVIEWDATE = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "shortlisted", 2, 26);
 				String INTERVIEWTIME = eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx", "shortlisted", 2, 27);
+				
 				
 				//............UPDATE DATA IN THE FIELD FROM EXCEL SHEET...............
 				
@@ -242,19 +288,41 @@ public class ShortListedTestNG extends baseClass {
 				WebElement Source = driver.findElement(By.name("sourceName"));
 				Source.click();
 			    Thread.sleep(1000);
-				wdu.handleDropdown(Source, SOURCE);
 				System.out.println("//.........1......");
+				if (SOURCE.equals("linkedIn") || SOURCE.equals("Naukri") || SOURCE.equals("Indeed ") || SOURCE.equals("Times") ||
+			    		SOURCE.equals("Social Media") || SOURCE.equals("Company Page") || SOURCE.equals("Excel") || SOURCE.equals("Friends")) {
+			
+					wdu.handleDropdown(Source, SOURCE);
+					System.out.println("selected from dropdown :"+SOURCE);
+				} else {
+					driver.findElement(By.xpath("(//option[text()=\"Others\"])[1]")).click();
+					Thread.sleep(1000);
+					WebElement other = driver.findElement(By.name("sourceNameOthers"));
+					//other.click();
+					other.sendKeys(SOURCE);
+				}
 				
 				WebElement job_Id = driver.findElement(By.name("requirementId"));
-				Source.click();
+				job_Id.click();
 				Thread.sleep(1000);
 				wdu.handleDropdown(job_Id, JOBID);
-				System.out.println("...........2......");
+				System.out.println("......2......");
 				
 				WebElement calling_Feedback = driver.findElement(By.name("callingFeedback"));
 				calling_Feedback.click();
 				Thread.sleep(1000);
-				wdu.handleDropdown(calling_Feedback, CALLINGFEEDBACK);
+				 if (CALLINGFEEDBACK.equals("Call Done") || CALLINGFEEDBACK.equals("Asked for Call Back") || CALLINGFEEDBACK.equals("No Answer") || CALLINGFEEDBACK.equals("Network Issue") ||
+						 CALLINGFEEDBACK.equals("Invalid Number") || CALLINGFEEDBACK.equals("Need to call back") || CALLINGFEEDBACK.equals("Do not call again")) {
+						
+					 wdu.handleDropdown(calling_Feedback, CALLINGFEEDBACK);
+						System.out.println("selected from dropdown :"+CALLINGFEEDBACK);
+					} else {
+						driver.findElement(By.xpath("(//option[text()=\"Others\"])[2]")).click();
+						Thread.sleep(1000);
+						WebElement other = driver.findElement(By.name("callingFeedbackOthers"));
+						//other.click();
+						other.sendKeys(CALLINGFEEDBACK);
+					}
 				
 				WebElement d_o_b = driver.findElement(By.name("lineUp.dateOfBirth"));
 				d_o_b.click();
@@ -288,9 +356,14 @@ public class ShortListedTestNG extends baseClass {
 				Passout.clear();
 				Passout.sendKeys(PASSOUT);
 				
-				WebElement Certification=driver.findElement(By.name("lineUp.extraCertification"));
-				Certification.clear();
-				Certification.sendKeys(CERTIFICATION);
+				//currently working or not
+		   		if (CURRENTLY_WORKING.equals("Yes")){
+					driver.findElement(By.xpath("(//span[@class=\"ant-radio ant-wave-target\"])[1]")).click();
+					
+		   		} else {
+
+		   			driver.findElement(By.xpath("(//span[@class=\"ant-radio ant-wave-target\"])[2]")).click();
+				} 
 				
 				WebElement Current_company=driver.findElement(By.name("lineUp.companyName"));
 				Current_company.clear();
@@ -320,9 +393,19 @@ public class ShortListedTestNG extends baseClass {
 				notice_Period.sendKeys(NOTICEPERIOD);
 				
 				
-				WebElement comm_Rating=driver.findElement(By.name("communicationRating"));
-				comm_Rating.clear();
-				comm_Rating.sendKeys(COMMRATING);
+				WebElement comm_Rating=driver.findElement(By.xpath("(//div[@class=\"setDisplayFlexForUpdateForm\"])[14]/select"));
+				Thread.sleep(1000);
+				wdu.handleDropdown(comm_Rating, COMMRATING);
+				
+				
+				//currently working or not
+		   		if (CURRENTLY_WORKING.equals("Yes")){
+					driver.findElement(By.xpath("(//span[@class=\"ant-radio ant-wave-target\"])[1]")).click();
+					
+		   		} else {
+
+		   			driver.findElement(By.xpath("(//span[@class=\"ant-radio ant-wave-target\"])[2]")).click();
+				} 
 				
 				
 				WebElement CurrentCTC_Year=driver.findElement(By.name("lineUp.currentCTCLakh"));
@@ -369,10 +452,11 @@ public class ShortListedTestNG extends baseClass {
 				
 				WebElement status_Type=driver.findElement(By.name("selectYesOrNo"));
 				status_Type.click();
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 				wdu.handleDropdown(status_Type, STATUSTYPE);
 				
-				if (STATUSTYPE.equals("Intrested")) {
+				if (STATUSTYPE.equals("Interested")) {
+					
 					WebElement final_Status=driver.findElement(By.name("lineUp.finalStatus"));
 					final_Status.click();
 				
@@ -418,6 +502,11 @@ public class ShortListedTestNG extends baseClass {
 
 				System.out.println("candidate not found");
 			}
+			
+			Thread.sleep(1000);
+			logoutPage lo=new logoutPage(driver);
+			lo.logout(driver, "Yes");
+			
 			
 		}
 	

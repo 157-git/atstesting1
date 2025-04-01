@@ -105,7 +105,7 @@ public class AddCandidateTestNG extends baseClass{
 		    Thread.sleep(1000);
 		    WebElement statusType= driver.findElement(By.name("selectYesOrNo"));
 		    statusType.click();
-		    Thread.sleep(3000);
+		    Thread.sleep(2000);
 		    wdu.handleDropdown(statusType, STATUS);
 		   
 		   

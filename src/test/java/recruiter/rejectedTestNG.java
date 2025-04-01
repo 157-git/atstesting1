@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import CommonUtil.ExcelUtil;
 import CommonUtil.JavaUtil;
@@ -48,6 +49,8 @@ public class rejectedTestNG extends baseClass{
 		String USERNAME = pfu.getDataFromPropertyFile("not_username");
 		String PASSWORD = pfu.getDataFromPropertyFile("not_password");	
 		String URL=pfu.getDataFromPropertyFile("not_url");
+		SoftAssert softAssert = new SoftAssert();
+
 		
 		//login details of team leader
 		String TL_USERNAME=pfu.getDataFromPropertyFile("not_usernameTL");
@@ -79,6 +82,13 @@ public class rejectedTestNG extends baseClass{
 			//Assert.fail("Invalid login details");
 		} else if(RecPageUrl.equals(URL)){
 			System.out.println("login successfull");
+			
+			WebElement InterviewAlert = driver.findElement(By.className("ant-modal-content"));
+			if (InterviewAlert.isDisplayed()){
+			WebElement ok = driver.findElement(By.xpath("//div[@class=\"ant-modal-footer\"]/button[2]"));
+			ok.click();
+			}
+			
 
 			//click on find candidate
 			RecruiterhomePage hp = new RecruiterhomePage(driver);
@@ -110,7 +120,7 @@ public class rejectedTestNG extends baseClass{
 				lo.logout(driver, "Yes");
 				
 				//click on window back button
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 				driver.navigate().back();
 				
 				Thread.sleep(1000);
