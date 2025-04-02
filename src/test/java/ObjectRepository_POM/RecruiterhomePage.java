@@ -49,12 +49,21 @@ public class RecruiterhomePage {
 	@FindBy(xpath = "//span[text()=\"Help\"]")
 	private WebElement Help;
 	
+	@FindBy(xpath = "//span[text()=\"Interview Questions\"]")
+	private WebElement InterViewQuestion;
+	
+	@FindBy(xpath = "//span[text()=\"History Tracker\"]")
+	private WebElement HistoryTracker;
+	
 	@FindBy(xpath = "//span[text()=\"Choose Colour\"]")
 	private WebElement ChooseColor;
 	
 	@FindBy(xpath = "//span[text()='Logout']")
 	private WebElement Logout;
    
+	
+	
+	
 	
     public RecruiterhomePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
