@@ -261,9 +261,9 @@ public class FC_CallingTrackerTestNG extends baseClass{
 							wdu.handleDropdown(sourceName, SOURCE);
 							System.out.println("selected from dropdown :"+SOURCE);
 						} else {
-							driver.findElement(By.xpath("(//option[text()=\"others\"])[1]")).click();
+							driver.findElement(By.xpath("(//option[text()=\"Others\"])[1]")).click();
 							Thread.sleep(1000);
-							WebElement other = driver.findElement(By.name("sourceNameOthers"));
+							WebElement other = driver.findElement(By.cssSelector("input[name=\"sourceName\"]"));
 							//other.click();
 							other.sendKeys(SOURCE);
 						}
@@ -284,9 +284,9 @@ public class FC_CallingTrackerTestNG extends baseClass{
 								wdu.handleDropdown(feedback, CALLINGFEEDBACK);
 								System.out.println("selected from dropdown :"+CALLINGFEEDBACK);
 							} else {
-								driver.findElement(By.xpath("(//option[text()=\"Other\"])[1]")).click();
+								driver.findElement(By.xpath("(//option[text()=\"Others\"])[2]")).click();
 								Thread.sleep(1000);
-								WebElement other = driver.findElement(By.name("callingFeedbackOthers"));
+								WebElement other = driver.findElement(By.cssSelector("input[name=\"callingFeedback\"]"));
 								//other.click();
 								other.sendKeys(CALLINGFEEDBACK);
 							}
@@ -425,12 +425,25 @@ public class FC_CallingTrackerTestNG extends baseClass{
 							//final_Status.click();
 							wdu.handleDropdown(final_Status, FINALSTATUS);
 						}else {
+							
 							WebElement update_data = driver.findElement(By.xpath("//button[text()=\"Update Data\"]"));
 							Thread.sleep(1000);
 							update_data.click();
+							
+//							//send email to candidate
+//					   		Thread.sleep(1000);
+//					   		WebElement Question = driver.findElement(By.xpath("//input[@class=\"ant-checkbox-input\"]"));
+//					   		Question.click();
+							
+							//driver.findElement(By.className("ant-checkbox-input")).click();
+							driver.findElement(By.xpath("//button[text()=\"Save\"]")).click();
+							
 							Thread.sleep(500);
 							wdu.ScreenShot(driver, "calling tracker");
 						}
+						
+						
+						
 						
 						List<WebElement> error = driver.findElements(By.className("error-message"));
 						boolean anyDisplayed = false;
@@ -448,9 +461,6 @@ public class FC_CallingTrackerTestNG extends baseClass{
 							js.executeScript("arguments[0].scrollIntoView();",help );
 							wdu.ScreenShot(driver, "calling tracker");
 							Assert.assertFalse(anyDisplayed, "All Required Field Value with Valid Data are required");
-						} else {
-							//wdu.ScreenShot(driver, "calling tracker");
-							System.out.println("...");
 						}
 
 				
@@ -470,22 +480,3 @@ public class FC_CallingTrackerTestNG extends baseClass{
 	}
 }
 	
-//	@Test
-//	public void FindCandidate1() throws IOException, InterruptedException {
-//		
-//		
-//		String USERNAME = pfu.getDataFromPropertyFile("username1");
-//		String PASSWORD = pfu.getDataFromPropertyFile("password1");	
-//
-//		System.out.println(".........1............");
-//		TeamLeader r = new TeamLeader(driver);
-//		r.teamLeaderPage(driver);
-//		Thread.sleep(2000);
-//		
-//		System.out.println(".........2............");
-//		loginPage lp = new loginPage(driver);
-//		lp.login(USERNAME, PASSWORD);
-//
-//		
-//	}
-

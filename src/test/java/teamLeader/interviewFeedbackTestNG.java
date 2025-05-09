@@ -35,7 +35,7 @@ public class interviewFeedbackTestNG extends baseClass_TL{
 
 	public WebDriver sdriver;
 	
-	@Test(enabled = true)
+	@Test
 	public void interviewFeedbackUpdate() throws IOException, InterruptedException {
 		
 		// TODO Auto-generated constructor stub
@@ -143,6 +143,10 @@ public class interviewFeedbackTestNG extends baseClass_TL{
 						            WebElement saveButton = row.findElement(By.xpath("//button[text()='Update']"));
 						            Thread.sleep(1000);
 					                saveButton.click();
+					                
+					                Thread.sleep(1000);
+					                WebElement sendEmail = driver.findElement(By.xpath("//div[@class=\"ant-modal-footer\"]/button[1]"));
+									sendEmail.click();
 									
 								}
 
@@ -159,7 +163,8 @@ public class interviewFeedbackTestNG extends baseClass_TL{
 	        		Thread.sleep(1000);
 	        		
 	        			if(msg.contains("Please select an interview response.")) {
-	        				System.out.println("INTERVIEW RESPONSE NOT SELECTED");
+//	        				System.out.println("INTERVIEW RESPONSE NOT SELECTED");
+	        				 softAssert.assertTrue(false, msg);
 		                    wdu.ScreenShot(driver, "interviewFeedback");
 		                    
 		                    WebElement cancelButton = driver.findElement(By.xpath("//button[text()=\"Close\"]"));
@@ -169,6 +174,7 @@ public class interviewFeedbackTestNG extends baseClass_TL{
 	        		 		System.out.println("UPDATE SUCCESSFULLY");
 		                    wdu.ScreenShot(driver, "interviewFeedback"); // Optional: Capture success //button[text()="Close"]
 		                } else {
+		                	 softAssert.assertTrue(false, msg);
 		                    wdu.ScreenShot(driver, "interviewFeedback");
 		                    System.out.println("....ERROR.....");
 		                    
@@ -183,6 +189,8 @@ public class interviewFeedbackTestNG extends baseClass_TL{
 					Thread.sleep(1000);
 					logoutPage lo=new logoutPage(driver);
 					lo.logout(driver, "Yes");
+					
+					softAssert.assertAll("ASSERTION OCCURED");
 					
 				}
 	}

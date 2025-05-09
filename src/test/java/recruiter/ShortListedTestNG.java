@@ -494,6 +494,10 @@ public class ShortListedTestNG extends baseClass {
 				} else {
 					WebElement update_data = driver.findElement(By.xpath("//button[text()=\"Update Data\"]"));
 					update_data.click();
+					
+					//driver.findElement(By.className("ant-checkbox-input")).click();
+					driver.findElement(By.xpath("//button[text()=\"Save\"]")).click();
+					
 					Thread.sleep(1300);
 					wdu.ScreenShot(driver, "SC_updated");
 				}

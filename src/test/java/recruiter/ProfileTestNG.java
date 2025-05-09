@@ -36,7 +36,7 @@ public class ProfileTestNG extends baseClass{
 	public WebDriver sdriver;
 	
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void TeamPerformance() throws IOException, InterruptedException {
 		// TODO Auto-generated constructor stub
 		String USERNAME = pfu.getDataFromPropertyFile("not_username");
@@ -93,10 +93,10 @@ public class ProfileTestNG extends baseClass{
 			driver.findElement(By.xpath("//div[@class=\"profile-back-button\"]/button[2]")).click();
 			
 			Thread.sleep(1000);
-			driver.findElement(By.xpath("//div[@class=\"PIE-date-container\"]/div[3]/label/input")).click();
+			driver.findElement(By.xpath("//div[@class=\"PIE-date-containerteamperformance\"]/div[3]/label/input")).click();
 			
 			Thread.sleep(1000);
-			driver.findElement(By.xpath("//div[@class=\"PIE-job-filter\"]/button")).click();
+			driver.findElement(By.xpath("//div[@class=\"PIE-job-filterteamperformance\"]/button")).click();
 			
 			Thread.sleep(1000);
 			List<WebElement> jobIds = driver.findElements(By.xpath("//div[@class=\"ant-modal-body\"]/div/label"));
@@ -138,7 +138,7 @@ public class ProfileTestNG extends baseClass{
 	
 	
 	
-	@Test(enabled =true)
+	@Test(enabled =false)
 	public void yourAttendance() throws InterruptedException, IOException {
 		
 		// TODO Auto-generated constructor stub
@@ -200,13 +200,13 @@ public class ProfileTestNG extends baseClass{
 					//select date or duration
 					Thread.sleep(1000);
 					//driver.findElement(By.xpath("//div[@class=\"PI-radio-buttons\"]/div[4]/label/input")).click();
-					WebElement customDate = driver.findElement(By.xpath("//div[@class=\"PI-radio-buttons\"]/div[6]/label/input"));	
+					WebElement customDate = driver.findElement(By.xpath("//div[@class=\"PI-radio-buttonsattendanceform\"]/div[6]/label/input"));	
 					customDate.click();
 					
 					Thread.sleep(1000);
 					if (customDate.isSelected()) {
 						
-					WebElement start = driver.findElement(By.xpath("(//input[@class=\"PI-date-input\"])[1]"));
+					WebElement start = driver.findElement(By.xpath("(//input[@class=\"date-pickerattendanceform\"])[1]"));
 	        		
 	        		Thread.sleep(1000);
 	        		LocalDate last10DaysDate = LocalDate.now().minusDays(10);  // Get date 10 days ago
@@ -216,7 +216,7 @@ public class ProfileTestNG extends baseClass{
 	        		System.out.println("start date :"+startDate);
 					
 					
-					WebElement end=driver.findElement(By.xpath("(//input[@class=\"PI-date-input\"])[2]"));
+					WebElement end=driver.findElement(By.xpath("(//input[@class=\"date-pickerattendanceform\"])[2]"));
 					LocalDate currentDate = LocalDate.now();
                     LocalDate nextDate = currentDate.plusDays(1);
 	                // Format the next date to 'YYYY-MM-DD' format

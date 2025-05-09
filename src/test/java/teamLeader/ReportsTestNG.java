@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 import javax.imageio.ImageIO;
 
@@ -110,13 +110,13 @@ public class ReportsTestNG extends baseClass_TL{
 				WebElement ok = driver.findElement(By.xpath("//span[text()=\"OK\"]"));
 				ok.click();
 				
-				WebElement lineup_colour=driver.findElement(By.xpath("(//li[@class=\"listOfIndex\"])[2]/div"));				
-				String colour1 = lineup_colour.getCssValue("background-color");
-				System.out.println(colour1);
-				
-				WebElement Number_lineup = driver.findElement(By.xpath("(//td[@class=\"tabledata\"])[3]"));
-				String number1 = Number_lineup.getText();
-				System.out.println(number1);
+//				WebElement lineup_colour=driver.findElement(By.xpath("(//li[@class=\"listOfIndex\"])[2]/div"));				
+//				String colour1 = lineup_colour.getCssValue("background-color");
+//				System.out.println(colour1);
+//				
+//				WebElement Number_lineup = driver.findElement(By.xpath("(//td[@class=\"tabledata\"])[3]"));
+//				String number1 = Number_lineup.getText();
+//				System.out.println(number1);
 				
 				WebElement canvas = driver.findElement(By.xpath("//canvas"));
 

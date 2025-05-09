@@ -124,7 +124,7 @@ public class notificationflowTestNG extends baseClass_M{
 				//logout
 				Thread.sleep(1000);
 				logoutPage lo=new logoutPage(driver);
-				lo.logout(driver, "Yes 009");
+				lo.logout(driver, "Yes");
 				
 				Thread.sleep(2000);
 				driver.navigate().back();

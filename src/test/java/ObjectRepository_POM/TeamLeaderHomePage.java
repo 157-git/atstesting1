@@ -21,6 +21,9 @@ public class TeamLeaderHomePage{
 	
 	@FindBy(css  = ".ant-badge.css-nqoqt9")
 	private WebElement notification;
+	
+	@FindBy(xpath = "//span[text()=\"Active Team Members \"]")
+    private WebElement activeTeamMember;
 
 	@FindBy(xpath = "//span[text()=\"Team Leader Section\"]")
 	private WebElement teamLeaderSection;

@@ -128,7 +128,7 @@ public class help_interviewQueTestNG extends baseClass{
                // msg = msg.toLowerCase();
                 
                 if (msg.contains("Interview Question Added Successfully...")) {
-					System.out.println("interview question added successfully");
+//					System.out.println("interview question added successfully");
 					wdu.ScreenShot(driver, "interviewQuestion");
 				} else {
 					 softAssert.assertTrue(false, "ERROR: FAILED TO ADD INTERVIEW QUESTION");

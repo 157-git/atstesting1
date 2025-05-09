@@ -2,40 +2,40 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-04-02T18:37:21 IST" name="Default suite" finished-at="2025-04-02T18:39:22 IST" duration-ms="121226">
+  <suite started-at="2025-05-07T15:02:11 IST" name="Default suite" finished-at="2025-05-07T15:03:28 IST" duration-ms="76694">
     <groups>
     </groups>
-    <test started-at="2025-04-02T18:37:21 IST" name="Default test" finished-at="2025-04-02T18:39:22 IST" duration-ms="121226">
-      <class name="recruiter.help_interviewQueTestNG">
-        <test-method is-config="true" signature="BS()[pri:0, instance:recruiter.help_interviewQueTestNG@5e17553a]" started-at="2025-04-02T18:37:17 IST" name="BS" finished-at="2025-04-02T18:37:21 IST" duration-ms="3615" status="PASS">
+    <test started-at="2025-05-07T15:02:11 IST" name="Default test" finished-at="2025-05-07T15:03:28 IST" duration-ms="76694">
+      <class name="Manager.ProfilePersmission">
+        <test-method is-config="true" signature="BS()[pri:0, instance:Manager.ProfilePersmission@909217e]" started-at="2025-05-07T15:02:07 IST" name="BS" finished-at="2025-05-07T15:02:11 IST" duration-ms="4210" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BS -->
-        <test-method is-config="true" signature="BC()[pri:0, instance:recruiter.help_interviewQueTestNG@5e17553a]" started-at="2025-04-02T18:37:21 IST" name="BC" finished-at="2025-04-02T18:37:42 IST" duration-ms="21366" status="PASS">
+        <test-method is-config="true" signature="BC()[pri:0, instance:Manager.ProfilePersmission@909217e]" started-at="2025-05-07T15:02:11 IST" name="BC" finished-at="2025-05-07T15:02:37 IST" duration-ms="26055" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BC -->
-        <test-method is-config="true" signature="BM()[pri:0, instance:recruiter.help_interviewQueTestNG@5e17553a]" started-at="2025-04-02T18:37:42 IST" name="BM" finished-at="2025-04-02T18:37:42 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="BM()[pri:0, instance:Manager.ProfilePersmission@909217e]" started-at="2025-05-07T15:02:38 IST" name="BM" finished-at="2025-05-07T15:02:38 IST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BM -->
-        <test-method signature="interviewQueTestNG()[pri:0, instance:recruiter.help_interviewQueTestNG@5e17553a]" started-at="2025-04-02T18:37:42 IST" name="interviewQueTestNG" finished-at="2025-04-02T18:39:22 IST" duration-ms="99634" status="PASS">
+        <test-method signature="sentProfilePermission()[pri:0, instance:Manager.ProfilePersmission@909217e]" started-at="2025-05-07T15:02:38 IST" name="sentProfilePermission" finished-at="2025-05-07T15:03:28 IST" duration-ms="50149" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- interviewQueTestNG -->
-        <test-method is-config="true" signature="AM()[pri:0, instance:recruiter.help_interviewQueTestNG@5e17553a]" started-at="2025-04-02T18:39:22 IST" name="AM" finished-at="2025-04-02T18:39:22 IST" duration-ms="3" status="PASS">
+        </test-method> <!-- sentProfilePermission -->
+        <test-method is-config="true" signature="AM()[pri:0, instance:Manager.ProfilePersmission@909217e]" started-at="2025-05-07T15:03:28 IST" name="AM" finished-at="2025-05-07T15:03:28 IST" duration-ms="12" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AM -->
-        <test-method is-config="true" signature="AC()[pri:0, instance:recruiter.help_interviewQueTestNG@5e17553a]" started-at="2025-04-02T18:39:22 IST" name="AC" finished-at="2025-04-02T18:39:22 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="AC()[pri:0, instance:Manager.ProfilePersmission@909217e]" started-at="2025-05-07T15:03:28 IST" name="AC" finished-at="2025-05-07T15:03:28 IST" duration-ms="6" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AC -->
-        <test-method is-config="true" signature="AS()[pri:0, instance:recruiter.help_interviewQueTestNG@5e17553a]" started-at="2025-04-02T18:39:22 IST" name="AS" finished-at="2025-04-02T18:39:22 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="AS()[pri:0, instance:Manager.ProfilePersmission@909217e]" started-at="2025-05-07T15:03:28 IST" name="AS" finished-at="2025-05-07T15:03:28 IST" duration-ms="9" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AS -->
-      </class> <!-- recruiter.help_interviewQueTestNG -->
+      </class> <!-- Manager.ProfilePersmission -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

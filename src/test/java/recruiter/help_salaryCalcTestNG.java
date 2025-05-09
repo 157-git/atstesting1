@@ -154,7 +154,7 @@ public class help_salaryCalcTestNG extends baseClass {
 				System.out.println("DISPLAYED HIKE % != CALCULATED_HIKE %");
 			}
 			
-			String hike_of="80";
+			String hike_of="800";
 			WebElement expexted_hike = driver.findElement(By.id("expectedHike"));
 			expexted_hike.sendKeys(hike_of);
 			int HIKE_OF = Integer.parseInt(hike_of);

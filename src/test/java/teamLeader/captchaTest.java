@@ -18,13 +18,15 @@ import CommonUtil.JavaUtil;
 import CommonUtil.PropertyFileUtil;
 import CommonUtil.WebDriverUtil;
 import CommonUtil.baseClass;
+import CommonUtil.baseClass_TL;
 import ObjectRepository_POM.TeamLeader;
 import ObjectRepository_POM.loginPage;
+import ObjectRepository_POM.logoutPage;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
-public class captchaTest extends baseClass{
+public class captchaTest extends baseClass_TL{
 
 	WebDriverUtil wdu=new WebDriverUtil();
 	PropertyFileUtil pfu=new PropertyFileUtil();
@@ -82,6 +84,11 @@ public class captchaTest extends baseClass{
 			
 		} else if(teamleadPageUrl.equals(URL)) {
 			System.out.println("login successfull");
+			
+			//logout
+			Thread.sleep(1000);
+			logoutPage lo=new logoutPage(driver);
+			lo.logout(driver, "Yes");
 		}
 		
 	}

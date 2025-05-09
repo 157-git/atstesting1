@@ -201,7 +201,7 @@ public class sentProfileTestNG extends baseClass_TL{
 					}
 					
 					//click on team leader section
-					
+					Thread.sleep(1000);
 					hp.getTeamLeaderSection().click();
 					
 					//logout
@@ -213,7 +213,7 @@ public class sentProfileTestNG extends baseClass_TL{
 				}
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void sentMultipleProfile() throws IOException, InterruptedException {
 		
 				// TODO Auto-generated constructor stub
@@ -427,7 +427,7 @@ public class sentProfileTestNG extends baseClass_TL{
 	}
 	
 	
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void sentProfileUpdateResponse() throws IOException, InterruptedException {
 		
 		// TODO Auto-generated constructor stub
@@ -482,7 +482,8 @@ public class sentProfileTestNG extends baseClass_TL{
 				JavascriptExecutor js = (JavascriptExecutor) driver; 
 				
 				WebElement edit = driver.findElement(By.xpath("(//i[@class=\"fa-regular fa-pen-to-square\"])[2]"));	
-				js.executeScript("arguments[0].scrollIntoView();", edit);
+				//js.executeScript("arguments[0].scrollIntoView(true);", edit);
+				wait.until(ExpectedConditions.elementToBeClickable(edit));
 				edit.click();
 				
 				WebElement select_status=driver.findElement(By.className("update-profile-drop-down"));

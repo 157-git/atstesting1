@@ -76,12 +76,12 @@ public class addJobDescriptionTestNG extends baseClass_TL{
 					TeamLeaderHomePage hp=new TeamLeaderHomePage(driver);
 					hp.addJobDescription(driver);
 					
-					String COMPANYNAME="Software Testing";
-					String DESIGINATION="Manual Tester";
-					String SALARY="3 lpa";
-					String LOCATION="delhi";
-					String EXPERIENCE="1 year";
-					String SKILLS="manual";
+					String COMPANYNAME=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","jobDescription", 1, 0);
+					String DESIGINATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","jobDescription", 1, 1);
+					String SALARY=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","jobDescription", 1, 2);
+					String LOCATION=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","jobDescription", 1, 3);
+					String EXPERIENCE=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","jobDescription", 1, 4);
+					String SKILLS=eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","jobDescription", 1, 5);
 					
 					
 					//.........................insert data in database..............................

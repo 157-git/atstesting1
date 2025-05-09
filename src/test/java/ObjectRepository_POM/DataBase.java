@@ -46,13 +46,13 @@ public class DataBase {
 	@FindBy(xpath = "//span[text()=\"Send Link\"]")
 	private WebElement SendLink;
 	
-	@FindBy(xpath = "//button[text()=\"Share 🔗\"]")
+	@FindBy(xpath = "//button[text()=\"Share Link 🔗\"]")
 	private WebElement shareLink;
 	
 	@FindBy(xpath = "//button[text()=\"Copy Link 🔗\"]")
 	private WebElement CopyLink;
 	
-	@FindBy(xpath = "//button[text()=\"Create\"]")
+	@FindBy(xpath = "//button[text()=\"Create Resume\"]")
 	private WebElement CreateResume;
 	
 	
@@ -88,7 +88,7 @@ public class DataBase {
 		return new dataBaseExcelView(driver);
 	}
 	public dataBaseExcelView excelUploadSheet(WebDriver driver) throws InterruptedException {
-		ChooseExcel.sendKeys("C:\\Users\\hp\\Downloads\\Calling_Tracker_Format (1).xlsx");
+		ChooseExcel.sendKeys("C:\\Users\\hp\\git\\Recruiter\\Recruiter_Gears\\src\\test\\resources\\Calling_Tracker_Format (1).xlsx");
 		Thread.sleep(1000);
 		if (SheetCheckbox.isDisplayed()) {
 			SheetCheckbox.click();

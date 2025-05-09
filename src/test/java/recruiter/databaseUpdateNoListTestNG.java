@@ -93,10 +93,16 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 			w.until(ExpectedConditions.visibilityOf(table));
 			
 			//Locate the table and count initial rows
-			 List<WebElement> initialRows = driver.findElements(By.xpath("//table[@class='attendance-table']/tbody/tr"));
-	         int initialRowCount = initialRows.size();
-	         System.out.println("Initial row count: " + initialRowCount);
-			
+//			 List<WebElement> initialRows = driver.findElements(By.xpath("//table[@class='attendance-table']/tbody/tr"));
+//	         int initialRowCount = initialRows.size();
+//	         System.out.println("Initial row count: " + initialRowCount);
+	         
+	         WebElement totalresult = driver.findElement(By.xpath("//div[@class=\"search-count-last-div\"]"));
+	        String text=totalresult.getText();
+	        String number = text.replaceAll("[^0-9]", "");
+	        int initialRowCount = Integer.parseInt(number);
+	        System.out.println("CANDIDATE IN EXCEL :"+initialRowCount);
+	         
 	        Thread.sleep(1000);
 	        //click on choose file
 	        db.dbDropdown(driver);
@@ -115,13 +121,22 @@ public class databaseUpdateNoListTestNG extends baseClass{    //699
 			w.until(ExpectedConditions.visibilityOf(table1));
 			
 	      //  List<WebElement> finalRows = driver.findElements(By.xpath("//table[@class='selfcalling-table attendance-table']/tbody/tr"));
-			List<WebElement> finalRows = driver.findElements(By.xpath("//table[@class='attendance-table']/tbody/tr"));
-	        int finalRowCount = finalRows.size();
-	        System.out.println("Final row count: " + finalRowCount);
+//			List<WebElement> finalRows = driver.findElements(By.xpath("//table[@class='attendance-table']/tbody/tr"));
+//	        int finalRowCount = finalRows.size();
+//	        System.out.println("Final row count: " + finalRowCount);
+			
+			 WebElement finaltotalresult = driver.findElement(By.xpath("//div[@class=\"search-count-last-div\"]"));
+		     String finaltext=finaltotalresult.getText();
+		     String finalnumber = finaltext.replaceAll("[^0-9]", "");
+		     int finalRowCount = Integer.parseInt(finalnumber);
+		     System.out.println("CANDIDATE IN EXCEL AFTER UPLOADING :"+finalRowCount);
 			
 	        // Calculate the difference
 	        int rowsAdded = finalRowCount - initialRowCount;
 	        System.out.println("Number of rows added: " + rowsAdded);
+	        
+	        Thread.sleep(1000);
+	        hp.dataBase(driver);
 			
 	        //logout............update:-12-9-24----119-122
 			Thread.sleep(1000);

@@ -114,7 +114,7 @@ public class dbSendLinkTestNG extends baseClass{
 		
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void dbCopyLink() throws IOException, InterruptedException {
 		
 		String USERNAME = pfu.getDataFromPropertyFile("username");
@@ -210,10 +210,11 @@ public class dbSendLinkTestNG extends baseClass{
 				System.out.println("linked Not copied");
 			}
 			
-			
+			Thread.sleep(1000);
 			driver.switchTo().window(originalWindow);	
 			
 			//click on dataBase
+			Thread.sleep(1000);
 			hp.dataBase(driver);
 			
 			//logout
@@ -225,7 +226,7 @@ public class dbSendLinkTestNG extends baseClass{
 		
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void createResume() throws InterruptedException, IOException {
 		String USERNAME = pfu.getDataFromPropertyFile("username");
 		String PASSWORD = pfu.getDataFromPropertyFile("password");

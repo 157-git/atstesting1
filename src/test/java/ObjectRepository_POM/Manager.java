@@ -26,6 +26,8 @@ public class Manager {
     @FindBy(xpath = "(//button[@class=\"recpage-login1\"])[1]")
     private WebElement managerBtn;
     
+    @FindBy(xpath = "//span[text()=\"Active Team Members \"]")
+    private WebElement activeTeamMember;
     
     @FindBy(xpath = "//span[text()=\"Shortlisted \"]")
     private WebElement shortlisted;

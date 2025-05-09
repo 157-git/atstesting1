@@ -42,7 +42,7 @@ public class AddCandidateTestNG extends baseClass{
 	JavaUtil ju = new JavaUtil();
 	public WebDriver sdriver;
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void addCandidateVD() throws IOException, InterruptedException {
 		//get data from property file
 		String USERNAME=pfu.getDataFromPropertyFile("username");
@@ -326,11 +326,13 @@ public class AddCandidateTestNG extends baseClass{
 			   		
 			   		//send email to candidate
 			   		Thread.sleep(1000);
-			   		WebElement Question = driver.findElement(By.xpath("//input[@class=\"ant-checkbox-input\"]"));
+//			   		WebElement Question = driver.findElement(By.xpath("//input[@class=\"ant-checkbox-input\"]"));
+			   		//html class value changed
+			   		WebElement Question = driver.findElement(By.xpath("(//input[@class=\"radio-button-email-confirmation\"])[1]"));
 			   		Question.click();		
 			   		
 			   		Thread.sleep(1000);
-			   		driver.findElement(By.xpath("//button[text()=\"Yes\"]")).click();
+			   		driver.findElement(By.xpath("//button[text()=\"Save\"]")).click();
 			   		
 			   		long endTime = System.currentTimeMillis();
 			   		// Create a Date object with endTime
@@ -490,7 +492,7 @@ public class AddCandidateTestNG extends baseClass{
 	}
 //........................................................................................................
 	
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void addCandidateIVD() throws IOException, InterruptedException {
 		//get data from property file
 				String USERNAME=pfu.getDataFromPropertyFile("username");
@@ -794,23 +796,25 @@ public class AddCandidateTestNG extends baseClass{
 						   		
 						   		//send email to candidate
 						   		Thread.sleep(1000);
-						   		WebElement Question = driver.findElement(By.xpath("//input[@class=\"ant-checkbox-input\"]"));
+						   		WebElement Question = driver.findElement(By.xpath("(//input[@class=\"radio-button-email-confirmation\"])[1]"));
 						   		Question.click();
 						   		
 						   		
 						   		Thread.sleep(1000);
-						   		driver.findElement(By.xpath("//button[text()=\"Yes\"]")).click();
+						   		driver.findElement(By.xpath("//button[text()=\"Save\"]")).click();
 						   		
 						   		Thread.sleep(2000);
 						   		
 						   	//error message
 						     	List<WebElement> error = driver.findElements(By.className("error-message"));
-						     	if (error!=null) {
+						     	System.out.println(error.toString());
+						     	if (!error.isEmpty()) {
 									for (WebElement webElement : error) {
 										wait.until(ExpectedConditions.visibilityOf(webElement));
 										js.executeScript("window.scrollTo(0, arguments[0].getBoundingClientRect().top + window.scrollY - 100);",
 									            webElement);
 								   		wdu.ScreenShot(driver, "InterestedIVD");
+								   		System.out.println("candidate not saved successfully");
 										//Assert.assertFalse(webElement.isDisplayed(), "All Required Field Value with Valid Data are required");
 								   		softAssert.assertTrue(false, "All Required Field Value with Valid Data are required");
 									}
@@ -821,7 +825,6 @@ public class AddCandidateTestNG extends baseClass{
 								}
 					
 						     	
-						   		System.out.println("candidate saved successfully");
 						} else {
 							
 							String CANDIDATE_NAME =eu.getDataFromExcel("src\\test\\resources\\Excel.xlsx","AddCandidate", 3, 0);

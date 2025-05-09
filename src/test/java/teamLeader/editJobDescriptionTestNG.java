@@ -94,8 +94,23 @@ public class editJobDescriptionTestNG extends baseClass_TL {
 							Thread.sleep(1000);
 							if (element.isDisplayed()){
 								System.out.println(element.getText());
-							} else {
 								
+								WebElement yearOfPassout = driver.findElement(By.name("yearOfPassing"));
+								yearOfPassout.clear();
+								yearOfPassout.sendKeys("2025");	
+								
+								//scroll down and click on submit
+								Thread.sleep(1000);
+								JavascriptExecutor js = (JavascriptExecutor) driver;
+								js.executeScript("window.scrollTo(0,document.body.scrollHeight);");
+								WebElement submit = driver.findElement(By.xpath("//button[text()=\"Update\"]"));
+								Thread.sleep(1000);
+								submit.click();
+								Thread.sleep(2000);
+								wdu.ScreenShot(driver, "AddJobDescription");
+								
+							} else {
+								System.out.println("UPDATE JOB DESCRIPTION PAGE NOT DISPLAYED");
 							}
 							
 							
@@ -108,8 +123,7 @@ public class editJobDescriptionTestNG extends baseClass_TL {
 					}
 					
 					
-					hp.getJobDescription();
-	        		 
+					hp.getJobDescription().click();	        		 
 					//logout
 					Thread.sleep(1000);
 					logoutPage lo=new logoutPage(driver);

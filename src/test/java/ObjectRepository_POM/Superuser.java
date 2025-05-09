@@ -29,6 +29,9 @@ public class Superuser {
 	    @FindBy(xpath = "//span[text()=\"Super User\"]")
 	    private WebElement superUser;
 	    
+	    @FindBy(xpath = "//span[text()=\"Active Team Members \"]")
+	    private WebElement activeMember;
+	    
 	    @FindBy(xpath = "//span[text()=\"Billing Dashboard\"]")
 	    private WebElement billingDashboard;
 	    

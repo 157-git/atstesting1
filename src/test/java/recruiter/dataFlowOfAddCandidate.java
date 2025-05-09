@@ -299,7 +299,11 @@ public class dataFlowOfAddCandidate extends baseClass{
 			   		driver.findElement(By.id("uploadbtn2")).click();
 			   		
 			   		Thread.sleep(1000);
-			   		driver.findElement(By.xpath("//button[text()=\"Yes\"]")).click();
+			   		WebElement Question = driver.findElement(By.xpath("(//input[@class=\"radio-button-email-confirmation\"])[1]"));
+			   		Question.click();		
+			   		
+			   		Thread.sleep(1000);
+			   		driver.findElement(By.xpath("//button[text()=\"Save\"]")).click();
 			   		
 			   		//error message
 			     	List<WebElement> error = driver.findElements(By.className("error-message"));
